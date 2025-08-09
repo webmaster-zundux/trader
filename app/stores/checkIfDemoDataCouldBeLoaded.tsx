@@ -18,7 +18,7 @@ import { useSellOrdersStore } from './entity-stores/SellOrders.store'
 import { createNotificationWithUniqTags } from './notification-stores/notification.store'
 
 export const DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA = true // todo move into environmental variables
-console.log({ BASE_URL: import.meta.env.BASE_URL })
+
 const DEMO_DATA_JSON_FILE_PATH = `${import.meta.env.BASE_URL}demo-data.json.gz`
 const PAGE_RELOAD_TIMEOUT_AFTER_SUCCESS_LOADING_DEMO_DATA_INTO_STORAGE_IN_MS = 2 * 1000
 const STORAGE_EXPORT_NOTIFICATION_TIMEOUT = PAGE_RELOAD_TIMEOUT_AFTER_SUCCESS_LOADING_DEMO_DATA_INTO_STORAGE_IN_MS
@@ -131,29 +131,6 @@ export function checkIfDemoDataCouldBeLoadedForDataStore(store: Store) {
 }
 
 export async function loadDemoDataAndReloadPage() {
-  // const demoDataFilePath = DEMO_DATA_JSON_FILE_PATH
-  // const filename = demoDataFilePath.replace(/^[^//]*/, ``)
-
-  // const storageDataJsonFile = await fetch(demoDataFilePath)
-  //   .then(async function onDemoDataFetchSuccess(response) {
-  //     const blob = await response.blob()
-  //     const file = new File([blob], filename, {type: ''})
-  //     // return response.arrayBuffer()
-  //   })
-  //   .catch(function onDemoDataFetchError(loadJsonDataError) {
-  //     createNotificationWithUniqTags({
-  //       entityType: ENTITY_TYPE_NOTIFICATION,
-  //       messages: [() => (
-  //         <>
-  //           {loadJsonDataError}
-  //         </>
-  //       )],
-  //       hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
-  //       tags: ['storage-data-import-demo-data'],
-  //       type: 'error',
-  //       title: 'Importing demo data failed'
-  //     })
-  //   })
   const { file: storageDataJsonFile, error: loadJsonDataError } = await fetchFile(DEMO_DATA_JSON_FILE_PATH)
 
   if (!storageDataJsonFile) {
@@ -167,7 +144,7 @@ export async function loadDemoDataAndReloadPage() {
       hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
       tags: ['storage-data-import-demo-data'],
       type: 'error',
-      title: 'Importing demo data failed'
+      title: 'Loading demo data failed'
     })
     return
   }
@@ -186,7 +163,7 @@ export async function loadDemoDataAndReloadPage() {
       hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
       tags: ['storage-data-import-demo-data'],
       type: 'error',
-      title: 'Importing demo data'
+      title: 'Importing demo data failed',
     })
     return importError
   }
