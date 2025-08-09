@@ -1,1 +1,0 @@
-import{k as P}from"./useLoadingPersistStorages-CMR8mGh9.js";import{j as R,r as t,s as i}from"./SearchOffIcon-Xzz7yrk0.js";function n({productName:s,productTypeName:r,productRarityName:A}){const _=new URLSearchParams;if(typeof s=="string"&&s&&_.set(R,s),typeof r=="string"&&r&&_.set(t,r),typeof A=="string"&&A&&_.set(i,A),!!_.size)return`/${P}?${_.toString()}`}export{n as g};
