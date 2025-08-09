@@ -1,0 +1,35 @@
+.FieldContainer {
+  display: table-row;
+  vertical-align: baseline;
+}
+
+.FieldLabel {
+  display: table-cell;
+  vertical-align: baseline;
+  text-align: end;
+  height: fit-content;
+  padding-right: 1em;
+  white-space: nowrap;
+  margin-bottom: 0.5em;
+}
+
+.FieldLabel::first-letter {
+  text-transform: capitalize;
+}
+
+.FieldContainer .FieldLabel:has(+ textarea) {
+  vertical-align: middle;
+  padding-bottom: 0.5em;
+}
+
+.FieldContainer .FieldLabel:has(+ div) {
+  vertical-align: middle;
+  padding-bottom: 0.2em;
+}
+
+.RequiredLabel {
+  margin-left: 0.5em;
+  font-size: 0.8em;
+  color: var(--form-field-required-label);
+  font-family: var(--monospace-font-family);
+}

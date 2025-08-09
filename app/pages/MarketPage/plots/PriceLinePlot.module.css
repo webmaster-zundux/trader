@@ -1,0 +1,50 @@
+.PlotContainer {
+  display: flex;
+  position: relative;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  opacity: 0;
+}
+
+.IsVisible {
+  opacity: 1;
+}
+
+.PlotContainer svg g.XAxis,
+.PlotContainer svg g.YAxis {
+  font-size: 0.7em;
+}
+
+.PlotContainer svg .XAxisTitle,
+.PlotContainer svg .YAxisTitle {
+  text-transform: capitalize;
+}
+
+.LineWithMissingData {
+  stroke: var(--text-color);
+}
+
+.Line {
+  stroke: var(--text-color);
+  opacity: 0.7;
+}
+
+.DotGroupOnLine {
+  fill: var(--background-color);
+}
+
+.DotOnLine {
+  fill: var(--text-color);
+  opacity: 0.8;
+}
+
+.PointerDot {
+  stroke: var(--text-color);
+}
+
+.PriceLineTooltipContentGrid {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
+  grid-gap: 0.2em 1em;
+}

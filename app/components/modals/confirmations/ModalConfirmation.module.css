@@ -1,0 +1,11 @@
+.ActionButtons {
+  display: flex;
+  gap: 0.5em;
+}
+
+@media screen and (width <=480px) {
+  .ActionButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+}

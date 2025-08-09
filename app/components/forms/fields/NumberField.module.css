@@ -1,0 +1,9 @@
+.NumberField {
+  background-color: var(--form-field-background-color);
+  border: 0.1em solid #888;
+  border-radius: var(--border-radius);
+  width: 100%;
+  padding: 0.4em 0.8em;
+  display: table-cell;
+  margin-bottom: 0.5em;
+}

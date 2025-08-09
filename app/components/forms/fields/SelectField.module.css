@@ -1,0 +1,16 @@
+.SelectField {
+  padding: 0.4em 0.8em;
+  width: 100%;
+  background-color: var(--form-field-background-color);
+  border-radius: var(--border-radius);
+  display: table-cell;
+  margin-bottom: 0.5em;
+}
+
+.NoOptionsLabel {
+  padding: 0.4em 0.8em;
+  border-radius: var(--border-radius);
+  border: 0.1em solid gray;
+  display: table-cell;
+  margin-bottom: 0.5em;
+}

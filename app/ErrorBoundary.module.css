@@ -1,0 +1,18 @@
+.ErrorBoundaryContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 2em 1em 1em;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.ErrorBoundaryContainer h1 {
+  font-size: 1.2em;
+}
+
+.ErrorBoundaryContainer p {
+  font-size: 1em;
+}

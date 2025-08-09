@@ -1,0 +1,3 @@
+.Message::first-letter {
+  text-transform: capitalize;
+}

@@ -1,0 +1,69 @@
+.ImageFileField {
+  background-color: var(--form-field-background-color);
+  border: 0.1em solid #888;
+  border-radius: var(--border-radius);
+  width: 100%;
+  padding: 0.4em 0.8em;
+  display: table-cell;
+  margin-bottom: 0.5em;
+}
+
+.ExistingImageContainer {
+  display: table-cell;
+  margin-bottom: 0.5em;
+  width: 100%;
+  position: relative;
+}
+
+.ImageContainer {
+  display: inline-table;
+  width: 100%;
+  height: auto;
+  position: relative;
+  align-items: center;
+  border: 0.1em solid #888;
+  border-radius: var(--border-radius);
+}
+
+.Image {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  min-height: 5em;
+  max-height: 50vh;
+  max-width: 100%;
+  justify-self: center;
+  object-fit: contain;
+  padding: 0.5em;
+}
+
+.ActionButtonGroup {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 1em;
+  top: 0;
+  left: 0;
+}
+
+.LoadingProgressBar {
+  display: flex;
+  gap: 0.5em;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  min-height: 5em;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  border: 0.1em solid #888;
+  border-radius: var(--border-radius);
+}
+
+.LoadingProgressBar label::first-letter {
+  text-transform: capitalize;
+}

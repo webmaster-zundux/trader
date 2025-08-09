@@ -1,0 +1,54 @@
+.ModalCopyingItemsFormBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.Content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.Content .ErrorMessageContainer {
+  border: 0.1em solid red;
+  border-radius: var(--border-radius);
+  padding: 0.5em 1em;
+  font-size: 0.9em;
+  margin: 1em 0;
+  width: min-content;
+  min-width: 100%;
+}
+
+.Content .ErrorMessageText {
+  display: block;
+}
+
+.Content .ErrorMessageText::first-letter {
+  text-transform: capitalize;
+}
+
+.ActionButtons {
+  display: flex;
+  gap: 0.5em;
+  justify-content: space-between;
+}
+
+.ActionButtonsGroup {
+  display: flex;
+  gap: 0.5em;
+}
+
+@media screen and (width <= 480px) {
+  .ActionButtons {
+    flex-direction: column;
+  }
+
+  .ActionButtonsGroup {
+    flex-direction: column;
+  }
+}

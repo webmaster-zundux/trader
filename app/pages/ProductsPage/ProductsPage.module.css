@@ -1,0 +1,31 @@
+.Container {
+  display: grid;
+  grid-template-columns: minmax(10em, 1fr) auto;
+  gap: 0.5em;
+  position: relative;
+  height: 100%;
+  overflow: auto;
+}
+
+.Products {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+}
+
+.Parameters {
+  display: flex;
+  gap: 0.5em;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  overflow: auto;
+}
+
+@media (width < 768px) {
+  .Container {
+    grid-template-columns: auto;
+    height: auto;
+    gap: 0.5em 0;
+  }
+}

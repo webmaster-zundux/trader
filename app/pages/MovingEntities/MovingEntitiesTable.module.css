@@ -1,0 +1,15 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  height: 100%;
+  overflow: auto;
+}
+
+.SearchAndFilterFormContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  width: 100%;
+  position: relative;
+}

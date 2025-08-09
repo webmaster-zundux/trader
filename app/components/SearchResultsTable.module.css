@@ -1,0 +1,107 @@
+.TableWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  height: 100%;
+  overflow: auto;
+}
+
+.TableContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: auto;
+  height: 100%;
+}
+
+.Table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.TableHeaderContainer {
+  display: flex;
+  background-color: light-dark(#ccc, #414141);
+  color: var(--text-color);
+  margin-bottom: 0.25em;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 1em;
+  padding: 0 0.5em;
+  border-radius: var(--border-radius);
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.TableHeaderLeftPart {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  align-items: center;
+  min-height: 2.45em;
+}
+
+.TableHeaderRightPart {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  align-items: center;
+  min-height: 2.45em;
+}
+
+.TableItemsQuantity {
+  display: flex;
+  position: relative;
+  font-size: 0.9em;
+}
+
+.TableTitle {
+  font-weight: bold;
+  text-transform: capitalize;
+  padding: 0.6em 0;
+  margin: 0;
+  display: flex;
+  font-size: 1.05em;
+}
+
+.TableTitleActonButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  align-items: center;
+}
+
+@media screen and (width <=480px) {
+  .TableHeaderContainer {
+    flex-direction: column;
+    padding: 0.5em;
+  }
+
+  .TableTitleActonButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .TableHeaderContainer button {
+    width: 100%;
+  }
+
+  .TableHeaderContainer,
+  .TableHeaderLeftPart,
+  .TableHeaderRightPart {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.NoData,
+.LoadingData {
+  text-align: center;
+  padding: 1em 0.25em;
+}
+
+.NoData::first-letter,
+.LoadingData::first-letter {
+  text-transform: capitalize;
+}

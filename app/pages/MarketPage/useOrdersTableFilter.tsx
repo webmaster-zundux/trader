@@ -1,0 +1,169 @@
+import { useCallback, useMemo, useRef, type Dispatch, type SetStateAction } from 'react'
+import type { useSearchParams } from '~/hooks/useSearchParams'
+import type { MarketFilter } from '~/models/entities-filters/MarketFilter'
+import type { Location } from '~/models/entities/Location'
+import { getFilterValueOnlyWithExistingAttributes } from '~/models/utils/getFilterValueOnlyWithExistingAttributes'
+import { URL_SEARCH_PARAM_KEY_LOCATION_ID, URL_SEARCH_PARAM_KEY_LOCATION_NAME, URL_SEARCH_PARAM_KEY_MAX_PRICE, URL_SEARCH_PARAM_KEY_MAX_QUANTITY, URL_SEARCH_PARAM_KEY_MIN_PRICE, URL_SEARCH_PARAM_KEY_MIN_QUANTITY, URL_SEARCH_PARAM_KEY_PLANETARY_SYSTEM_NAME } from '~/router/urlSearchParams/UrlSearchParamsKeys.const'
+import { getLocationByIdAndNameAndPlanetarySystemNameSelector, useLocationsStore } from '~/stores/entity-stores/Locations.store'
+import { getPlanetarySystemByNameSelector, usePlanetarySystemsStore } from '~/stores/entity-stores/PlanetarySystems.store'
+import { useLoadingPersistStorages } from '~/stores/hooks/useLoadingPersistStorages'
+import { useLoadingSimpleCacheStorages } from '~/stores/hooks/useLoadingSimpleCacheStorages'
+import { useLocationsAsSelectOptionArrayStore } from '~/stores/simple-cache-stores/LocationsAsSelectOptionArray.store'
+import { useLocationsWithFullNameAsMapStore } from '~/stores/simple-cache-stores/LocationsWithFullNameAsMap.store'
+import { isObjectsHaveAtLeastOneDifferentAttribute } from '~/utils/isObjectsHaveAtLeastOneDifferentAttribute'
+import { setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams } from '../../router/urlSearchParams/setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams'
+
+export const ATOMIC_URL_SEARCH_PARAM_KEY_ALLOWED_IN_MARKET_FILTER = [
+  URL_SEARCH_PARAM_KEY_MIN_PRICE,
+  URL_SEARCH_PARAM_KEY_MAX_PRICE,
+  URL_SEARCH_PARAM_KEY_MIN_QUANTITY,
+  URL_SEARCH_PARAM_KEY_MAX_QUANTITY,
+] as const
+
+export const LOCATION_URL_SEARCH_PARAM_KEY_ALLOWED_IN_MARKET_FILTER = [
+  URL_SEARCH_PARAM_KEY_LOCATION_ID,
+  URL_SEARCH_PARAM_KEY_LOCATION_NAME,
+  URL_SEARCH_PARAM_KEY_PLANETARY_SYSTEM_NAME,
+] as const
+
+type OrdersTableUrlSearchParams = (Partial<Omit<MarketFilter, 'name'>> & {
+  locationId?: string
+  locationName?: string
+  planetarySystemName?: string
+}) | undefined
+
+export function getOrdersTableUrlSearchParams(urlSearchParams: URLSearchParams): OrdersTableUrlSearchParams {
+  const filterValueWithAllAttributes = {
+    locationId: urlSearchParams.get(URL_SEARCH_PARAM_KEY_LOCATION_ID) || undefined,
+    locationName: urlSearchParams.get(URL_SEARCH_PARAM_KEY_LOCATION_NAME) || undefined,
+    planetarySystemName: urlSearchParams.get(URL_SEARCH_PARAM_KEY_PLANETARY_SYSTEM_NAME) || undefined,
+
+    minPrice: +(urlSearchParams.get(URL_SEARCH_PARAM_KEY_MIN_PRICE) || 0) || undefined,
+    maxPrice: +(urlSearchParams.get(URL_SEARCH_PARAM_KEY_MAX_PRICE) || 0) || undefined,
+    minQuantity: +(urlSearchParams.get(URL_SEARCH_PARAM_KEY_MIN_QUANTITY) || 0) || undefined,
+    maxQuantity: +(urlSearchParams.get(URL_SEARCH_PARAM_KEY_MAX_QUANTITY) || 0) || undefined,
+  } satisfies OrdersTableUrlSearchParams
+
+  return getFilterValueOnlyWithExistingAttributes(filterValueWithAllAttributes)
+}
+
+function prepareOrdersTableFilterValue({
+  filterValue,
+}: {
+  filterValue: OrdersTableUrlSearchParams
+}): MarketFilter | undefined {
+  if (!filterValue) {
+    return undefined
+  }
+
+  const {
+    locationId,
+    locationName,
+    planetarySystemName,
+    ...rest
+  } = filterValue
+
+  let locationUuid: Location['uuid'] | undefined = undefined
+
+  if (locationId || locationName) {
+    locationUuid = getLocationByIdAndNameAndPlanetarySystemNameSelector({
+      id: locationId,
+      name: locationName,
+      planetarySystemName
+    })?.uuid
+  } else if (planetarySystemName) {
+    locationUuid = getPlanetarySystemByNameSelector(planetarySystemName)?.uuid
+  }
+
+  return {
+    ...rest,
+    locationUuid,
+  } satisfies MarketFilter
+}
+
+export function useOrdersTableFilter({
+  urlSearchParams,
+  setUrlSearchParams
+}: ReturnType<typeof useSearchParams>) {
+  const isLoadingPersistStorages = useLoadingPersistStorages([useLocationsStore, usePlanetarySystemsStore])
+  const isLoadingSimpleCacheStorages = useLoadingSimpleCacheStorages([useLocationsAsSelectOptionArrayStore, useLocationsWithFullNameAsMapStore])
+  const isLoading = isLoadingPersistStorages || isLoadingSimpleCacheStorages
+
+  const lastMarketFilterValueRef = useRef<MarketFilter | undefined>(undefined)
+  const marketFilterValue = useMemo(function marketFilterValueMemo() {
+    if (isLoading || !isLoading) {
+      // noop - just tracking isLoading updates
+    }
+
+    const searchingFilterValue = getOrdersTableUrlSearchParams(urlSearchParams)
+    const newFilterValue = prepareOrdersTableFilterValue({
+      filterValue: searchingFilterValue
+    })
+    const prev = lastMarketFilterValueRef.current
+    const thereAreAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prev, newFilterValue)
+
+    if (thereAreAnyChanges) {
+      lastMarketFilterValueRef.current = newFilterValue
+      return newFilterValue
+    }
+
+    return prev
+  }, [urlSearchParams, lastMarketFilterValueRef, isLoading])
+
+  const setMarketFilterValueToUrlSearchParams: Dispatch<SetStateAction<MarketFilter | undefined>> = useCallback(function setMarketFilterValueToUrlSearchParams(marketFilterValue) {
+    let newMarketFilterValue: MarketFilter | undefined = undefined
+
+    if (typeof marketFilterValue === 'function') {
+      throw new Error('MarketValue as setState(prev=>newState) function not supported')
+    } else {
+      if (!!marketFilterValue && Object.keys(marketFilterValue).length > 0) {
+        newMarketFilterValue = marketFilterValue
+      }
+    }
+
+    setUrlSearchParams((prev) => {
+      const prevFilterValue = getOrdersTableUrlSearchParams(prev)
+      const thereAreAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prevFilterValue, newMarketFilterValue)
+
+      if (thereAreAnyChanges) {
+        if (!newMarketFilterValue) {
+          ATOMIC_URL_SEARCH_PARAM_KEY_ALLOWED_IN_MARKET_FILTER.forEach((key) => {
+            prev.delete(key)
+          })
+
+          LOCATION_URL_SEARCH_PARAM_KEY_ALLOWED_IN_MARKET_FILTER.forEach((key) => {
+            prev.delete(key)
+          })
+
+          return prev
+        }
+
+        ATOMIC_URL_SEARCH_PARAM_KEY_ALLOWED_IN_MARKET_FILTER.forEach((key) => {
+          if (newMarketFilterValue[key]) {
+            prev.set(key, `${newMarketFilterValue[key]}`)
+          } else {
+            prev.delete(key)
+          }
+        })
+
+        const locationUuid = newMarketFilterValue['locationUuid']
+
+        setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams({
+          urlSearchParams: prev,
+          locationUuid,
+          planetarySystemUuid: locationUuid,
+          locationIdUrlSearchParamsKeyName: URL_SEARCH_PARAM_KEY_LOCATION_ID,
+          locationNameUrlSearchParamsKeyName: URL_SEARCH_PARAM_KEY_LOCATION_NAME,
+          planetarySystemNameUrlSearchParamsKeyName: URL_SEARCH_PARAM_KEY_PLANETARY_SYSTEM_NAME,
+        })
+      }
+
+      return prev
+    })
+  }, [setUrlSearchParams])
+
+  return {
+    marketFilterValue,
+    setMarketFilterValueToUrlSearchParams,
+  }
+}

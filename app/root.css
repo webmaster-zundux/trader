@@ -1,0 +1,144 @@
+:root {
+  color-scheme: light dark;
+
+  --font-family: "Roboto", system-ui, sans-serif;
+  --monospace-font-family: "RobotoMono", monospace;
+  --border-radius: 0.2em;
+  --background-color: #eee;
+  --text-color: #222;
+  --scrollbar-background-color: #e7e7e7;
+  --scrollbar-thumb-background-color: #949494;
+  --button-background-color: #d8d8d8;
+  --button-border-color: #6a6357;
+  --button-hover-background-color: #c4c4c4;
+  --button-hover-border-color: #807769;
+  --button-active-background-color: whitesmoke;
+  --button-active-border-color: #6a6357;
+  --button-focus-visible-background-color: whitesmoke;
+  --button-focus-visible-border-color: #807769;
+  --button-focus-visible-outline-color: #0f0f0f;
+  --background-line-color: rgb(0 0 0 / 5%);
+  --form-field-background-color: #f7f7f7;
+  --form-field-border-color: #888;
+  --form-field-required-label: #4f4f4f;
+  --dialog-border-color: #494949;
+  --floating-element-box-shadow: 0 0.2em 0.25em 0 hsl(0deg 0% 0% / 40%);
+  --primary-color: #575757;
+  --primary-text-color: whitesmoke;
+  --primary-active-color: #303030;
+  --primary-active-text-color: whitesmoke;
+  --no-data-text-color: #b5b5b5;
+  --map-label-text-color: var(--text-color);
+  --map-label-text-shadow: 0 0 0.2em var(--background-color);
+  --map-label-box-shadow: 0.1em 0.1em 0.1em rgb(0 0 0 / 30%);
+  --floating-element-transparent-background-color: hsl(0deg 0% 93.33% / 70%);
+}
+
+html {
+  height: 100%;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+
+html:has(> .ColorThemeDark) {
+  --background-color: #181a1b;
+  --text-color: #e8e6e3;
+  --scrollbar-background-color: #202324;
+  --scrollbar-thumb-background-color: #454a4d;
+  --button-background-color: #252525;
+  --button-border-color: #7a7a7a;
+  --button-hover-background-color: #454b4e;
+  --button-hover-border-color: #8a8a8a;
+  --button-active-background-color: #222;
+  --button-active-border-color: #6a6357;
+  --button-focus-visible-background-color: #454b4e;
+  --button-focus-visible-border-color: #858585;
+  --button-focus-visible-outline-color: #f0f0f0;
+  --background-line-color: rgb(255 255 255 / 5%);
+  --form-field-background-color: #0b0c0c;
+  --form-field-required-label: #a5a5a5;
+  --primary-color: #c4c4c4;
+  --primary-text-color: #1b1b1b;
+  --primary-active-color: #e6e6e6;
+  --primary-active-text-color: #1b1b1b;
+  --no-data-text-color: #575757;
+  --map-label-text-color: var(--text-color);
+  --map-label-text-shadow: 0 0 0.2em var(--background-color);
+  --floating-element-transparent-background-color: hsl(0deg 0% 7.77% / 70%);
+}
+
+html:has(> body.ColorThemeDark) {
+  color-scheme: dark !important;
+}
+
+html:has(> body.ColorThemeLight) {
+  color-scheme: only light !important;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-color: var(--scrollbar-thumb-background-color) var(--scrollbar-background-color);
+  font-family: var(--font-family);
+  letter-spacing: 0.05em;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+dialog {
+  padding: 0;
+  border: none;
+  border-radius: var(--border-radius);
+  overflow: auto;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  filter: grayscale(1);
+}
+
+
+@media screen and (prefers-reduced-motion: reduce) {
+  * {
+    /* Very short durations means JavaScript that relies on events still works */
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+button {
+  background-color: var(--button-background-color);
+  border-color: var(--button-border-color);
+  border-width: 0.1em;
+  border-style: solid;
+  border-radius: var(--border-radius);
+}
+
+button:hover {
+  background-color: var(--button-hover-background-color);
+  border-color: var(--button-hover-border-color);
+}
+
+button:active {
+  background-color: var(--button-active-background-color);
+  border-color: var(--button-active-border-color);
+}
+
+button:focus-visible {
+  background-color: var(--button-focus-visible-background-color);
+  border-color: var(--button-focus-visible-border-color);
+  outline-color: var(--button-focus-visible-outline-color);
+}

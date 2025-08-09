@@ -1,0 +1,34 @@
+.FilterParametersInfoContainer {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 0.9em;
+  padding: 0.2em 0.5em 0.55em;
+  gap: 1em;
+}
+
+.FilterParametersList {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0;
+  padding: 0;
+  gap: 1em;
+}
+
+.FilterParametersListItem {
+  display: flex;
+  gap: 0.25em;
+  flex-wrap: wrap;
+}
+
+.FilterParameterName {
+  font-weight: normal;
+}
+
+.FilterParameterName::first-letter {
+  text-transform: capitalize;
+}
+
+.FilterParameterValue {
+  text-transform: capitalize;
+  font-weight: bolder;
+}

@@ -1,0 +1,111 @@
+.DialogEditFormBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.Title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.Title::first-letter {
+  text-transform: capitalize;
+}
+
+.Content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.Content .ErrorMessageContainer {
+  border: 0.1em solid red;
+  border-radius: var(--border-radius);
+  padding: 0.5em 1em;
+  font-size: 0.9em;
+  margin: 1em 0;
+  width: min-content;
+  min-width: 100%;
+}
+
+.Content .ErrorMessageText {
+  display: block;
+}
+
+.Content .ErrorMessageText::first-letter {
+  text-transform: capitalize;
+}
+
+.Row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+}
+
+.Row>div {
+  display: flex;
+}
+
+.Column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.FieldsContainer {
+  display: table;
+  table-layout: auto;
+  width: 100%;
+  max-width: 30em;
+}
+
+.FieldsContainer div:has(>label) {
+  align-items: baseline;
+}
+
+.FieldsContainer div>label:has(+div) {
+  vertical-align: baseline !important;
+}
+
+.FieldsContainer div:has(>label) label::first-letter {
+  text-transform: lowercase;
+}
+
+.FieldsContainer>div>label::first-letter {
+  text-transform: capitalize !important;
+}
+
+.FieldsContainer:not(> div) div:has(>label) {
+  display: flex;
+}
+
+.FieldsContainer div>label {
+  padding-right: 0.5em !important;
+}
+
+.FieldsContainer>div>label {
+  padding-right: 0.5em !important;
+}
+
+.ActionButtons {
+  display: flex;
+  gap: 0.5em;
+  justify-content: end;
+}
+
+.ActionButtonsGroup {
+  display: flex;
+  gap: 0.5em;
+}
+
+
+@media screen and (width <=480px) {
+  .ActionButtons {
+    flex-direction: column;
+  }
+
+  .ActionButtonsGroup {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,29 @@
+.SpriteLabelAnchor {
+  position: absolute;
+  user-select: none;
+}
+
+.SpriteLabel {
+  position: relative;
+  font-size: 1em;
+  color: var(--map-label-text-color);
+  text-shadow: var(--map-label-text-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+  align-items: center;
+  justify-content: center;
+  bottom: 3em;
+  background-color: var(--floating-element-transparent-background-color);
+  border-radius: var(--border-radius);
+  padding: 0.5em 2em;
+  box-shadow: var(--map-label-box-shadow);
+}
+
+.GroupItemId {
+  font-size: 0.9em;
+}
+
+.GroupItemName {
+  font-size: 0.9em;
+}

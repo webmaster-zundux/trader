@@ -1,0 +1,31 @@
+.Container {
+  display: grid;
+  grid-template-columns: auto minmax(20em, 1fr);
+  gap: 0 0.5em;
+  position: relative;
+  height: 100%;
+  overflow: auto;
+}
+
+.MainTable {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+}
+
+.TableGroups {
+  display: flex;
+  gap: 0.5em;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  overflow: auto;
+}
+
+@media (width < 768px) {
+  .Container {
+    grid-template-columns: auto;
+    height: auto;
+    gap: 0.5em 0;
+  }
+}

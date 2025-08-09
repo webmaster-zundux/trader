@@ -1,0 +1,172 @@
+.ModalWrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+
+  /* z-index: 2; because value "1" uses by sticky table header row */
+}
+
+.Backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: hsl(220deg 40% 5% / 70%);
+}
+
+.ModalContainer {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 1.5em;
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  width: 60%;
+  max-height: 90%;
+  overflow: auto;
+  height: auto;
+  border: 0.1em solid var(--dialog-border-color);
+  box-shadow: var(--floating-element-box-shadow);
+}
+
+.CloseButtonContainer {
+  position: absolute;
+  top: 1em;
+  right: 1.25em;
+  display: flex;
+}
+
+.SizeTiny {
+  width: 30%;
+}
+
+.SizeSmall {
+  width: 40%;
+}
+
+.SizeMedium {
+  width: 60%;
+}
+
+.SizeLarge {
+  width: 80%;
+}
+
+@media (width >=1200px) and (width < 1440px) {
+  .SizeTiny {
+    width: 45%;
+  }
+
+  .SizeSmall {
+    width: 60%;
+  }
+
+  .SizeMedium {
+    width: 75%;
+  }
+
+  .SizeLarge {
+    width: 90%;
+  }
+}
+
+@media (width >=992px) and (width < 1200px) {
+  .SizeTiny {
+    width: 45%;
+  }
+
+  .SizeSmall {
+    width: 60%;
+  }
+
+  .SizeMedium {
+    width: 75%;
+  }
+
+  .SizeLarge {
+    width: 90%;
+  }
+}
+
+@media (width >=768px) and (width < 992px) {
+  .SizeTiny {
+    width: 75%;
+  }
+
+  .SizeSmall {
+    width: 80%;
+  }
+
+  .SizeMedium {
+    width: 85%;
+  }
+
+  .SizeLarge {
+    width: 90%;
+  }
+}
+
+@media (width < 768px) {
+  .SizeTiny {
+    width: 95%;
+  }
+
+  .SizeSmall {
+    width: 95%;
+  }
+
+  .SizeMedium {
+    width: 95%;
+  }
+
+  .SizeLarge {
+    width: 95%;
+  }
+}
+
+.HeaderContainer {
+  display: flex;
+  gap: 1em;
+  width: 100%;
+  margin-bottom: 1em;
+  padding-right: 2em;
+}
+
+.NoPaddingForCloseButton {
+  padding-right: 0;
+}
+
+.TitleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  width: 100%;
+}
+
+.Title {
+  font-weight: bold;
+  font-weight: normal;
+  margin: 0;
+  font-size: 1.1em;
+  line-height: 1.5em;
+}
+
+.Title::first-letter {
+  text-transform: capitalize;
+}
+
+.Title.CenterText {
+  text-align: center;
+}
+
+.SubTitle {
+  font-size: 0.95em;
+}
+
+.SubTitle::first-letter {
+  text-transform: capitalize;
+}

@@ -1,0 +1,76 @@
+.Navbar {
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1em;
+  border-bottom: 0.1em solid gray;
+  width: 100%;
+  padding: 0.5em;
+  align-items: center;
+}
+
+.HeaderContainer {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.Logo {
+  display: flex;
+  text-transform: capitalize;
+}
+
+.LinksList {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 0.1em;
+  padding: 0;
+  margin: 0;
+}
+
+.LinkListItem {
+  display: flex;
+}
+
+.NavLink {
+  position: relative;
+  padding: 0.25em 0.8em;
+  text-transform: capitalize;
+  cursor: pointer;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.NavLink::after {
+  content: '';
+  display: block;
+  top: 85%;
+  position: absolute;
+  left: 2%;
+  width: 96%;
+}
+
+.NavLink.Pending::after {
+  border-bottom: none;
+}
+
+.NavLink.Active::after {
+  border-bottom: 0.2em solid light-dark(#494949, #797979);
+}
+
+.NavLink:hover::after {
+  border-bottom: 0.4em solid light-dark(#494949, #797979);
+}
+
+@media (width < 768px) {
+  .LinksList {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .NavLink {
+    width: 100%;
+  }
+}

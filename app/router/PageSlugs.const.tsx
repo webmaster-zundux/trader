@@ -1,0 +1,8 @@
+export const PAGE_SLUG_ROOT = '/'
+export const PAGE_SLUG_INVENTORY = 'inventory'
+export const PAGE_SLUG_MARKET = ''
+export const PAGE_SLUG_PRODUCTS = 'products'
+export const PAGE_SLUG_LOCATIONS = 'locations'
+export const PAGE_SLUG_MOVING_ENTITIES = 'moving-entities'
+export const PAGE_SLUG_MAP = 'map'
+export const PAGE_SLUG_HISTORY = 'history'

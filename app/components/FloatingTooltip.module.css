@@ -1,0 +1,70 @@
+.PointAnchorContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+  display: flex;
+}
+
+.PointAnchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.PointAnchor::before {
+  content: '';
+  position: absolute;
+  width: 0.5em;
+  height: 0.5em;
+  transform: translate(-50%, -50%);
+  background-color: var(--text-color);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+}
+
+.LabelAnchor {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  align-self: start;
+  user-select: none;
+  pointer-events: none;
+}
+
+.FloatingLabel {
+  position: relative;
+  background-color: var(--background-color);
+  border: 0.1em solid #4a4a4a;
+  border-radius: 0.2em;
+  box-shadow: 0.1em 0.1em 0.1em rgb(0 0 0 / 30%);
+  padding: 1px 2px;
+  top: 0;
+  left: 0;
+  margin: 1em;
+}
+
+.FloatingLabelContent {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9em;
+  line-height: normal;
+  padding: 0.4em 0.6em;
+}
+
+.PointingLine {
+  position: absolute;
+  stroke: var(--text-color);
+  stroke-dashoffset: 0.3em;
+  stroke-dasharray: 0.25em;
+  stroke-width: 0.1em;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+}

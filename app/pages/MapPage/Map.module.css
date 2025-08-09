@@ -1,0 +1,49 @@
+.MapStatusLabel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.5em 2em;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: 0.1em solid var(--dialog-border-color);
+  border-radius: var(--border-radius);
+}
+
+.CanvasContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.CanvasContainer canvas {
+  position: relative;
+  height: 100% !important;
+  width: 100% !important;
+  display: flex;
+}
+
+.PointerDot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+.PointerDot::after {
+  content: '';
+  position: absolute;
+  width: 0.4em;
+  height: 0.4em;
+  background-color: var(--map-label-text-color);
+  border-color: black;
+  border-width: 0.1em;
+  border-radius: 50%;
+  box-shadow: var(--map-label-text-shadow);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+

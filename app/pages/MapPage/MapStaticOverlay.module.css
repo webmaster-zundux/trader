@@ -1,0 +1,56 @@
+.MapStaticOverlayContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--map-label-text-color);
+  text-shadow: var(--map-label-text-shadow);
+  user-select: none;
+  pointer-events: none;
+}
+
+.PlanetarySystemNameLabelContainer {
+  position: absolute;
+  top: 2em;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-family: var(--monospace-font-family);
+  user-select: text;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.1em;
+  background-color: var(--floating-element-transparent-background-color);
+  padding: 1em 4em;
+  max-width: 100%;
+  width: max-content;
+  border-radius: var(--border-radius);
+  box-shadow: var(--map-label-box-shadow);
+}
+
+.PlanetarySystemNameLabel {
+  font-size: 1.3em;
+  text-shadow: var(--map-label-text-shadow);
+}
+
+.PlanetarySystemNameLabel::first-letter {
+  text-transform: capitalize;
+}
+
+.PlanetarySystemNameSubLabel {
+  font-size: 0.9em;
+}
+
+.MapZoomLevelLabel {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  font-size: 0.9em;
+  font-family: var(--monospace-font-family);
+  background-color: transparent;
+  user-select: text;
+  pointer-events: auto;
+}

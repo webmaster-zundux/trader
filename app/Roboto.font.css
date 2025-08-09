@@ -1,0 +1,33 @@
+/* // <weight>: Use a value from 100 to 900 */
+
+/* // <uniquifier>: Use a unique and descriptive class name */
+
+/* 
+.roboto-<uniquifier> {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+*/
+
+@font-face {
+  font-family: Roboto;
+  /* stylelint-disable-next-line at-rule-descriptor-no-unknown */
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  src: url('/fonts/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: RobotoMono;
+  /* stylelint-disable-next-line at-rule-descriptor-no-unknown */
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  src: url('/fonts/RobotoMono-VariableFont_wght.ttf') format('truetype');
+  font-display: swap;
+}

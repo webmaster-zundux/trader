@@ -1,0 +1,182 @@
+.Button {
+  border-radius: var(--border-radius);
+  padding: 0.4em 0.8em;
+  border: 0.1em solid #666;
+  height: fit-content;
+  cursor: pointer;
+  color: var(--text-color);
+  display: inline-block;
+  position: relative;
+}
+
+.Button:not(.NoCapitalize)::first-letter {
+  text-transform: capitalize;
+}
+
+.Button svg {
+  display: flex;
+  fill: var(--text-color);
+}
+
+.Button:has(>svg+span) {
+  display: flex;
+  gap: 0.25em;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2.4em;
+}
+
+.Button:has(>svg+span)>svg {
+  height: 1.3em;
+  width: auto;
+  display: flex;
+  position: absolute;
+  left: 0.8em;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.Button:has(>svg+span)>span::first-letter {
+  text-transform: capitalize;
+}
+
+.Primary {
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+}
+
+.Fluid {
+  width: 100%;
+  height: 100%;
+}
+
+.Tiny {
+  padding: 0.1em 0.5em;
+}
+
+.Tiny svg {
+  width: 1.2em;
+  height: auto;
+}
+
+.Small {
+  padding: 0.3em 1em;
+}
+
+.Small svg {
+  width: 1.4em;
+  height: auto;
+}
+
+.Big {
+  padding: 0.8em 1em;
+}
+
+.Big svg {
+  width: 1.6em;
+  height: auto;
+}
+
+.TransparentOnDefaultState,
+.Transparent {
+  background-color: transparent;
+  border-color: #888;
+}
+
+.NoPadding {
+  padding: 0;
+}
+
+.Button.NoPadding:has(>svg+span) {
+  padding-left: 0;
+}
+
+.Button.NoPadding:has(>svg+span)>svg {
+  width: 1.4em;
+  height: auto;
+  position: relative;
+  top: auto;
+  transform: none;
+  left: auto;
+}
+
+.Button.NoPadding:has(>svg+span)>svg+span {
+  padding-right:0.2em;
+}
+
+.NoBorder {
+  border: none;
+  border-radius: 0;
+}
+
+.Button:disabled {
+  cursor: default;
+}
+
+.IsAlwaysVisible svg {
+  opacity: 1 !important;
+}
+
+.Button:disabled svg {
+  fill: light-dark(#757575, gray) !important;
+}
+
+.Button:disabled,
+.IsStaticBehaviour {
+  background-color: initial !important;
+  border-color: initial !important;
+}
+
+.Button:hover:not(:disabled),
+.Button:focus-visible:not(:disabled) {
+  background-color: light-dark(#bdbdbd, #5c5c5c);
+  border-color: #252525;
+}
+
+.Button:active:not(:disabled) {
+  background-color: light-dark(#fff, #000);
+}
+
+.Transparent:hover:not(:disabled),
+.Transparent:focus-visible:not(:disabled) {
+  background-color: transparent;
+  border-color: #252525;
+}
+
+.Transparent:active:not(:disabled) {
+  background-color: transparent;
+}
+
+.Transparent:hover:not(:disabled) svg,
+.Transparent:focus-visible:not(:disabled) svg {
+  fill: light-dark(#7b7b7b, #e2e2e2);
+  stroke: light-dark(#7b7b7b, #e2e2e2);
+}
+
+.Transparent:active:not(:disabled) svg {
+  fill: light-dark(#000, #575757);
+  stroke: light-dark(#000, #575757);
+}
+
+.AsLink {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  cursor: pointer;
+}
+
+.AsLink:hover,
+.AsLink:focus-visible {
+  text-decoration-line: none;
+}
+
+.Primary:hover:not(:disabled),
+.Primary:focus-visible:not(:disabled) {
+  background-color: var(--primary-hover-color);
+  color: var(--primary-hover-text-color);
+}
+
+.Primary:active:not(:disabled) {
+  background-color: var(--primary-active-color);
+  color: var(--primary-active-text-color);
+}

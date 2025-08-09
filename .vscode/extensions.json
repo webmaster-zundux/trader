@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "ms-playwright.playwright",
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.js-debug",
+        "firsttris.vscode-jest-runner",
+        "stylelint.vscode-stylelint",
+        "editorconfig.editorconfig"
+    ]
+}
