@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { COMPRESSED_DUMP_FILE_EXTENSION, DUMP_FILE_EXTENSION, STORAGE_STATE_ACCEPTABLE_FILE_EXTENSIONS, STORAGE_STATE_ACCEPTABLE_FILE_TYPES_AS_STRING, doesFileHaveAcceptableFileExtension, readFileAsJsonString } from '~/utils/file/import-export-storage-data'
 import type { Entity } from '../../models/Entity'
-import { importDataFromJsonFile } from '../../stores/importDataFromJsonFile'
+import { importDataFromJsonString } from '../../stores/importDataFromJsonString'
 import type { FormField } from '../forms/FormFieldWithLabel.const'
 import { ModalUploadFileForm } from '../forms/ModalUploadFileForm'
 
@@ -37,7 +37,7 @@ export const ImportStorageDataModal = ({
 
   const handleSubmit = useCallback(async ({ storageDataJsonFile }: StorageState) => {
     const storageStateAsJsonString = await readFileAsJsonString(storageDataJsonFile)
-    const importError = await importDataFromJsonFile(storageStateAsJsonString)
+    const importError = await importDataFromJsonString(storageStateAsJsonString)
 
     if (importError) {
       return importError

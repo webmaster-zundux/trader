@@ -1,5 +1,7 @@
-import { importDataFromJsonFile } from '~/stores/importDataFromJsonFile'
 import { ENTITY_TYPE_NOTIFICATION } from '~/models/notifications/Notifications'
+import { importDataFromJsonString } from '~/stores/importDataFromJsonString'
+import { fetchFile } from '~/utils/file/fetchFile'
+import { readFileAsJsonString } from '~/utils/file/import-export-storage-data'
 import { useBuyOrdersStore } from './entity-stores/BuyOrders.store'
 import type { createEntityArrayStore } from './entity-stores/createEntityArrayStore'
 import type { createEntityMapStore } from './entity-stores/createEntityMapStore'
@@ -129,30 +131,49 @@ export function checkIfDemoDataCouldBeLoadedForDataStore(store: Store) {
 }
 
 export async function loadDemoDataAndReloadPage() {
-  const storageStateAsJsonString = await fetch(DEMO_DATA_JSON_FILE_PATH)
-    .then(function onDemoDataFetchSuccess(response) {
-      return response.text()
-    })
-    .catch(function onDemoDataFetchError(loadJsonDataError) {
-      createNotificationWithUniqTags({
-        entityType: ENTITY_TYPE_NOTIFICATION,
-        messages: [() => (
-          <>
-            {loadJsonDataError}
-          </>
-        )],
-        hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
-        tags: ['storage-data-import-demo-data'],
-        type: 'error',
-        title: 'Importing demo data'
-      })
-    })
+  // const demoDataFilePath = DEMO_DATA_JSON_FILE_PATH
+  // const filename = demoDataFilePath.replace(/^[^//]*/, ``)
 
-  if (!storageStateAsJsonString) {
+  // const storageDataJsonFile = await fetch(demoDataFilePath)
+  //   .then(async function onDemoDataFetchSuccess(response) {
+  //     const blob = await response.blob()
+  //     const file = new File([blob], filename, {type: ''})
+  //     // return response.arrayBuffer()
+  //   })
+  //   .catch(function onDemoDataFetchError(loadJsonDataError) {
+  //     createNotificationWithUniqTags({
+  //       entityType: ENTITY_TYPE_NOTIFICATION,
+  //       messages: [() => (
+  //         <>
+  //           {loadJsonDataError}
+  //         </>
+  //       )],
+  //       hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
+  //       tags: ['storage-data-import-demo-data'],
+  //       type: 'error',
+  //       title: 'Importing demo data failed'
+  //     })
+  //   })
+  const { file: storageDataJsonFile, error: loadJsonDataError } = await fetchFile(DEMO_DATA_JSON_FILE_PATH)
+
+  if (!storageDataJsonFile) {
+    createNotificationWithUniqTags({
+      entityType: ENTITY_TYPE_NOTIFICATION,
+      messages: [() => (
+        <>
+          {loadJsonDataError}
+        </>
+      )],
+      hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
+      tags: ['storage-data-import-demo-data'],
+      type: 'error',
+      title: 'Importing demo data failed'
+    })
     return
   }
 
-  const importError = await importDataFromJsonFile(storageStateAsJsonString)
+  const storageStateAsJsonString = await readFileAsJsonString(storageDataJsonFile)
+  const importError = await importDataFromJsonString(storageStateAsJsonString)
 
   if (importError) {
     createNotificationWithUniqTags({
