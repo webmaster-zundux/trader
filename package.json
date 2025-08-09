@@ -9,6 +9,7 @@
     "build": "react-router build",
     "build:gh-pages": "cp .env.production.gh-pages .env && react-router build && rm -rf docs && cp -r build/client docs && git add docs -f",
     "no-exist:start": "react-router-serve ./build/server/index.js",
+    "typegen": "react-router typegen",
     "typecheck": "react-router typegen && tsc",
     "preview": "vite preview",
     "ci": "npm run typecheck && npm run lint",
