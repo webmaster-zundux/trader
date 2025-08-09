@@ -17,7 +17,7 @@ import { createNotificationWithUniqTags } from './notification-stores/notificati
 
 export const DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA = true // todo move into environmental variables
 
-const DEMO_DATA_JSON_FILE_PATH = '/demo-data.json.gz'
+const DEMO_DATA_JSON_FILE_PATH = `${import.meta.env.BASE_URL}demo-data.json.gz`
 const PAGE_RELOAD_TIMEOUT_AFTER_SUCCESS_LOADING_DEMO_DATA_INTO_STORAGE_IN_MS = 2 * 1000
 const STORAGE_EXPORT_NOTIFICATION_TIMEOUT = PAGE_RELOAD_TIMEOUT_AFTER_SUCCESS_LOADING_DEMO_DATA_INTO_STORAGE_IN_MS
 
