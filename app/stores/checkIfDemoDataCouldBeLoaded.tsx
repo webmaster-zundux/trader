@@ -131,7 +131,7 @@ export function checkIfDemoDataCouldBeLoadedForDataStore(store: Store) {
 }
 
 export async function loadDemoDataAndReloadPage() {
-  const { file: storageDataJsonFile, error: loadJsonDataError } = await fetchFile(DEMO_DATA_JSON_FILE_PATH)
+  const { file: storageDataJsonFile, error: loadJsonDataError } = await fetchFile(DEMO_DATA_JSON_FILE_PATH, 'application/gzip')
 
   if (!storageDataJsonFile) {
     createNotificationWithUniqTags({

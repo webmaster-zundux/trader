@@ -2,7 +2,7 @@ export function fetchFile(filePath: string, mimeType: string = ''): Promise<{
   file: File | undefined
   error: unknown
 }> {
-  const filename = filePath.replace(/^[^//]*/, ``)
+  const filename = filePath.replace(/^[^/]*\//, ``)
 
   return new Promise((resolve, reject) => {
     fetch(filePath)
