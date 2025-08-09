@@ -5,6 +5,7 @@ import { useSearchParams } from '~/hooks/useSearchParams'
 import { isLocation, type Location } from '~/models/entities/Location'
 import { isMovingEntity, type MovingEntity } from '~/models/entities/MovingEntity'
 import { isPlanetarySystem, type PlanetarySystem } from '~/models/entities/PlanetarySystem'
+import { createPageTitleString } from '~/routes/utils/createPageTitleString'
 import { useLocationTypesStore } from '~/stores/entity-stores/LocationTypes.store'
 import { useLocationsStore } from '~/stores/entity-stores/Locations.store'
 import { useMovingEntitiesStore } from '~/stores/entity-stores/MovingEntities.store'
@@ -13,6 +14,7 @@ import { usePlanetarySystemsStore } from '~/stores/entity-stores/PlanetarySystem
 import { useLoadingPersistStorages } from '~/stores/hooks/useLoadingPersistStorages'
 import { Map } from './Map'
 import { MAP_MODE_PLANETARY_SYSTEM, MAP_MODE_UNIVERSE } from './Map.const'
+import { PAGE_TITLE_MAP } from './MapPage.const'
 import styles from './MapPage.module.css'
 import { getSearchResultTableColumns } from './getSearchResultTableColumns'
 import { useGetMapItems } from './hooks/useGetMapItems'
@@ -20,6 +22,8 @@ import { useGetMapSearchResults } from './hooks/useGetMapSearchResults'
 import { useMapFilter } from './useMapFilter'
 import { useMapPageTitle } from './useMapPageTitle'
 import { useMapSearch } from './useMapSearch'
+
+const title = createPageTitleString(PAGE_TITLE_MAP)
 
 export const MapPage = memo(function MapPage() {
   const { urlSearchParams, setUrlSearchParams } = useSearchParams()
@@ -106,41 +110,45 @@ export const MapPage = memo(function MapPage() {
   }, [selectedPlanetarySystemUuid, selectedLocationUuid, selectedMovingEntityUuid])
 
   return (
-    <div className={styles.Container}>
-      <div className={styles.SearchResults}>
-        <SearchFormAndTableContainer>
+    <>
+      <title>{title}</title>
 
-          {SearchForm}
+      <div className={styles.Container}>
+        <div className={styles.SearchResults}>
+          <SearchFormAndTableContainer>
 
-          <SearchResultsTable
-            tableTitle="search results"
-            items={searchResults}
-            noItemsLabel="no results"
-            isLoading={isLoading}
+            {SearchForm}
 
-            searchFieldValue={searchFieldValue}
-          >
-            <SearchResultsTableBody
+            <SearchResultsTable
+              tableTitle="search results"
               items={searchResults}
-              columns={searchResultTableColumns}
-              onSelectItem={handleSelectMapItem}
-              selectedItemUuid={selectedItemUuid}
-            />
-          </SearchResultsTable>
-        </SearchFormAndTableContainer>
-      </div>
+              noItemsLabel="no results"
+              isLoading={isLoading}
 
-      <div className={styles.MapContainer}>
-        <Map
-          isLoading={isLoading}
-          items={mapItems}
-          mapMode={mapMode}
-          selectedPlanetarySystemUuid={selectedPlanetarySystemUuid}
-          onSelectItem={handleSelectMapItem}
-          selectedItemUuid={selectedItemUuid}
-        />
-      </div>
+              searchFieldValue={searchFieldValue}
+            >
+              <SearchResultsTableBody
+                items={searchResults}
+                columns={searchResultTableColumns}
+                onSelectItem={handleSelectMapItem}
+                selectedItemUuid={selectedItemUuid}
+              />
+            </SearchResultsTable>
+          </SearchFormAndTableContainer>
+        </div>
 
-    </div>
+        <div className={styles.MapContainer}>
+          <Map
+            isLoading={isLoading}
+            items={mapItems}
+            mapMode={mapMode}
+            selectedPlanetarySystemUuid={selectedPlanetarySystemUuid}
+            onSelectItem={handleSelectMapItem}
+            selectedItemUuid={selectedItemUuid}
+          />
+        </div>
+
+      </div>
+    </>
   )
 })

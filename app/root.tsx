@@ -1,10 +1,10 @@
 import type React from 'react'
-import { Links, Meta, Scripts, ScrollRestoration, isRouteErrorResponse } from 'react-router'
+import { Links, Scripts, ScrollRestoration, isRouteErrorResponse } from 'react-router'
 import type { Route } from './+types/root'
-import { APP_ROOT_ELEMENT_ID } from './main.const'
-import './Roboto.font.css'
 import { AppPageContentLayout } from './components/PageLayout'
 import { DEFAULT_PREFERED_COLOR_THEME, HTML_BODY_CSS_CLASS_FOR_DARK_THEME, HTML_BODY_CSS_CLASS_FOR_LIGHT_THEME } from './components/PreferedColorThemeSwitch'
+import { APP_ROOT_ELEMENT_ID } from './main.const'
+import './Roboto.font.css'
 import './root.css'
 import { DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA, storagesRequiredForDemo } from './stores/checkIfDemoDataCouldBeLoaded'
 import { useLoadingPersistStorages } from './stores/hooks/useLoadingPersistStorages'
@@ -43,7 +43,17 @@ export function HydrateFallback({
   )
 }
 
-export const links: Route.LinksFunction = () => []
+export const links: Route.LinksFunction = () => [
+  {
+    rel: 'manifest',
+    href: `${import.meta.env.BASE_URL}manifest.json`
+  },
+  {
+    rel: 'icon',
+    type: 'image/svg+xml',
+    href: `${import.meta.env.BASE_URL}favicon.svg`
+  }
+]
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const bodyClassName = cn([
@@ -58,10 +68,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <meta name="theme-color" content="#eee" />
-        <Meta />
-
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        {/* <Meta /> */}
         <Links />
 
       </head>

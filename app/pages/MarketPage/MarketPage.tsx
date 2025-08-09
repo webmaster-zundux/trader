@@ -8,13 +8,15 @@ import { getProductNameFromUrlSearchParams } from '~/router/urlSearchParams/UrlS
 import { createPageTitleString } from '~/routes/utils/createPageTitleString'
 import { createLocationFullNameFromParts } from '~/stores/simple-cache-stores/LocationsWithFullNameAsMap.store'
 import { Main } from '../../components/Main'
-import { PAGE_TITLE_MARKET_WITH_SEARCH_PARAMS_FN } from './MarketPage.const'
+import { PAGE_TITLE_MARKET, PAGE_TITLE_MARKET_WITH_SEARCH_PARAMS_FN } from './MarketPage.const'
 import styles from './MarketPage.module.css'
+import { MarketFilterDialog } from './modals/MarketFilterDialog'
+import { BuyOrdersTable } from './tables/BuyOrdersTable'
+import { SellOrdersTable } from './tables/SellOrdersTable'
 import { getOrdersTableUrlSearchParams, useOrdersTableFilter } from './useOrdersTableFilter'
 import { useOrdersTableSearch } from './useOrdersTableSearch'
-import { SellOrdersTable } from './tables/SellOrdersTable'
-import { BuyOrdersTable } from './tables/BuyOrdersTable'
-import { MarketFilterDialog } from './modals/MarketFilterDialog'
+
+const title = createPageTitleString(PAGE_TITLE_MARKET)
 
 function useLocationsPageTitle(urlSearchParams: URLSearchParams) {
   const searchingLocationFullName = useMemo(() => {
@@ -69,40 +71,44 @@ export const MarketPage = memo(function MarketPage() {
   }, [marketFilterValue, hideMarketFilerDialog])
 
   return (
-    <Main>
-      <div className={styles.SearchAndFilterFormContainer}>
+    <>
+      <title>{title}</title>
 
-        {SearchForm}
+      <Main>
+        <div className={styles.SearchAndFilterFormContainer}>
 
-        <Button onClick={showMarketFilterDialog} title="show filter form">
-          <TuneIcon />
-          <span>filter</span>
-        </Button>
+          {SearchForm}
 
-        {isVisibleMarketFilterDialog && (
-          <MarketFilterDialog
-            filterValue={marketFilterValue}
-            onSetFilterValue={setMarketFilterValueToUrlSearchParams}
-            onHide={hideMarketFilerDialog}
+          <Button onClick={showMarketFilterDialog} title="show filter form">
+            <TuneIcon />
+            <span>filter</span>
+          </Button>
+
+          {isVisibleMarketFilterDialog && (
+            <MarketFilterDialog
+              filterValue={marketFilterValue}
+              onSetFilterValue={setMarketFilterValueToUrlSearchParams}
+              onHide={hideMarketFilerDialog}
+            />
+          )}
+        </div>
+
+        <div className={styles.Container}>
+          <SellOrdersTable
+            searchFieldValue={searchFieldValue}
+            sellOrderFilterValue={marketFilterValue}
+            setSellOrderFilterValue={setMarketFilterValueToUrlSearchParams}
+            resetSearchFieldValue={resetSearchFieldValue}
           />
-        )}
-      </div>
 
-      <div className={styles.Container}>
-        <SellOrdersTable
-          searchFieldValue={searchFieldValue}
-          sellOrderFilterValue={marketFilterValue}
-          setSellOrderFilterValue={setMarketFilterValueToUrlSearchParams}
-          resetSearchFieldValue={resetSearchFieldValue}
-        />
-
-        <BuyOrdersTable
-          searchFieldValue={searchFieldValue}
-          buyOrderFilterValue={marketFilterValue}
-          setBuyOrderFilterValue={setMarketFilterValueToUrlSearchParams}
-          resetSearchFieldValue={resetSearchFieldValue}
-        />
-      </div>
-    </Main>
+          <BuyOrdersTable
+            searchFieldValue={searchFieldValue}
+            buyOrderFilterValue={marketFilterValue}
+            setBuyOrderFilterValue={setMarketFilterValueToUrlSearchParams}
+            resetSearchFieldValue={resetSearchFieldValue}
+          />
+        </div>
+      </Main>
+    </>
   )
 })

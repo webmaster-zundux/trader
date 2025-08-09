@@ -4,10 +4,12 @@ import { useSearchParams } from '~/hooks/useSearchParams'
 import { getMovingEntityNameFromUrlSearchParams } from '~/router/urlSearchParams/UrlSearchParamsKeys.const'
 import { createPageTitleString } from '~/routes/utils/createPageTitleString'
 import { Main } from '../../components/Main'
-import { PAGE_TITLE_MOVING_ENTITIES_WITH_SEARCH_PARAMS_FN } from './MovingEntitiesPage.const'
+import { PAGE_TITLE_MOVING_ENTITIES, PAGE_TITLE_MOVING_ENTITIES_WITH_SEARCH_PARAMS_FN } from './MovingEntitiesPage.const'
 import styles from './MovingEntitiesPage.module.css'
 import { MovingEntitiesTable } from './MovingEntitiesTable'
 import { MovingEntityClassesTable } from './MovingEntityClassesTable'
+
+const title = createPageTitleString(PAGE_TITLE_MOVING_ENTITIES)
 
 function useMovingEntitiesPageTitle(urlSearchParams: URLSearchParams) {
   const searchingMovingEntityName = useMemo(() => getMovingEntityNameFromUrlSearchParams(urlSearchParams), [urlSearchParams])
@@ -27,22 +29,26 @@ export function MovingEntitiesPage() {
   useMovingEntitiesPageTitle(urlSearchParams)
 
   return (
-    <Main>
-      <div className={styles.Container}>
-        <div className={styles.MainTable}>
-          <MovingEntitiesTable
-            urlSearchParams={urlSearchParams}
-            setUrlSearchParams={setUrlSearchParams}
-          />
-        </div>
+    <>
+      <title>{title}</title>
 
-        <div className={styles.TableGroups}>
-          <MovingEntityClassesTable
-            urlSearchParams={urlSearchParams}
-            setUrlSearchParams={setUrlSearchParams}
-          />
+      <Main>
+        <div className={styles.Container}>
+          <div className={styles.MainTable}>
+            <MovingEntitiesTable
+              urlSearchParams={urlSearchParams}
+              setUrlSearchParams={setUrlSearchParams}
+            />
+          </div>
+
+          <div className={styles.TableGroups}>
+            <MovingEntityClassesTable
+              urlSearchParams={urlSearchParams}
+              setUrlSearchParams={setUrlSearchParams}
+            />
+          </div>
         </div>
-      </div>
-    </Main>
+      </Main>
+    </>
   )
 }

@@ -5,10 +5,12 @@ import { getLocationNameFromUrlSearchParams, getPlanetarySystemNameFromUrlSearch
 import { createPageTitleString } from '~/routes/utils/createPageTitleString'
 import { Main } from '../../components/Main'
 import { LocationTypesTable } from './LocationTypesTable'
-import { PAGE_TITLE_LOCATIONS_WITH_SEARCH_PARAMS_FN } from './LocationsPage.const'
+import { PAGE_TITLE_LOCATIONS, PAGE_TITLE_LOCATIONS_WITH_SEARCH_PARAMS_FN } from './LocationsPage.const'
 import styles from './LocationsPage.module.css'
 import { LocationsTable } from './LocationsTable'
 import { PlanetarySystemsTable } from './PlanetarySystemsTable'
+
+const title = createPageTitleString(PAGE_TITLE_LOCATIONS)
 
 function useLocationsPageTitle(urlSearchParams: URLSearchParams) {
   const searchingPlanetarySystemName = useMemo(() => getPlanetarySystemNameFromUrlSearchParams(urlSearchParams), [urlSearchParams])
@@ -30,27 +32,31 @@ export function LocationsPage() {
   useLocationsPageTitle(urlSearchParams)
 
   return (
-    <Main>
-      <div className={styles.Container}>
-        <div className={styles.TableGroups}>
-          <PlanetarySystemsTable
-            urlSearchParams={urlSearchParams}
-            setUrlSearchParams={setUrlSearchParams}
-          />
+    <>
+      <title>{title}</title>
 
-          <LocationTypesTable
-            urlSearchParams={urlSearchParams}
-            setUrlSearchParams={setUrlSearchParams}
-          />
-        </div>
+      <Main>
+        <div className={styles.Container}>
+          <div className={styles.TableGroups}>
+            <PlanetarySystemsTable
+              urlSearchParams={urlSearchParams}
+              setUrlSearchParams={setUrlSearchParams}
+            />
 
-        <div className={styles.MainTable}>
-          <LocationsTable
-            urlSearchParams={urlSearchParams}
-            setUrlSearchParams={setUrlSearchParams}
-          />
+            <LocationTypesTable
+              urlSearchParams={urlSearchParams}
+              setUrlSearchParams={setUrlSearchParams}
+            />
+          </div>
+
+          <div className={styles.MainTable}>
+            <LocationsTable
+              urlSearchParams={urlSearchParams}
+              setUrlSearchParams={setUrlSearchParams}
+            />
+          </div>
         </div>
-      </div>
-    </Main>
+      </Main>
+    </>
   )
 }

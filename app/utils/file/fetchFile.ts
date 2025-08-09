@@ -14,18 +14,6 @@ export function fetchFile(filePath: string, mimeType: string = ''): Promise<{
       })
       .catch(function onFetchError(error) {
         reject({ file: undefined, error })
-        // createNotificationWithUniqTags({
-        //   entityType: ENTITY_TYPE_NOTIFICATION,
-        //   messages: [() => (
-        //     <>
-        //     { loadJsonDataError }
-        //     </>
-        //   )],
-        //   hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
-        //   tags: ['storage-data-import-demo-data'],
-        //   type: 'error',
-        //   title: 'Importing demo data failed'
-        // })
       })
   })
 }
