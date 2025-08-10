@@ -7,7 +7,7 @@
     "dev:prepare": "cp .env.development .env",
     "dev": "react-router dev",
     "build": "react-router build",
-    "build:gh-pages": "cp .env.production.gh-pages .env && react-router build && rm -rf docs && cp -r build/client docs && cp docs/index.html docs/404.html && git add docs -f",
+    "build:gh-pages": "cp .env.production.gh-pages .env && react-router build && rm -rf docs && cp -r build/client docs && git add docs -f",
     "no-exist:start": "react-router-serve ./build/server/index.js",
     "typegen": "react-router typegen",
     "typecheck": "react-router typegen && tsc",
