@@ -6,7 +6,7 @@ import { DEFAULT_PREFERED_COLOR_THEME, HTML_BODY_CSS_CLASS_FOR_DARK_THEME, HTML_
 import { APP_ROOT_ELEMENT_ID } from './main.const'
 import './Roboto.font.css'
 import './root.css'
-import { DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA, storagesRequiredForDemo } from './stores/checkIfDemoDataCouldBeLoaded'
+import { USE_DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA, storagesRequiredForDemo } from './stores/checkIfDemoDataCouldBeLoaded'
 import { useLoadingPersistStorages } from './stores/hooks/useLoadingPersistStorages'
 import { cn } from './utils/ui/ClassNames'
 
@@ -69,7 +69,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         {/* // <meta name="theme-color" content="#eee" /> */}
         {/* // <Meta /> */}
-        <Links />
+        {/* <Links /> */}
 
       </head>
 
@@ -108,7 +108,7 @@ function AppRootWithPersistentDataCheck() {
 
 let App = DefaultAppRoot
 
-if (DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA) {
+if (USE_DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA) {
   App = AppRootWithPersistentDataCheck
 }
 
@@ -129,8 +129,8 @@ export function ErrorBoundary({
       : error.statusText || 'An unexpected error occured'
   } else if (
     import.meta.env.DEV
-      && error
-      && error instanceof Error
+    && error
+    && error instanceof Error
   ) {
     details = error.message
     stack = error.stack
