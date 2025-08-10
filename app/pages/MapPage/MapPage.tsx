@@ -5,7 +5,6 @@ import { useSearchParams } from '~/hooks/useSearchParams'
 import { isLocation, type Location } from '~/models/entities/Location'
 import { isMovingEntity, type MovingEntity } from '~/models/entities/MovingEntity'
 import { isPlanetarySystem, type PlanetarySystem } from '~/models/entities/PlanetarySystem'
-import { createPageTitleString } from '~/routes/utils/createPageTitleString'
 import { useLocationTypesStore } from '~/stores/entity-stores/LocationTypes.store'
 import { useLocationsStore } from '~/stores/entity-stores/Locations.store'
 import { useMovingEntitiesStore } from '~/stores/entity-stores/MovingEntities.store'
@@ -14,7 +13,6 @@ import { usePlanetarySystemsStore } from '~/stores/entity-stores/PlanetarySystem
 import { useLoadingPersistStorages } from '~/stores/hooks/useLoadingPersistStorages'
 import { Map } from './Map'
 import { MAP_MODE_PLANETARY_SYSTEM, MAP_MODE_UNIVERSE } from './Map.const'
-import { PAGE_TITLE_MAP } from './MapPage.const'
 import styles from './MapPage.module.css'
 import { getSearchResultTableColumns } from './getSearchResultTableColumns'
 import { useGetMapItems } from './hooks/useGetMapItems'
@@ -23,10 +21,12 @@ import { useMapFilter } from './useMapFilter'
 import { useMapPageTitle } from './useMapPageTitle'
 import { useMapSearch } from './useMapSearch'
 
-const title = createPageTitleString(PAGE_TITLE_MAP)
+// const title = createPageTitleString(PAGE_TITLE_MAP)
 
 export const MapPage = memo(function MapPage() {
   const { urlSearchParams, setUrlSearchParams } = useSearchParams()
+
+  const title = useMapPageTitle(urlSearchParams)
 
   const { mapFilterValue, setMapFilterValueToUrlSearchParams } = useMapFilter({ urlSearchParams, setUrlSearchParams })
 
@@ -37,8 +37,6 @@ export const MapPage = memo(function MapPage() {
     urlSearchParams,
     setUrlSearchParams,
   })
-
-  useMapPageTitle(urlSearchParams)
 
   const isLoadingPersistStorages = useLoadingPersistStorages([
     usePlanetarySystemsStore,

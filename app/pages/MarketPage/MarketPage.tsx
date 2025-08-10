@@ -2,13 +2,12 @@ import { memo, useEffect, useMemo } from 'react'
 import { Button } from '~/components/Button'
 import { TuneIcon } from '~/components/icons/TuneIcon'
 import { useIsVisible } from '~/hooks/ui/useIsVisible'
-import { usePageTitle } from '~/hooks/usePageTitle'
 import { useSearchParams } from '~/hooks/useSearchParams'
 import { getProductNameFromUrlSearchParams } from '~/router/urlSearchParams/UrlSearchParamsKeys.const'
 import { createPageTitleString } from '~/routes/utils/createPageTitleString'
 import { createLocationFullNameFromParts } from '~/stores/simple-cache-stores/LocationsWithFullNameAsMap.store'
 import { Main } from '../../components/Main'
-import { PAGE_TITLE_MARKET, PAGE_TITLE_MARKET_WITH_SEARCH_PARAMS_FN } from './MarketPage.const'
+import { PAGE_TITLE_MARKET_WITH_SEARCH_PARAMS_FN } from './MarketPage.const'
 import styles from './MarketPage.module.css'
 import { MarketFilterDialog } from './modals/MarketFilterDialog'
 import { BuyOrdersTable } from './tables/BuyOrdersTable'
@@ -16,9 +15,9 @@ import { SellOrdersTable } from './tables/SellOrdersTable'
 import { getOrdersTableUrlSearchParams, useOrdersTableFilter } from './useOrdersTableFilter'
 import { useOrdersTableSearch } from './useOrdersTableSearch'
 
-const title = createPageTitleString(PAGE_TITLE_MARKET)
+// const title = createPageTitleString(PAGE_TITLE_MARKET)
 
-function useLocationsPageTitle(urlSearchParams: URLSearchParams) {
+function useLocationsPageTitle(urlSearchParams: URLSearchParams): string {
   const searchingLocationFullName = useMemo(() => {
     const searchingFilterValue = getOrdersTableUrlSearchParams(urlSearchParams)
 
@@ -38,11 +37,14 @@ function useLocationsPageTitle(urlSearchParams: URLSearchParams) {
     }))
   }, [searchingProductName, searchingLocationFullName])
 
-  usePageTitle(pageTitle)
+  // usePageTitle(pageTitle)
+  return pageTitle
 }
 
 export const MarketPage = memo(function MarketPage() {
   const { urlSearchParams, setUrlSearchParams } = useSearchParams()
+
+  const title = useLocationsPageTitle(urlSearchParams)
 
   const {
     marketFilterValue,
@@ -54,8 +56,6 @@ export const MarketPage = memo(function MarketPage() {
     SearchForm,
     resetSearchFieldValue,
   } = useOrdersTableSearch({ urlSearchParams, setUrlSearchParams })
-
-  useLocationsPageTitle(urlSearchParams)
 
   const {
     isVisible: isVisibleMarketFilterDialog,

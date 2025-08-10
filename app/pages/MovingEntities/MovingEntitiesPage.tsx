@@ -1,17 +1,16 @@
 import { useMemo } from 'react'
-import { usePageTitle } from '~/hooks/usePageTitle'
 import { useSearchParams } from '~/hooks/useSearchParams'
 import { getMovingEntityNameFromUrlSearchParams } from '~/router/urlSearchParams/UrlSearchParamsKeys.const'
 import { createPageTitleString } from '~/routes/utils/createPageTitleString'
 import { Main } from '../../components/Main'
-import { PAGE_TITLE_MOVING_ENTITIES, PAGE_TITLE_MOVING_ENTITIES_WITH_SEARCH_PARAMS_FN } from './MovingEntitiesPage.const'
+import { PAGE_TITLE_MOVING_ENTITIES_WITH_SEARCH_PARAMS_FN } from './MovingEntitiesPage.const'
 import styles from './MovingEntitiesPage.module.css'
 import { MovingEntitiesTable } from './MovingEntitiesTable'
 import { MovingEntityClassesTable } from './MovingEntityClassesTable'
 
-const title = createPageTitleString(PAGE_TITLE_MOVING_ENTITIES)
+// const title = createPageTitleString(PAGE_TITLE_MOVING_ENTITIES)
 
-function useMovingEntitiesPageTitle(urlSearchParams: URLSearchParams) {
+function useMovingEntitiesPageTitle(urlSearchParams: URLSearchParams): string {
   const searchingMovingEntityName = useMemo(() => getMovingEntityNameFromUrlSearchParams(urlSearchParams), [urlSearchParams])
 
   const pageTitle = useMemo(function pageTitleMemo() {
@@ -20,13 +19,14 @@ function useMovingEntitiesPageTitle(urlSearchParams: URLSearchParams) {
     }))
   }, [searchingMovingEntityName])
 
-  usePageTitle(pageTitle)
+  // usePageTitle(pageTitle)
+  return pageTitle
 }
 
 export function MovingEntitiesPage() {
   const { urlSearchParams, setUrlSearchParams } = useSearchParams()
 
-  useMovingEntitiesPageTitle(urlSearchParams)
+  const title = useMovingEntitiesPageTitle(urlSearchParams)
 
   return (
     <>

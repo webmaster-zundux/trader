@@ -1,18 +1,17 @@
 import { useMemo } from 'react'
-import { usePageTitle } from '~/hooks/usePageTitle'
 import { useSearchParams } from '~/hooks/useSearchParams'
 import { getLocationNameFromUrlSearchParams, getPlanetarySystemNameFromUrlSearchParams } from '~/router/urlSearchParams/UrlSearchParamsKeys.const'
 import { createPageTitleString } from '~/routes/utils/createPageTitleString'
 import { Main } from '../../components/Main'
 import { LocationTypesTable } from './LocationTypesTable'
-import { PAGE_TITLE_LOCATIONS, PAGE_TITLE_LOCATIONS_WITH_SEARCH_PARAMS_FN } from './LocationsPage.const'
+import { PAGE_TITLE_LOCATIONS_WITH_SEARCH_PARAMS_FN } from './LocationsPage.const'
 import styles from './LocationsPage.module.css'
 import { LocationsTable } from './LocationsTable'
 import { PlanetarySystemsTable } from './PlanetarySystemsTable'
 
-const title = createPageTitleString(PAGE_TITLE_LOCATIONS)
+// const defaultPageTitle = createPageTitleString(PAGE_TITLE_LOCATIONS)
 
-function useLocationsPageTitle(urlSearchParams: URLSearchParams) {
+function useLocationsPageTitle(urlSearchParams: URLSearchParams): string {
   const searchingPlanetarySystemName = useMemo(() => getPlanetarySystemNameFromUrlSearchParams(urlSearchParams), [urlSearchParams])
   const searchingLocationName = useMemo(() => getLocationNameFromUrlSearchParams(urlSearchParams), [urlSearchParams])
 
@@ -23,13 +22,14 @@ function useLocationsPageTitle(urlSearchParams: URLSearchParams) {
     }))
   }, [searchingLocationName, searchingPlanetarySystemName])
 
-  usePageTitle(pageTitle)
+  // usePageTitle(pageTitle)
+  return pageTitle
 }
 
 export function LocationsPage() {
   const { urlSearchParams, setUrlSearchParams } = useSearchParams()
 
-  useLocationsPageTitle(urlSearchParams)
+  const title = useLocationsPageTitle(urlSearchParams)
 
   return (
     <>
