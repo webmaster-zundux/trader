@@ -1,12 +1,12 @@
-import { createPageTitleString } from '~/routes/utils/createPageTitleString'
+import { createPageTitleWithAppName } from '~/routes/utils/createPageTitleWithAppName'
 import { Main } from '../components/Main'
 
-const title = createPageTitleString('History')
+const pageTitle = createPageTitleWithAppName('History')
 
 export function HistoryPage() {
   return (
     <>
-      <title>{title}</title>
+      <title>{pageTitle}</title>
 
       <Main>
         <h1 style={{ textTransform: 'capitalize' }}>

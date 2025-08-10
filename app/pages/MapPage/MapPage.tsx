@@ -21,12 +21,10 @@ import { useMapFilter } from './useMapFilter'
 import { useMapPageTitle } from './useMapPageTitle'
 import { useMapSearch } from './useMapSearch'
 
-// const title = createPageTitleString(PAGE_TITLE_MAP)
-
 export const MapPage = memo(function MapPage() {
   const { urlSearchParams, setUrlSearchParams } = useSearchParams()
 
-  const title = useMapPageTitle(urlSearchParams)
+  const pageTitle = useMapPageTitle(urlSearchParams)
 
   const { mapFilterValue, setMapFilterValueToUrlSearchParams } = useMapFilter({ urlSearchParams, setUrlSearchParams })
 
@@ -109,7 +107,7 @@ export const MapPage = memo(function MapPage() {
 
   return (
     <>
-      <title>{title}</title>
+      <title>{pageTitle}</title>
 
       <div className={styles.Container}>
         <div className={styles.SearchResults}>

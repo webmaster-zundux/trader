@@ -1,15 +1,15 @@
 import { StaticLink } from '~/components/StaticLink'
-import { createPageTitleString } from '~/routes/utils/createPageTitleString'
+import { createPageTitleWithAppName } from '~/routes/utils/createPageTitleWithAppName'
 import { Main } from '../components/Main'
 import { TicTacToeGame } from '../components/TicTacToeGame'
 import styles from './NoMatchPage.module.css'
 
-const title = createPageTitleString('404 page not found')
+const pageTitle = createPageTitleWithAppName('404 page not found')
 
 export function NoMatchPage() {
   return (
     <>
-      <title>{title}</title>
+      <title>{pageTitle}</title>
 
       <Main>
         <div className={styles.Content}>

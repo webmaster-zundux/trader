@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { useSearchParams } from '~/hooks/useSearchParams'
 import { getProductNameFromUrlSearchParams } from '~/router/urlSearchParams/UrlSearchParamsKeys.const'
-import { createPageTitleString } from '~/routes/utils/createPageTitleString'
+import { createPageTitleWithAppName } from '~/routes/utils/createPageTitleWithAppName'
 import { Main } from '../../components/Main'
 import { ProductRarityTable } from './ProductRarityTable'
 import { PAGE_TITLE_PRODUCTS_WITH_SEARCH_PARAMS_FN } from './ProductsPage.const'
@@ -9,29 +9,26 @@ import styles from './ProductsPage.module.css'
 import { ProductsTable } from './ProductsTable'
 import { ProductTypesTable } from './ProductTypesTable'
 
-// const title = createPageTitleString(PAGE_TITLE_PRODUCTS)
-
 function useProductsPageTitle(urlSearchParams: URLSearchParams): string {
   const searchingProductName = useMemo(() => getProductNameFromUrlSearchParams(urlSearchParams), [urlSearchParams])
 
   const pageTitle = useMemo(function pageTitleMemo() {
-    return createPageTitleString(PAGE_TITLE_PRODUCTS_WITH_SEARCH_PARAMS_FN({
+    return createPageTitleWithAppName(PAGE_TITLE_PRODUCTS_WITH_SEARCH_PARAMS_FN({
       productName: searchingProductName,
     }))
   }, [searchingProductName])
 
-  // usePageTitle(pageTitle)
   return pageTitle
 }
 
 export function ProductsPage() {
   const { urlSearchParams, setUrlSearchParams } = useSearchParams()
 
-  const title = useProductsPageTitle(urlSearchParams)
+  const pageTitle = useProductsPageTitle(urlSearchParams)
 
   return (
     <>
-      <title>{title}</title>
+      <title>{pageTitle}</title>
 
       <Main>
         <div className={styles.Container}>

@@ -4,7 +4,7 @@ import { TuneIcon } from '~/components/icons/TuneIcon'
 import { useIsVisible } from '~/hooks/ui/useIsVisible'
 import { useSearchParams } from '~/hooks/useSearchParams'
 import { getProductNameFromUrlSearchParams } from '~/router/urlSearchParams/UrlSearchParamsKeys.const'
-import { createPageTitleString } from '~/routes/utils/createPageTitleString'
+import { createPageTitleWithAppName } from '~/routes/utils/createPageTitleWithAppName'
 import { createLocationFullNameFromParts } from '~/stores/simple-cache-stores/LocationsWithFullNameAsMap.store'
 import { Main } from '../../components/Main'
 import { PAGE_TITLE_MARKET_WITH_SEARCH_PARAMS_FN } from './MarketPage.const'
@@ -14,8 +14,6 @@ import { BuyOrdersTable } from './tables/BuyOrdersTable'
 import { SellOrdersTable } from './tables/SellOrdersTable'
 import { getOrdersTableUrlSearchParams, useOrdersTableFilter } from './useOrdersTableFilter'
 import { useOrdersTableSearch } from './useOrdersTableSearch'
-
-// const title = createPageTitleString(PAGE_TITLE_MARKET)
 
 function useLocationsPageTitle(urlSearchParams: URLSearchParams): string {
   const searchingLocationFullName = useMemo(() => {
@@ -31,20 +29,19 @@ function useLocationsPageTitle(urlSearchParams: URLSearchParams): string {
   const searchingProductName = useMemo(() => getProductNameFromUrlSearchParams(urlSearchParams), [urlSearchParams])
 
   const pageTitle = useMemo(function pageTitleMemo() {
-    return createPageTitleString(PAGE_TITLE_MARKET_WITH_SEARCH_PARAMS_FN({
+    return createPageTitleWithAppName(PAGE_TITLE_MARKET_WITH_SEARCH_PARAMS_FN({
       productName: searchingProductName,
       locationName: searchingLocationFullName,
     }))
   }, [searchingProductName, searchingLocationFullName])
 
-  // usePageTitle(pageTitle)
   return pageTitle
 }
 
 export const MarketPage = memo(function MarketPage() {
   const { urlSearchParams, setUrlSearchParams } = useSearchParams()
 
-  const title = useLocationsPageTitle(urlSearchParams)
+  const pageTitle = useLocationsPageTitle(urlSearchParams)
 
   const {
     marketFilterValue,
@@ -72,7 +69,7 @@ export const MarketPage = memo(function MarketPage() {
 
   return (
     <>
-      <title>{title}</title>
+      <title>{pageTitle}</title>
 
       <Main>
         <div className={styles.SearchAndFilterFormContainer}>

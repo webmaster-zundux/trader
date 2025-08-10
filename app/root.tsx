@@ -1,5 +1,5 @@
 import type React from 'react'
-import { Links, Scripts, ScrollRestoration, isRouteErrorResponse } from 'react-router'
+import { Links, Meta, Scripts, ScrollRestoration, isRouteErrorResponse } from 'react-router'
 import type { Route } from './+types/root'
 import { AppPageContentLayout } from './components/PageLayout'
 import { DEFAULT_PREFERED_COLOR_THEME, HTML_BODY_CSS_CLASS_FOR_DARK_THEME, HTML_BODY_CSS_CLASS_FOR_LIGHT_THEME } from './components/PreferedColorThemeSwitch'
@@ -67,8 +67,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        {/* // <meta name="theme-color" content="#eee" /> */}
-        {/* // <Meta /> */}
+        <meta name="theme-color" content="#eee" />
+        <Meta />
         <Links />
 
       </head>
@@ -127,11 +127,7 @@ export function ErrorBoundary({
     details = (error.status === 404)
       ? 'the requested page could not be found'
       : error.statusText || 'An unexpected error occured'
-  } else if (
-    import.meta.env.DEV
-    && error
-    && error instanceof Error
-  ) {
+  } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message
     stack = error.stack
   }

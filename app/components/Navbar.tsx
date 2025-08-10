@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { NavLink } from 'react-router'
-import { APP_PAGE_TITLE } from '../App.const'
+import { APP_NAME } from '../App.const'
 import { cn } from '../utils/ui/ClassNames'
 import { ImportExportStorageState } from './ImportExportStorageDataActionButtonGroup'
 import { mainNavLinks } from './Navbar.const'
@@ -70,7 +70,7 @@ export const Navbar = memo(function Navbar() {
     <nav className={styles.Navbar}>
       <div className={styles.HeaderContainer}>
         <div className={styles.Logo}>
-          {APP_PAGE_TITLE}
+          {APP_NAME}
         </div>
 
         <ImportExportStorageState />
