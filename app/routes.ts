@@ -9,14 +9,14 @@ const basename = typeof env.USE_BASE_PUBLIC_PATH === 'string' ? env.USE_BASE_PUB
 // console.log({ BASE_URL: import.meta.env.BASE_URL, env: import.meta.env, basename })
 
 export default [
-  ...prefix(`${basename}`, [
-    index('routes/market.tsx'),
-    route(PAGE_SLUG_INVENTORY, 'routes/inventory.tsx'),
-    route(PAGE_SLUG_PRODUCTS, 'routes/products.tsx'),
-    route(PAGE_SLUG_LOCATIONS, 'routes/locations.tsx'),
-    route(PAGE_SLUG_MOVING_ENTITIES, 'routes/movingEntities.tsx'),
-    route(PAGE_SLUG_MAP, 'routes/map.tsx'),
-    route(PAGE_SLUG_HISTORY, 'routes/history.tsx'),
-    route('*?', 'routes/404.tsx'), // MEOW =^-^=
-  ]),
+  // ...prefix(`${basename}`, [
+  index('routes/market.tsx'),
+  route(PAGE_SLUG_INVENTORY, 'routes/inventory.tsx'),
+  route(PAGE_SLUG_PRODUCTS, 'routes/products.tsx'),
+  route(PAGE_SLUG_LOCATIONS, 'routes/locations.tsx'),
+  route(PAGE_SLUG_MOVING_ENTITIES, 'routes/movingEntities.tsx'),
+  route(PAGE_SLUG_MAP, 'routes/map.tsx'),
+  route(PAGE_SLUG_HISTORY, 'routes/history.tsx'),
+  route('*?', 'routes/404.tsx'), // MEOW =^-^=
+  // ]),
 ] satisfies RouteConfig
