@@ -1,12 +1,12 @@
 import type React from 'react'
 import { Links, Meta, Scripts, ScrollRestoration, isRouteErrorResponse } from 'react-router'
 import type { Route } from './+types/root'
-import { APP_ROOT_ELEMENT_ID } from './main.const'
-import './Roboto.font.css'
 import { AppPageContentLayout } from './components/PageLayout'
 import { DEFAULT_PREFERED_COLOR_THEME, HTML_BODY_CSS_CLASS_FOR_DARK_THEME, HTML_BODY_CSS_CLASS_FOR_LIGHT_THEME } from './components/PreferedColorThemeSwitch'
+import { APP_ROOT_ELEMENT_ID } from './main.const'
+import './Roboto.font.css'
 import './root.css'
-import { DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA, storagesRequiredForDemo } from './stores/checkIfDemoDataCouldBeLoaded'
+import { USE_DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA, storagesRequiredForDemo } from './stores/checkIfDemoDataCouldBeLoaded'
 import { useLoadingPersistStorages } from './stores/hooks/useLoadingPersistStorages'
 import { cn } from './utils/ui/ClassNames'
 
@@ -43,7 +43,17 @@ export function HydrateFallback({
   )
 }
 
-export const links: Route.LinksFunction = () => []
+export const links: Route.LinksFunction = () => [
+  {
+    rel: 'manifest',
+    href: `${import.meta.env.BASE_URL}manifest.json`
+  },
+  {
+    rel: 'icon',
+    type: 'image/svg+xml',
+    href: `${import.meta.env.BASE_URL}favicon.svg`
+  }
+]
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const bodyClassName = cn([
@@ -59,9 +69,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         <meta name="theme-color" content="#eee" />
         <Meta />
-
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <Links />
 
       </head>
@@ -101,7 +108,7 @@ function AppRootWithPersistentDataCheck() {
 
 let App = DefaultAppRoot
 
-if (DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA) {
+if (USE_DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA) {
   App = AppRootWithPersistentDataCheck
 }
 
@@ -120,11 +127,7 @@ export function ErrorBoundary({
     details = (error.status === 404)
       ? 'the requested page could not be found'
       : error.statusText || 'An unexpected error occured'
-  } else if (
-    import.meta.env.DEV
-      && error
-      && error instanceof Error
-  ) {
+  } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message
     stack = error.stack
   }

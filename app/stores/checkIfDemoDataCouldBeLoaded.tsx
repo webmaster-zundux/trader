@@ -1,5 +1,7 @@
-import { importDataFromJsonFile } from '~/stores/importDataFromJsonFile'
 import { ENTITY_TYPE_NOTIFICATION } from '~/models/notifications/Notifications'
+import { importDataFromJsonString } from '~/stores/importDataFromJsonString'
+import { fetchFile } from '~/utils/file/fetchFile'
+import { readFileAsJsonString } from '~/utils/file/import-export-storage-data'
 import { useBuyOrdersStore } from './entity-stores/BuyOrders.store'
 import type { createEntityArrayStore } from './entity-stores/createEntityArrayStore'
 import type { createEntityMapStore } from './entity-stores/createEntityMapStore'
@@ -15,9 +17,9 @@ import { useProductTypesStore } from './entity-stores/ProductTypes.store'
 import { useSellOrdersStore } from './entity-stores/SellOrders.store'
 import { createNotificationWithUniqTags } from './notification-stores/notification.store'
 
-export const DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA = true // todo move into environmental variables
+export const USE_DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA = true // todo move into environmental variables
 
-const DEMO_DATA_JSON_FILE_PATH = '/demo-data.json.gz'
+const DEMO_DATA_JSON_FILE_PATH = `${import.meta.env.BASE_URL}demo-data.json.gz`
 const PAGE_RELOAD_TIMEOUT_AFTER_SUCCESS_LOADING_DEMO_DATA_INTO_STORAGE_IN_MS = 2 * 1000
 const STORAGE_EXPORT_NOTIFICATION_TIMEOUT = PAGE_RELOAD_TIMEOUT_AFTER_SUCCESS_LOADING_DEMO_DATA_INTO_STORAGE_IN_MS
 
@@ -98,7 +100,7 @@ export function checkIfDemoDataCouldBeLoadedForAllRequiredDataStores() {
 }
 
 export function checkIfDemoDataCouldBeLoadedForDataStore(store: Store) {
-  if (!DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA) {
+  if (!USE_DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA) {
     return
   }
 
@@ -129,30 +131,26 @@ export function checkIfDemoDataCouldBeLoadedForDataStore(store: Store) {
 }
 
 export async function loadDemoDataAndReloadPage() {
-  const storageStateAsJsonString = await fetch(DEMO_DATA_JSON_FILE_PATH)
-    .then(function onDemoDataFetchSuccess(response) {
-      return response.text()
-    })
-    .catch(function onDemoDataFetchError(loadJsonDataError) {
-      createNotificationWithUniqTags({
-        entityType: ENTITY_TYPE_NOTIFICATION,
-        messages: [() => (
-          <>
-            {loadJsonDataError}
-          </>
-        )],
-        hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
-        tags: ['storage-data-import-demo-data'],
-        type: 'error',
-        title: 'Importing demo data'
-      })
-    })
+  const { file: storageDataJsonFile, error: loadJsonDataError } = await fetchFile(DEMO_DATA_JSON_FILE_PATH, 'application/gzip')
 
-  if (!storageStateAsJsonString) {
+  if (!storageDataJsonFile) {
+    createNotificationWithUniqTags({
+      entityType: ENTITY_TYPE_NOTIFICATION,
+      messages: [() => (
+        <>
+          {loadJsonDataError}
+        </>
+      )],
+      hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
+      tags: ['storage-data-import-demo-data'],
+      type: 'error',
+      title: 'Loading demo data failed'
+    })
     return
   }
 
-  const importError = await importDataFromJsonFile(storageStateAsJsonString)
+  const storageStateAsJsonString = await readFileAsJsonString(storageDataJsonFile)
+  const importError = await importDataFromJsonString(storageStateAsJsonString)
 
   if (importError) {
     createNotificationWithUniqTags({
@@ -165,7 +163,7 @@ export async function loadDemoDataAndReloadPage() {
       hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
       tags: ['storage-data-import-demo-data'],
       type: 'error',
-      title: 'Importing demo data'
+      title: 'Importing demo data failed',
     })
     return importError
   }

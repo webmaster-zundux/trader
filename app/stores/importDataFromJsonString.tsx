@@ -2,7 +2,7 @@ import { INDEXED_DB_DATABASE_NAME, INDEXED_DB_DATABASE_VERSION, INDEXED_DB_OBJEC
 import { setIndexedDBState } from '~/utils/file/import-export-indexedDB-data'
 import { deserializeStateFromJSONString } from '~/utils/file/import-export-storage-data'
 
-export async function importDataFromJsonFile(storageStateAsJsonString: string): Promise<string | undefined> {
+export async function importDataFromJsonString(storageStateAsJsonString: string): Promise<string | undefined> {
   try {
     const storageData = deserializeStateFromJSONString(storageStateAsJsonString)
 

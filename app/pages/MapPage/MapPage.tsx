@@ -24,6 +24,8 @@ import { useMapSearch } from './useMapSearch'
 export const MapPage = memo(function MapPage() {
   const { urlSearchParams, setUrlSearchParams } = useSearchParams()
 
+  const pageTitle = useMapPageTitle(urlSearchParams)
+
   const { mapFilterValue, setMapFilterValueToUrlSearchParams } = useMapFilter({ urlSearchParams, setUrlSearchParams })
 
   const {
@@ -33,8 +35,6 @@ export const MapPage = memo(function MapPage() {
     urlSearchParams,
     setUrlSearchParams,
   })
-
-  useMapPageTitle(urlSearchParams)
 
   const isLoadingPersistStorages = useLoadingPersistStorages([
     usePlanetarySystemsStore,
@@ -106,41 +106,45 @@ export const MapPage = memo(function MapPage() {
   }, [selectedPlanetarySystemUuid, selectedLocationUuid, selectedMovingEntityUuid])
 
   return (
-    <div className={styles.Container}>
-      <div className={styles.SearchResults}>
-        <SearchFormAndTableContainer>
+    <>
+      <title>{pageTitle}</title>
 
-          {SearchForm}
+      <div className={styles.Container}>
+        <div className={styles.SearchResults}>
+          <SearchFormAndTableContainer>
 
-          <SearchResultsTable
-            tableTitle="search results"
-            items={searchResults}
-            noItemsLabel="no results"
-            isLoading={isLoading}
+            {SearchForm}
 
-            searchFieldValue={searchFieldValue}
-          >
-            <SearchResultsTableBody
+            <SearchResultsTable
+              tableTitle="search results"
               items={searchResults}
-              columns={searchResultTableColumns}
-              onSelectItem={handleSelectMapItem}
-              selectedItemUuid={selectedItemUuid}
-            />
-          </SearchResultsTable>
-        </SearchFormAndTableContainer>
-      </div>
+              noItemsLabel="no results"
+              isLoading={isLoading}
 
-      <div className={styles.MapContainer}>
-        <Map
-          isLoading={isLoading}
-          items={mapItems}
-          mapMode={mapMode}
-          selectedPlanetarySystemUuid={selectedPlanetarySystemUuid}
-          onSelectItem={handleSelectMapItem}
-          selectedItemUuid={selectedItemUuid}
-        />
-      </div>
+              searchFieldValue={searchFieldValue}
+            >
+              <SearchResultsTableBody
+                items={searchResults}
+                columns={searchResultTableColumns}
+                onSelectItem={handleSelectMapItem}
+                selectedItemUuid={selectedItemUuid}
+              />
+            </SearchResultsTable>
+          </SearchFormAndTableContainer>
+        </div>
 
-    </div>
+        <div className={styles.MapContainer}>
+          <Map
+            isLoading={isLoading}
+            items={mapItems}
+            mapMode={mapMode}
+            selectedPlanetarySystemUuid={selectedPlanetarySystemUuid}
+            onSelectItem={handleSelectMapItem}
+            selectedItemUuid={selectedItemUuid}
+          />
+        </div>
+
+      </div>
+    </>
   )
 })

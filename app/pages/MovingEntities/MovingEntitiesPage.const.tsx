@@ -1,4 +1,4 @@
-export const PAGE_TITLE_MOVING_ENTITIES = 'Moving entities'
+export const PAGE_TITLE_MOVING_ENTITIES = 'Moving objects'
 
 export function PAGE_TITLE_MOVING_ENTITIES_WITH_SEARCH_PARAMS_FN({
   movingEntityName,
