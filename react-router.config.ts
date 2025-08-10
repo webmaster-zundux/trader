@@ -1,5 +1,6 @@
 import type { Config } from '@react-router/dev/config'
 import { loadEnv } from 'vite'
+// import { PAGE_SLUG_HISTORY, PAGE_SLUG_INVENTORY, PAGE_SLUG_LOCATIONS, PAGE_SLUG_MAP, PAGE_SLUG_MARKET, PAGE_SLUG_MOVING_ENTITIES, PAGE_SLUG_PRODUCTS } from './app/router/PageSlugs.const'
 
 const env = loadEnv('', process.cwd(), '')
 
@@ -12,15 +13,12 @@ export default {
   ssr: false,
   // prerender: true,
   // prerender: [
-  //   ``
-  // ]
-  // prerender: [
-  //   `${PAGE_SLUG_MARKET}`, // ${basename}
-  //   `${PAGE_SLUG_HISTORY}`, // ${basename}
-  //   `${PAGE_SLUG_LOCATIONS}`, // ${basename}
-  //   `${PAGE_SLUG_INVENTORY}`, // ${basename}
-  //   `${PAGE_SLUG_MOVING_ENTITIES}`, // ${basename}
-  //   `${PAGE_SLUG_MAP}`, // ${basename}
-  //   `${PAGE_SLUG_PRODUCTS}`, // ${basename}
+  //   `${PAGE_SLUG_MARKET}`,
+  //   `${PAGE_SLUG_HISTORY}`,
+  //   `${PAGE_SLUG_LOCATIONS}`,
+  //   `${PAGE_SLUG_INVENTORY}`,
+  //   `${PAGE_SLUG_MOVING_ENTITIES}`,
+  //   `${PAGE_SLUG_MAP}`,
+  //   `${PAGE_SLUG_PRODUCTS}`,
   // ],
 } satisfies Config
