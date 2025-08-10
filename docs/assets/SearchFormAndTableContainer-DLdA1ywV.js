@@ -1,0 +1,1 @@
+import{a as o,p as r}from"./chunk-NL6KNZEE-BTkWJe7M.js";const t="_Container_zuyoh_1",a={Container:t},i=o.memo(function({children:n}){return r.jsx("div",{className:a.Container,children:n})});export{i as S};

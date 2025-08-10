@@ -1,0 +1,1 @@
+import{k as P}from"./useLoadingPersistStorages-BcfEp9x1.js";import{n as R,q as t,r as i}from"./useTableSearch-CapIhnOK.js";function f({productName:s,productTypeName:r,productRarityName:A}){const _=new URLSearchParams;if(typeof s=="string"&&s&&_.set(R,s),typeof r=="string"&&r&&_.set(t,r),typeof A=="string"&&A&&_.set(i,A),!!_.size)return`/${P}?${_.toString()}`}export{f as g};

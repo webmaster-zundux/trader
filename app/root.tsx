@@ -69,7 +69,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         {/* // <meta name="theme-color" content="#eee" /> */}
         {/* // <Meta /> */}
-        {/* <Links /> */}
+        <Links />
 
       </head>
 
