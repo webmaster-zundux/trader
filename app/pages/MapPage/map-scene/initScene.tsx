@@ -3,9 +3,9 @@ import type { PreferedColorTheme } from '~/components/PreferedColorThemeSwitch'
 import { CANVAS_BACKGROUND_COLOR_DARK_THEME, CANVAS_BACKGROUND_COLOR_LIGHT_THEME } from '../Map.const'
 
 export function initScene(overrideColorTheme: PreferedColorTheme) {
-  const backgroundColor: ColorRepresentation = overrideColorTheme === 'light'
-    ? CANVAS_BACKGROUND_COLOR_LIGHT_THEME
-    : CANVAS_BACKGROUND_COLOR_DARK_THEME
+  const backgroundColor: ColorRepresentation = overrideColorTheme === 'dark'
+    ? CANVAS_BACKGROUND_COLOR_DARK_THEME
+    : CANVAS_BACKGROUND_COLOR_LIGHT_THEME
 
   const scene = new Scene()
 
