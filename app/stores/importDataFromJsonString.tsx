@@ -7,17 +7,16 @@ export async function importDataFromJsonString(storageStateAsJsonString: string)
     const storageData = deserializeStateFromJSONString(storageStateAsJsonString)
 
     if (!storageData) {
-      return 'Upload file error. Impossible to read json data from the file'
+      return 'Reading file error. Impossible to read json data from the file'
     }
 
     const setDataError = await setIndexedDBState(INDEXED_DB_DATABASE_NAME, INDEXED_DB_OBJECT_STORE_NAME, storageData)
 
     if (setDataError) {
-      return 'Upload file error. Impossible set data into indexedBD'
+      return 'Reading file error. Impossible set data into the data storage (indexedDB)'
     }
   } catch (error) {
-    console.error(error)
-    return `Upload file error. ${error}`
+    return `Reading file error. ${error}`
   }
 
   return undefined

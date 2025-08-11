@@ -212,6 +212,7 @@ export async function readFileAsJsonString(storageDataJsonFile: File): Promise<{
       contentAsArrayBuffer,
       DUMP_COMPRESSION_FORMAT
     )
+
     if (!storageStateAsJsonString) {
       const errorMessage = `Upload file error. Impossible to decompress file (${DUMP_FILE_EXTENSION}.${GZIP_FILE_EXTENSION} format)`
 
@@ -222,6 +223,7 @@ export async function readFileAsJsonString(storageDataJsonFile: File): Promise<{
     }
   } else if (fileMimeType === 'application/json') {
     storageStateAsJsonString = (await readFileAsText(storageDataJsonFile)).result as string
+
     if (!storageStateAsJsonString) {
       const errorMessage = `Upload file error. Impossible to read file (${DUMP_FILE_EXTENSION} format)`
 

@@ -130,7 +130,7 @@ export function checkIfDemoDataCouldBeLoadedForDataStore(store: Store) {
   }
 }
 
-async function loadDemoDataAsString(filename: string, mimetype: string): Promise<string | undefined> {
+async function loadDemoDataAsJSON(filename: string, mimetype: string): Promise<boolean> {
   const { file: storageDataJsonFile, error: loadJsonDataError } = await fetchFile(filename, mimetype)
 
   if (!storageDataJsonFile) {
@@ -146,17 +146,17 @@ async function loadDemoDataAsString(filename: string, mimetype: string): Promise
       type: 'error',
       title: 'Loading demo data failed'
     })
-    return
+    return true
   }
 
   const { jsonString, error: errorMessage } = await readFileAsJsonString(storageDataJsonFile)
 
-  if (!jsonString) {
+  if (!jsonString || errorMessage) {
     createNotificationWithUniqTags({
       entityType: ENTITY_TYPE_NOTIFICATION,
       messages: [() => (
         <>
-          {errorMessage || ''}
+          {errorMessage || 'Data should be in json format'}
         </>
       )],
       hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
@@ -164,39 +164,10 @@ async function loadDemoDataAsString(filename: string, mimetype: string): Promise
       type: 'error',
       title: 'Loading demo data failed'
     })
-    return undefined
+    return true
   }
 
-  return jsonString
-}
-
-export async function loadDemoDataAndReloadPage() {
-  let storageStateAsJsonString = await loadDemoDataAsString(DEMO_DATA_JSON_FILE_PATH, 'application/json')
-
-  if (!storageStateAsJsonString) {
-    // case: when a browser does not automatically decode gzip files when the file loads by window.fetch()
-    storageStateAsJsonString = await loadDemoDataAsString(DEMO_DATA_JSON_FILE_PATH, 'application/gzip')
-  }
-
-  if (!storageStateAsJsonString) {
-    const errorMessage = `Data should be in json format`
-
-    createNotificationWithUniqTags({
-      entityType: ENTITY_TYPE_NOTIFICATION,
-      messages: [() => (
-        <>
-          {errorMessage}
-        </>
-      )],
-      hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
-      tags: ['storage-data-import-demo-data'],
-      type: 'error',
-      title: 'Importing demo data failed',
-    })
-    return
-  }
-
-  const importError = await importDataFromJsonString(storageStateAsJsonString)
+  const importError = await importDataFromJsonString(jsonString)
 
   if (importError) {
     createNotificationWithUniqTags({
@@ -211,7 +182,24 @@ export async function loadDemoDataAndReloadPage() {
       type: 'error',
       title: 'Importing demo data failed',
     })
-    return
+    return true
+  }
+
+  return false
+}
+
+export async function loadDemoDataAndReloadPage() {
+  const hasError = await loadDemoDataAsJSON(DEMO_DATA_JSON_FILE_PATH, 'application/json')
+
+  if (!hasError) {
+    // case: for the file loads by window.fetch()
+    // when a browser does not automatically decode gzip files
+    // or when for gzip file a web server does not send header 'Content-Encoding: gzip'
+    const hasError = await loadDemoDataAsJSON(DEMO_DATA_JSON_FILE_PATH, 'application/gzip')
+
+    if (hasError) {
+      return
+    }
   }
 
   createNotificationWithUniqTags({
@@ -219,7 +207,7 @@ export async function loadDemoDataAndReloadPage() {
     messages: [() => (
       <>
         <div>
-          Demo data successfully loaded.
+          Demo data were successfully imported.
         </div>
         <div>
           Page will be reloaded in
