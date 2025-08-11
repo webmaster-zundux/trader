@@ -1,5 +1,5 @@
 import type React from 'react'
-import { Links, Meta, Scripts, ScrollRestoration, isRouteErrorResponse } from 'react-router'
+import { Links, Scripts, ScrollRestoration, isRouteErrorResponse } from 'react-router'
 import type { Route } from './+types/root'
 import { AppPageContentLayout } from './components/PageLayout'
 import { DEFAULT_PREFERED_COLOR_THEME, HTML_BODY_CSS_CLASS_FOR_DARK_THEME, HTML_BODY_CSS_CLASS_FOR_LIGHT_THEME } from './components/PreferedColorThemeSwitch'

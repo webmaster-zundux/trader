@@ -249,17 +249,17 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
         </div>
       </div>
 
-      {isVisibleImportStorageDataModal && (
-        <ImportStorageDataModal
-          onHide={hideImportStorageDataModal}
-          onSuccessImport={showSuccessImportStorageDataNotification}
-        />
-      )}
-
       {isVisibleClearStorageConfirmation && (
         <ClearStorageConfirmation
           onHide={hideClearStorageConfirmation}
           onConfirm={handleClearStorageButtonClick}
+        />
+      )}
+
+      {isVisibleImportStorageDataModal && (
+        <ImportStorageDataModal
+          onHide={hideImportStorageDataModal}
+          onSuccessImport={showSuccessImportStorageDataNotification}
         />
       )}
 
