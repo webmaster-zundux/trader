@@ -58,7 +58,7 @@ export const ImportStorageDataModal = ({
       return function ErrorMessage() {
         return (
           <>
-            File should has
+            File should be in
             {' '}
             <strong>
               .
@@ -72,7 +72,7 @@ export const ImportStorageDataModal = ({
               {COMPRESSED_DUMP_FILE_EXTENSION}
             </strong>
             {' '}
-            file extension
+            format
           </>
         )
       }

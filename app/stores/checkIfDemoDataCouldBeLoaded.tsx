@@ -130,8 +130,8 @@ export function checkIfDemoDataCouldBeLoadedForDataStore(store: Store) {
   }
 }
 
-export async function loadDemoDataAndReloadPage() {
-  const { file: storageDataJsonFile, error: loadJsonDataError } = await fetchFile(DEMO_DATA_JSON_FILE_PATH, 'application/gzip')
+async function loadDemoDataAsString(filename: string, mimetype: string) {
+  const { file: storageDataJsonFile, error: loadJsonDataError } = await fetchFile(filename, mimetype)
 
   if (!storageDataJsonFile) {
     createNotificationWithUniqTags({
@@ -149,7 +149,35 @@ export async function loadDemoDataAndReloadPage() {
     return
   }
 
-  const storageStateAsJsonString = await readFileAsJsonString(storageDataJsonFile)
+  return await readFileAsJsonString(storageDataJsonFile)
+}
+
+export async function loadDemoDataAndReloadPage() {
+  let storageStateAsJsonString = await loadDemoDataAsString(DEMO_DATA_JSON_FILE_PATH, 'application/json')
+
+  if (!storageStateAsJsonString) {
+    // case: when a browser does not automatically decode gzip files when the file loads by window.fetch()
+    storageStateAsJsonString = await loadDemoDataAsString(DEMO_DATA_JSON_FILE_PATH, 'application/gzip')
+  }
+
+  if (!storageStateAsJsonString) {
+    const errorMessage = `Data should be in json format`
+
+    createNotificationWithUniqTags({
+      entityType: ENTITY_TYPE_NOTIFICATION,
+      messages: [() => (
+        <>
+          {errorMessage}
+        </>
+      )],
+      hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
+      tags: ['storage-data-import-demo-data'],
+      type: 'error',
+      title: 'Importing demo data failed',
+    })
+    return
+  }
+
   const importError = await importDataFromJsonString(storageStateAsJsonString)
 
   if (importError) {
@@ -165,7 +193,7 @@ export async function loadDemoDataAndReloadPage() {
       type: 'error',
       title: 'Importing demo data failed',
     })
-    return importError
+    return
   }
 
   createNotificationWithUniqTags({
@@ -194,5 +222,5 @@ export async function loadDemoDataAndReloadPage() {
     window.location.reload()
   }, PAGE_RELOAD_TIMEOUT_AFTER_SUCCESS_LOADING_DEMO_DATA_INTO_STORAGE_IN_MS)
 
-  return undefined
+  return
 }

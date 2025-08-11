@@ -9,16 +9,28 @@ const GZIP_FILE_MIME_TYPE = 'application/octet-stream' as const
 
 export const COMPRESSED_DUMP_FILE_EXTENSION = `${DUMP_FILE_EXTENSION}.${GZIP_FILE_EXTENSION}` as const
 
+export const STORAGE_STATE_ACCEPTABLE_FILE_EXTENSIONS = [
+  `.${DUMP_FILE_EXTENSION}`,
+  `.${COMPRESSED_DUMP_FILE_EXTENSION}`,
+] as const
+
+export const STORAGE_STATE_ACCEPTABLE_FILE_TYPES_AS_STRING
+  = STORAGE_STATE_ACCEPTABLE_FILE_EXTENSIONS.join(', ')
+
 export type StorageDataJsonOject = { [key: string]: string }
 
 export function getFileExtension(
-  file: File
+  file: File,
+  optionalArchiveExtension?: string
 ): string | undefined {
   const filenameParts = file.name.split('.')
 
   let fileExtension = filenameParts.pop()
 
-  if (fileExtension === GZIP_FILE_EXTENSION) {
+  if (
+    !!optionalArchiveExtension
+    && (fileExtension === optionalArchiveExtension)
+  ) {
     const dataFormat = filenameParts.pop()
 
     fileExtension = [dataFormat, fileExtension].join('.')
@@ -31,7 +43,7 @@ export function doesFileHaveAcceptableFileExtension(
   file: File,
   acceptableFileExtensions: string[] | readonly string[]
 ): boolean {
-  const fileExtension = getFileExtension(file)
+  const fileExtension = getFileExtension(file, GZIP_FILE_EXTENSION)
 
   if (!fileExtension) {
     return false
@@ -188,9 +200,9 @@ export function deserializeStateFromJSONString(
 
 export async function readFileAsJsonString(storageDataJsonFile: File) {
   let storageStateAsJsonString: string | undefined
-  const fileExtension = getFileExtension(storageDataJsonFile)
+  const fileMimeType = storageDataJsonFile.type
 
-  if (fileExtension === COMPRESSED_DUMP_FILE_EXTENSION) {
+  if (fileMimeType === 'application/gzip') {
     const contentAsArrayBuffer = (await readFileAsArrayBuffer(storageDataJsonFile)).result as ArrayBuffer
 
     storageStateAsJsonString = await decompressArrayBufferToString(
@@ -202,7 +214,7 @@ export async function readFileAsJsonString(storageDataJsonFile: File) {
 
       throw new Error(message)
     }
-  } else if (fileExtension === DUMP_FILE_EXTENSION) {
+  } else if (fileMimeType === 'application/json') {
     storageStateAsJsonString = (await readFileAsText(storageDataJsonFile)).result as string
     if (!storageStateAsJsonString) {
       const message = `Upload file error. Impossible to read file (${DUMP_FILE_EXTENSION} format)`
@@ -210,18 +222,10 @@ export async function readFileAsJsonString(storageDataJsonFile: File) {
       throw new Error(message)
     }
   } else {
-    const message = 'Upload file error. Unsupported file format'
+    const message = `Upload file error. Unsupported file format. Only ${STORAGE_STATE_ACCEPTABLE_FILE_TYPES_AS_STRING} formats are supported`
 
     throw new Error(message)
   }
 
   return storageStateAsJsonString
 }
-
-export const STORAGE_STATE_ACCEPTABLE_FILE_EXTENSIONS = [
-  `.${DUMP_FILE_EXTENSION}`,
-  `.${COMPRESSED_DUMP_FILE_EXTENSION}`,
-] as const
-
-export const STORAGE_STATE_ACCEPTABLE_FILE_TYPES_AS_STRING
-  = STORAGE_STATE_ACCEPTABLE_FILE_EXTENSIONS.join(', ')
