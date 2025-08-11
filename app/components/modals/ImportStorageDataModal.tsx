@@ -36,7 +36,12 @@ export const ImportStorageDataModal = ({
   }, [onHide])
 
   const handleSubmit = useCallback(async ({ storageDataJsonFile }: StorageState) => {
-    const storageStateAsJsonString = await readFileAsJsonString(storageDataJsonFile)
+    const { jsonString: storageStateAsJsonString, error: readeingFileAsJsonStringError } = await readFileAsJsonString(storageDataJsonFile)
+
+    if (!storageStateAsJsonString) {
+      return readeingFileAsJsonStringError || ''
+    }
+
     const importError = await importDataFromJsonString(storageStateAsJsonString)
 
     if (importError) {

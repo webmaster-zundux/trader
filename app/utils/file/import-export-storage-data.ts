@@ -198,7 +198,10 @@ export function deserializeStateFromJSONString(
   return storageStateObjectWithSerializedValues
 }
 
-export async function readFileAsJsonString(storageDataJsonFile: File) {
+export async function readFileAsJsonString(storageDataJsonFile: File): Promise<{
+  jsonString: string | undefined
+  error: string | undefined
+}> {
   let storageStateAsJsonString: string | undefined
   const fileMimeType = storageDataJsonFile.type
 
@@ -210,22 +213,34 @@ export async function readFileAsJsonString(storageDataJsonFile: File) {
       DUMP_COMPRESSION_FORMAT
     )
     if (!storageStateAsJsonString) {
-      const message = `Upload file error. Impossible to decompress file (${DUMP_FILE_EXTENSION}.${GZIP_FILE_EXTENSION} format)`
+      const errorMessage = `Upload file error. Impossible to decompress file (${DUMP_FILE_EXTENSION}.${GZIP_FILE_EXTENSION} format)`
 
-      throw new Error(message)
+      return {
+        jsonString: undefined,
+        error: errorMessage
+      }
     }
   } else if (fileMimeType === 'application/json') {
     storageStateAsJsonString = (await readFileAsText(storageDataJsonFile)).result as string
     if (!storageStateAsJsonString) {
-      const message = `Upload file error. Impossible to read file (${DUMP_FILE_EXTENSION} format)`
+      const errorMessage = `Upload file error. Impossible to read file (${DUMP_FILE_EXTENSION} format)`
 
-      throw new Error(message)
+      return {
+        jsonString: undefined,
+        error: errorMessage
+      }
     }
   } else {
-    const message = `Upload file error. Unsupported file format. Only ${STORAGE_STATE_ACCEPTABLE_FILE_TYPES_AS_STRING} formats are supported`
+    const errorMessage = `Upload file error. Unsupported file format. Only ${STORAGE_STATE_ACCEPTABLE_FILE_TYPES_AS_STRING} formats are supported`
 
-    throw new Error(message)
+    return {
+      jsonString: undefined,
+      error: errorMessage
+    }
   }
 
-  return storageStateAsJsonString
+  return {
+    jsonString: storageStateAsJsonString,
+    error: undefined,
+  }
 }

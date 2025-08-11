@@ -130,7 +130,7 @@ export function checkIfDemoDataCouldBeLoadedForDataStore(store: Store) {
   }
 }
 
-async function loadDemoDataAsString(filename: string, mimetype: string) {
+async function loadDemoDataAsString(filename: string, mimetype: string): Promise<string | undefined> {
   const { file: storageDataJsonFile, error: loadJsonDataError } = await fetchFile(filename, mimetype)
 
   if (!storageDataJsonFile) {
@@ -149,7 +149,25 @@ async function loadDemoDataAsString(filename: string, mimetype: string) {
     return
   }
 
-  return await readFileAsJsonString(storageDataJsonFile)
+  const { jsonString, error: errorMessage } = await readFileAsJsonString(storageDataJsonFile)
+
+  if (!jsonString) {
+    createNotificationWithUniqTags({
+      entityType: ENTITY_TYPE_NOTIFICATION,
+      messages: [() => (
+        <>
+          {errorMessage || ''}
+        </>
+      )],
+      hideTimeout: STORAGE_EXPORT_NOTIFICATION_TIMEOUT,
+      tags: ['storage-data-import-demo-data'],
+      type: 'error',
+      title: 'Loading demo data failed'
+    })
+    return undefined
+  }
+
+  return jsonString
 }
 
 export async function loadDemoDataAndReloadPage() {
