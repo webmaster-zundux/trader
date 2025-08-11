@@ -95,6 +95,7 @@ export function checkIfDemoDataCouldBeLoadedForAllRequiredDataStores() {
   })
 
   if (checkedStoresWithoutData.length === checkedStoresWithoutDataRequiredForDemo.size) {
+    debugger
     loadDemoDataAndReloadPage()
   }
 }
