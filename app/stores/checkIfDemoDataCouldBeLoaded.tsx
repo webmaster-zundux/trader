@@ -95,7 +95,6 @@ export function checkIfDemoDataCouldBeLoadedForAllRequiredDataStores() {
   })
 
   if (checkedStoresWithoutData.length === checkedStoresWithoutDataRequiredForDemo.size) {
-    debugger
     loadDemoDataAndReloadPage()
   }
 }
@@ -192,7 +191,7 @@ async function loadDemoDataAsJSON(filename: string, mimetype: string): Promise<b
 export async function loadDemoDataAndReloadPage() {
   const hasError = await loadDemoDataAsJSON(DEMO_DATA_JSON_FILE_PATH, 'application/json')
 
-  if (!hasError) {
+  if (hasError) {
     // case: for the file loads by window.fetch()
     // when a browser does not automatically decode gzip files
     // or when for gzip file a web server does not send header 'Content-Encoding: gzip'

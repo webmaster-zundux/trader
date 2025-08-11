@@ -25,7 +25,7 @@ export function getPriceHistoryByOrderUuidSelector(orderUuid: Order['uuid']): Pr
   return getPriceHistoryAsArraySelector().find(priceHistory => priceHistory.orderUuid === orderUuid)
 }
 
-// deprecated - todo replace by hasEnoughDataForPriceHistoryPlotForOrderSelector
+// deprecated - todo to replace by hasEnoughDataForPriceHistoryPlotForOrderSelector
 export function hasEnoughDataForPriceHistoryPlot(priceHistory?: PriceHistory): boolean {
   if (!priceHistory) {
     return false
