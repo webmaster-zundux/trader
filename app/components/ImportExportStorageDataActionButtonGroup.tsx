@@ -279,7 +279,7 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
 
       {isVisibleSuccessClearStorageNotification && (
         <ModalNotification
-          title="storage data was successfully deleted"
+          title="storage data were successfully deleted"
           onHide={handleHideSuccessClearStorageNotification}
           okButtonLabel="reload page"
         />

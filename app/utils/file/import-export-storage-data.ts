@@ -205,7 +205,10 @@ export async function readFileAsJsonString(storageDataJsonFile: File): Promise<{
   let storageStateAsJsonString: string | undefined
   const fileMimeType = storageDataJsonFile.type
 
-  if (fileMimeType === 'application/gzip') {
+  if (
+    fileMimeType === 'application/gzip'
+    || fileMimeType === 'application/x-gzip'
+  ) {
     const contentAsArrayBuffer = (await readFileAsArrayBuffer(storageDataJsonFile)).result as ArrayBuffer
 
     storageStateAsJsonString = await decompressArrayBufferToString(
