@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect } from 'react'
 import { ENTITY_TYPE_NOTIFICATION } from '~/models/notifications/Notifications'
 import { loadDemoDataAndReloadPage } from '~/stores/checkIfDemoDataCouldBeLoaded'
-import { INDEXED_DB_DATABASE_NAME, INDEXED_DB_DATABASE_VERSION, INDEXED_DB_OBJECT_STORE_NAME } from '~/stores/createStateStorageAsIndexedDB'
+import { INDEXED_DB_DATABASE_NAME, INDEXED_DB_OBJECT_STORE_NAME } from '~/stores/createStateStorageAsIndexedDB'
 import { createNotificationWithUniqTags } from '~/stores/notification-stores/notification.store'
 import { clearIndexedDB, getIndexedDBState } from '~/utils/file/import-export-indexedDB-data'
 import { downloadStateAsJsonFile } from '~/utils/file/import-export-storage-data'
@@ -21,7 +21,7 @@ const PAGE_RELOAD_TIMEOUT_AFTER_SUCCESS_CLEARING_LOCAL_STORAGE_IN_MS = 5 * 1000
 const STORAGE_EXPORT_NOTIFICATION_TIMEOUT = 5 * 1000
 
 async function clearDataStorage() {
-  const error = await clearIndexedDB(INDEXED_DB_DATABASE_NAME, INDEXED_DB_DATABASE_VERSION, INDEXED_DB_OBJECT_STORE_NAME)
+  const error = await clearIndexedDB(INDEXED_DB_DATABASE_NAME, INDEXED_DB_OBJECT_STORE_NAME)
 
   if (error) {
     createNotificationWithUniqTags({
@@ -90,7 +90,7 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
 
   const handleExportButtonClick = useCallback(async function handleExportButtonClick() {
     const dateTimeMark = new Date().getTime()
-    const { error: getIndexDBStateError, indexDBState } = await getIndexedDBState(INDEXED_DB_DATABASE_NAME, INDEXED_DB_DATABASE_VERSION, INDEXED_DB_OBJECT_STORE_NAME)
+    const { error: getIndexDBStateError, indexDBState } = await getIndexedDBState(INDEXED_DB_DATABASE_NAME, INDEXED_DB_OBJECT_STORE_NAME)
 
     if (getIndexDBStateError) {
       createNotificationWithUniqTags({

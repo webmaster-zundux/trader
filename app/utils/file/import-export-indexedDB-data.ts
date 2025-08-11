@@ -1,10 +1,8 @@
 async function openConnectionToIndexedDB(
   dbName: string,
-  dbVersion: number,
   objectStoreName: string
 ) {
   return new Promise<IDBDatabase>((resolve, reject) => {
-    // const dbOpenRequest = indexedDB.open(dbName, dbVersion)
     const dbOpenRequest = indexedDB.open(dbName)
 
     dbOpenRequest.onerror = function onDBOpenRequestEerror(event) {
@@ -49,11 +47,10 @@ async function openConnectionToIndexedDB(
 
 async function createTransaction(
   dbName: string,
-  dbVersion: number,
   objectStoreName: string,
   type: IDBTransactionMode
 ) {
-  const connection = await openConnectionToIndexedDB(dbName, dbVersion, objectStoreName)
+  const connection = await openConnectionToIndexedDB(dbName, objectStoreName)
   const transaction = connection.transaction([objectStoreName], type)
 
   transaction.oncomplete = () => { }
@@ -91,11 +88,10 @@ function clearRequest(
 
 export async function clearIndexedDB(
   dbName: string,
-  dbVersion: number,
   objectStoreName: string
 ) {
   try {
-    const transaction = await createTransaction(dbName, dbVersion, objectStoreName, 'readwrite')
+    const transaction = await createTransaction(dbName, objectStoreName, 'readwrite')
     const objectStore = transaction.objectStore(objectStoreName)
 
     await clearRequest(objectStore)
@@ -144,11 +140,10 @@ async function getAllRecordsRequest(
 
 export async function getIndexedDBState(
   dbName: string,
-  dbVersion: number,
   objectStoreName: string
 ): Promise<{ error?: string, indexDBState?: { [key: string]: string } }> {
   try {
-    const transaction = await createTransaction(dbName, dbVersion, objectStoreName, 'readwrite')
+    const transaction = await createTransaction(dbName, objectStoreName, 'readwrite')
     const objectStore = transaction.objectStore(objectStoreName)
     const { error, result } = await getAllRecordsRequest(objectStore)
 
@@ -192,12 +187,11 @@ async function setRecordRequest(
 
 export async function setIndexedDBState(
   dbName: string,
-  dbVersion: number,
   objectStoreName: string,
   stateToRestore: { [key: string]: string }
 ): Promise<string | undefined> {
   try {
-    const transaction = await createTransaction(dbName, dbVersion, objectStoreName, 'readwrite')
+    const transaction = await createTransaction(dbName, objectStoreName, 'readwrite')
     const objectStore = transaction.objectStore(objectStoreName)
 
     Object.entries(stateToRestore).forEach(([key, value]) => {
