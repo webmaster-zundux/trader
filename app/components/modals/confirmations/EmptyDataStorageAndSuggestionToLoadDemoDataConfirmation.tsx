@@ -3,22 +3,22 @@ import { memo, useMemo } from 'react'
 import type { Promisefy } from '~/models/utils/utility-types'
 import { ModalConfirmation } from './ModalConfirmation'
 
-interface LoadDemoDataConfirmationProps {
+interface EmptyDataStorageAndSuggestionToLoadDemoDataConfirmationProps {
   onConfirm?: () => Promisefy<(string | (() => React.JSX.Element) | undefined | void)>
   onHide?: () => void
 }
-export const LoadDemoDataConfirmation = memo(function LoadDemoDataConfirmation({
+export const EmptyDataStorageAndSuggestionToLoadDemoDataConfirmation = memo(function EmptyDataStorageAndSuggestionToLoadDemoDataConfirmation({
   onHide,
   onConfirm,
-}: LoadDemoDataConfirmationProps) {
+}: EmptyDataStorageAndSuggestionToLoadDemoDataConfirmationProps) {
   const confirmationTitle = useMemo(() => (
     <>
-      Are you sure you want
+      No data in data storage.
+      <br />
+      Are you want
       {' '}
       <strong>to load demo data</strong>
       ?
-      <br />
-      Note: All existing data will be exported into a file
     </>
   ), [])
 

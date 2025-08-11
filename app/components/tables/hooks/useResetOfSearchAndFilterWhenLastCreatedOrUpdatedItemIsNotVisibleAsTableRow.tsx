@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { EntityBaseFilter } from '~/models/entities-filters/EntityBaseFilter'
 import type { Entity } from '../../../models/Entity'
-import { useLastCreatedOrUpdatedItemStore } from '../../../stores/LastCreatedOrUpdatedItem.store'
+import { useLastCreatedOrUpdatedItemStore } from '../../../stores/simple-stores/LastCreatedOrUpdatedItem.store'
 
 const ANIMATION_DURATION_OF_HIGHLIGHTING_TABLE_ROW_FOR_LAST_CREATED_OR_EDITED_ITEM_IN_MS = 5 * 1000 // must be a multiple of animation-duration in .HighlightRow
 

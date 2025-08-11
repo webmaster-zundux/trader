@@ -3,6 +3,7 @@ import { ENTITY_TYPE_NOTIFICATION } from '~/models/notifications/Notifications'
 import { loadDemoDataAndReloadPage } from '~/stores/checkIfDemoDataCouldBeLoaded'
 import { INDEXED_DB_DATABASE_NAME, INDEXED_DB_OBJECT_STORE_NAME } from '~/stores/createStateStorageAsIndexedDB'
 import { createNotificationWithUniqTags } from '~/stores/notification-stores/notification.store'
+import { hideLoadDemoDataIntoEmptyDataStorageSuggestion, useLoadDemoDataIntoEmptyDataStorageSuggestionVisibility } from '~/stores/simple-stores/LoadDemoDataIntoEmptyDataStorageSuggestionVisibility.store'
 import { clearIndexedDB, getIndexedDBState } from '~/utils/file/import-export-indexedDB-data'
 import { downloadStateAsJsonFile } from '~/utils/file/import-export-storage-data'
 import { useIsVisible } from '../hooks/ui/useIsVisible'
@@ -14,6 +15,7 @@ import { InkEraserIcon } from './icons/InkEraserIcon'
 import { UploadFileIcon } from './icons/UploadFileIcon'
 import { ImportStorageDataModal } from './modals/ImportStorageDataModal'
 import { ClearStorageConfirmation } from './modals/confirmations/ClearStorageConfirmation'
+import { EmptyDataStorageAndSuggestionToLoadDemoDataConfirmation } from './modals/confirmations/EmptyDataStorageAndSuggestionToLoadDemoDataConfirmation'
 import { LoadDemoDataConfirmation } from './modals/confirmations/LoadDemoDataConfirmation'
 import { ModalNotification } from './modals/notifications/ModalNotification'
 
@@ -60,6 +62,8 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
     show: showLoadDemoDataConfirmation,
     hide: hideLoadDemoDataConfirmation,
   } = useIsVisible(false)
+
+  const isVisibleLoadDemoDataIntoEmptyDataStorageSuggestion = useLoadDemoDataIntoEmptyDataStorageSuggestionVisibility(state => state.isVisible)
 
   const {
     isVisible: isVisibleSuccessClearStorageNotification,
@@ -171,6 +175,17 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
     await loadDemoDataAndReloadPage()
   }, [handleExportButtonClick])
 
+  const handleLoadDemoDataIntoEmptyDataStorageButtonClick = useCallback(async function handleLoadDemoDataButtonClick() {
+    const clearingDataError = await clearDataStorage()
+
+    if (clearingDataError) {
+      return
+    }
+
+    await loadDemoDataAndReloadPage()
+    hideLoadDemoDataIntoEmptyDataStorageSuggestion()
+  }, [])
+
   useEffect(function initPageReloadTimeoutEffect() {
     if (!isVisibleSuccessImportStorageDataNotification) {
       return
@@ -252,6 +267,13 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
         <LoadDemoDataConfirmation
           onHide={hideLoadDemoDataConfirmation}
           onConfirm={handleLoadDemoDataButtonClick}
+        />
+      )}
+
+      {isVisibleLoadDemoDataIntoEmptyDataStorageSuggestion && (
+        <EmptyDataStorageAndSuggestionToLoadDemoDataConfirmation
+          onHide={hideLoadDemoDataIntoEmptyDataStorageSuggestion}
+          onConfirm={handleLoadDemoDataIntoEmptyDataStorageButtonClick}
         />
       )}
 

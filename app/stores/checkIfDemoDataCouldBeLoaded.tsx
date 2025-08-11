@@ -16,6 +16,7 @@ import { useProductsStore } from './entity-stores/Products.store'
 import { useProductTypesStore } from './entity-stores/ProductTypes.store'
 import { useSellOrdersStore } from './entity-stores/SellOrders.store'
 import { createNotificationWithUniqTags } from './notification-stores/notification.store'
+import { showLoadDemoDataIntoEmptyDataStorageSuggestion } from './simple-stores/LoadDemoDataIntoEmptyDataStorageSuggestionVisibility.store'
 
 export const USE_DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA = true // todo move into environmental variables
 
@@ -95,7 +96,7 @@ export function checkIfDemoDataCouldBeLoadedForAllRequiredDataStores() {
   })
 
   if (checkedStoresWithoutData.length === checkedStoresWithoutDataRequiredForDemo.size) {
-    loadDemoDataAndReloadPage()
+    showLoadDemoDataIntoEmptyDataStorageSuggestion()
   }
 }
 
@@ -227,6 +228,4 @@ export async function loadDemoDataAndReloadPage() {
   window.setTimeout(function pageReloadAfterTimeoutHandler() {
     window.location.reload()
   }, PAGE_RELOAD_TIMEOUT_AFTER_SUCCESS_LOADING_DEMO_DATA_INTO_STORAGE_IN_MS)
-
-  return
 }

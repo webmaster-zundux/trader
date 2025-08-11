@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
-import type { Entity } from '../models/Entity'
+import type { Entity } from '../../models/Entity'
 
 type State = {
   item?: Entity
