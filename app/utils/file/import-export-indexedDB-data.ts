@@ -4,7 +4,8 @@ async function openConnectionToIndexedDB(
   objectStoreName: string
 ) {
   return new Promise<IDBDatabase>((resolve, reject) => {
-    const dbOpenRequest = indexedDB.open(dbName, dbVersion)
+    // const dbOpenRequest = indexedDB.open(dbName, dbVersion)
+    const dbOpenRequest = indexedDB.open(dbName)
 
     dbOpenRequest.onerror = function onDBOpenRequestEerror(event) {
       const message = 'Error. Opening connection to indexedDB is failed'
