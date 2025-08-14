@@ -22,12 +22,12 @@ export const URL_SEARCH_PARAM_KEY_ALLOWED_IN_MAP_FILTER = [
   URL_SEARCH_PARAM_KEY_MAP_MODE,
 ] as const
 
- type MapFilter = {
-   movingEntityUuid?: MovingEntity['uuid']
-   locationUuid?: Location['uuid']
-   planetarySystemUuid?: PlanetarySystem['uuid']
-   mapMode?: MapMode
- }
+type MapFilter = {
+  movingEntityUuid?: MovingEntity['uuid']
+  locationUuid?: Location['uuid']
+  planetarySystemUuid?: PlanetarySystem['uuid']
+  mapMode?: MapMode
+}
 
 type MapUrlSearchParams = (Partial<Omit<MapFilter, 'name'>> & {
   movingEntityId?: string

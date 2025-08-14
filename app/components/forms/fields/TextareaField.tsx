@@ -10,10 +10,10 @@ type TextareaFieldProps = {
   onFieldValueChange?: (fieldName: string, value: string | number) => void
   autoFocusOnFirstRender?: boolean
 } & Pick<TextareaHTMLAttributes<HTMLTextAreaElement>,
-'id' | 'name' | 'required' |
-'minLength' | 'maxLength' |
-'defaultValue' | 'onChange' | 'disabled' | 'placeholder' |
-'autoComplete' | 'spellCheck'>
+'id' | 'name' | 'required'
+| 'minLength' | 'maxLength'
+| 'defaultValue' | 'onChange' | 'disabled' | 'placeholder'
+| 'autoComplete' | 'spellCheck'>
 export const TextareaField = memo(function TextareaField({
   autoComplete = 'off',
   onFieldValueChange,

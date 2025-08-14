@@ -66,14 +66,14 @@ export type FormFieldFileInput<T> = FormFieldBase<T> & {
   valueType?: 'string'
 } & Pick<InputHTMLAttributes<HTMLInputElement>, 'accept'>
 
-export type FormField<T> =
-  | FormFieldHidden<T>
-  | FormFieldTextInput<T>
-  | FormFieldMultilineTextInput<T>
-  | FormFieldNumberInput<T>
-  | FormFieldSelect<T>
-  | FormFieldCheckboxGroup<T>
-  | FormFieldFileInput<T>
+export type FormField<T>
+  = | FormFieldHidden<T>
+    | FormFieldTextInput<T>
+    | FormFieldMultilineTextInput<T>
+    | FormFieldNumberInput<T>
+    | FormFieldSelect<T>
+    | FormFieldCheckboxGroup<T>
+    | FormFieldFileInput<T>
 
 export type FormFieldNotHidden<T> = Exclude<FormField<T>, FormFieldHidden<T>>
 

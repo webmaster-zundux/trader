@@ -9,9 +9,9 @@ export type NumberFieldProps = {
   formatValue?: (value?: string | readonly string[] | number | undefined) => string | number | undefined
   autoFocusOnFirstRender?: boolean
 } & Pick<InputHTMLAttributes<HTMLInputElement>,
-'id' | 'name' | 'required' |
-'defaultValue' | 'onChange' |
-'pattern' | 'step' | 'disabled' | 'placeholder'
+'id' | 'name' | 'required'
+| 'defaultValue' | 'onChange'
+| 'pattern' | 'step' | 'disabled' | 'placeholder'
 >
 export const NumberField = memo(function NumberField({
   name,

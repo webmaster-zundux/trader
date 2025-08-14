@@ -502,10 +502,10 @@ export type ColumnWithLinkToEditItem<T> = ColumnWithValue<T> & {
   asLinkToSelectItem?: boolean
 }
 
-export type Column<T> =
-  | ColumnWithValue<T>
-  | ColumnWithCheckbox<T>
-  | ColumnWithLinkToEditItem<T>
+export type Column<T>
+  = | ColumnWithValue<T>
+    | ColumnWithCheckbox<T>
+    | ColumnWithLinkToEditItem<T>
 
 interface TableHeadProps<T extends Entity = Entity> {
   tableColumns: Column<T>[]

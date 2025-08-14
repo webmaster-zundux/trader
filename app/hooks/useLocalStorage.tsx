@@ -99,7 +99,7 @@ export function useLocalStorage<StorageState extends object | string | undefined
 ): [
     state: StorageState,
     setState: (value: SetState<StorageState>) => void
-  ] {
+] {
   const subsribeOnStorageEventFromLocalStorage = useCallback(function subsribeOnStorageEventFromLocalStorage(callback: (ev: StorageEvent) => void) {
     window.addEventListener('storage', callback)
 

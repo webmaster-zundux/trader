@@ -30,8 +30,8 @@ export function getFilterPredicatesFromFilterFormFields<
 >(
   filterFields: FilterField<T, F>[]
 ): {
-    [key: string]: FieldFilterPredicate<T, F>
-  } {
+  [key: string]: FieldFilterPredicate<T, F>
+} {
   const fieldPredicates: {
     [key: string]: FieldFilterPredicate<T, F>
   } = {}

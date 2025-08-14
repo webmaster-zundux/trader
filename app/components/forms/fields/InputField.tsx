@@ -13,11 +13,11 @@ type InputFieldProps = {
   autoFocusOnFirstRender?: boolean
   uppercase?: boolean
 } & Pick<InputHTMLAttributes<HTMLInputElement>,
-'id' | 'name' | 'required' |
-'minLength' | 'maxLength' |
-'defaultValue' | 'onChange' |
-'pattern' | 'step' | 'disabled' | 'placeholder' |
-'autoComplete' | 'accept' | 'spellCheck'>
+'id' | 'name' | 'required'
+| 'minLength' | 'maxLength'
+| 'defaultValue' | 'onChange'
+| 'pattern' | 'step' | 'disabled' | 'placeholder'
+| 'autoComplete' | 'accept' | 'spellCheck'>
 export const InputField = memo(function InputField({
   type = 'text',
   autoComplete = 'off',

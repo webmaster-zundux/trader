@@ -9,8 +9,8 @@ type FileFieldProps = {
   onFieldValueChange?: (fieldName: string, value: string | number) => void
   autoFocusOnFirstRender?: boolean
 } & Pick<InputHTMLAttributes<HTMLInputElement>,
-'id' | 'name' | 'required' |
-'onChange' | 'disabled' | 'accept'>
+'id' | 'name' | 'required'
+| 'onChange' | 'disabled' | 'accept'>
 export const FileField = memo(function FileField({
   onFieldValueChange,
   name,

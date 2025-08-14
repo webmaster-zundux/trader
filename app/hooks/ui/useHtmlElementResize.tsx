@@ -5,9 +5,9 @@ export function useHtmlElementResize(
   elementRef: RefObject<HTMLElement | null> | null,
   onResizeCallback?: (newWidth: number, newHeight: number) => void
 ): {
-    elementWidth: number
-    elementHeight: number
-  } {
+  elementWidth: number
+  elementHeight: number
+} {
   const [elementWidth, setElementWidth] = useState(0)
   const [elementHeight, setElementHeight] = useState(0)
 
