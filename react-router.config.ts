@@ -10,8 +10,8 @@ const basename = typeof env.USE_BASE_PUBLIC_PATH === 'string' ? env.USE_BASE_PUB
 
 export default {
   basename,
-  ssr: false,
-  // prerender: true,
+  // ssr: false, // to disable ssr react-router version should be > 7.8.0 https://github.com/remix-run/react-router/pull/13791
+  prerender: true,
   // prerender: [
   //   `${PAGE_SLUG_MARKET}`,
   //   `${PAGE_SLUG_HISTORY}`,
