@@ -1,4 +1,4 @@
-import { type RouteConfig, index, route } from '@react-router/dev/routes'
+import { index, route, type RouteConfig } from '@react-router/dev/routes'
 import { PAGE_SLUG_HISTORY, PAGE_SLUG_INVENTORY, PAGE_SLUG_LOCATIONS, PAGE_SLUG_MAP, PAGE_SLUG_MOVING_ENTITIES, PAGE_SLUG_PRODUCTS } from './router/PageSlugs.const'
 
 export default [

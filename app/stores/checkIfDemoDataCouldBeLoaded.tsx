@@ -18,7 +18,7 @@ import { useSellOrdersStore } from './entity-stores/SellOrders.store'
 import { createNotificationWithUniqTags } from './notification-stores/notification.store'
 import { showLoadDemoDataIntoEmptyDataStorageSuggestion } from './simple-stores/LoadDemoDataIntoEmptyDataStorageSuggestionVisibility.store'
 
-export const USE_DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA = true // todo move into environmental variables
+export const USE_DEMO_CHECKING_EXISTENSE_OF_PERSISTED_DATA = true
 
 const DEMO_DATA_JSON_FILE_PATH = `${import.meta.env.BASE_URL}demo-data.json.gz`
 const PAGE_RELOAD_TIMEOUT_AFTER_SUCCESS_LOADING_DEMO_DATA_INTO_STORAGE_IN_MS = 2 * 1000
