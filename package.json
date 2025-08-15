@@ -7,6 +7,7 @@
     "dev:prepare": "cp .env.development .env",
     "dev": "react-router dev",
     "build": "react-router build",
+    "create-gh-pages-release": "git branch -D gh-pages && git checkout -b gh-pages",
     "build:gh-pages": "cp .env.production.gh-pages .env && react-router build && rm -rf docs && cp -r build/client docs && git add docs -f",
     "no-exist:start": "react-router-serve ./build/server/index.js",
     "typegen": "react-router typegen",
