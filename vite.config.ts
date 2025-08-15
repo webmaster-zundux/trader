@@ -20,8 +20,14 @@ export default defineConfig(({ command, mode }) => {
     customHostName = env.USE_SERVER_HOST_NAME
   }
 
+  const basename = typeof env.USE_BASE_PUBLIC_PATH === 'string' ? env.USE_BASE_PUBLIC_PATH : '/'
+
+  if (basename !== '/') {
+    console.log(`vite.config: using basename`, basename)
+  }
+
   return ({
-    base: typeof env.USE_BASE_PUBLIC_PATH === 'string' ? env.USE_BASE_PUBLIC_PATH : '/',
+    base: basename,
     ssr: {
       noExternal: command === 'build' ? true : undefined,
     },

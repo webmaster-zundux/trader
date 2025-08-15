@@ -1,4 +1,4 @@
-.ErrorBoundaryContainer {
+.AppErrorBoundaryContainer {
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -9,10 +9,10 @@
   justify-content: center;
 }
 
-.ErrorBoundaryContainer h1 {
+.AppErrorBoundaryContainer h1 {
   font-size: 1.2em;
 }
 
-.ErrorBoundaryContainer p {
+.AppErrorBoundaryContainer p {
   font-size: 1em;
 }

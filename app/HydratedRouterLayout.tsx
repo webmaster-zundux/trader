@@ -1,7 +1,7 @@
 import type React from 'react'
 import { Links, Scripts, ScrollRestoration } from 'react-router'
+import { APP_ROOT_ELEMENT_ID } from './App.const'
 import { DEFAULT_PREFERED_COLOR_THEME, HTML_BODY_CSS_CLASS_FOR_DARK_THEME, HTML_BODY_CSS_CLASS_FOR_LIGHT_THEME } from './components/PreferedColorThemeSwitch'
-import { APP_ROOT_ELEMENT_ID } from './main.const'
 import './Roboto.font.css'
 import './root.css'
 import { cn } from './utils/ui/ClassNames'

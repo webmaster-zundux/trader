@@ -6,12 +6,15 @@ const env = loadEnv('', process.cwd(), '')
 
 // read `basename` from env variable because `import.meta.env.BASE_URL` is available only code that processed by vite
 const basename = typeof env.USE_BASE_PUBLIC_PATH === 'string' ? env.USE_BASE_PUBLIC_PATH : '/'
-// console.log({ BASE_URL: import.meta.env.BASE_URL, basename })
+
+if (basename !== '/') {
+  console.log(`react-router.config: using basename`, basename)
+}
 
 export default {
   basename,
-  ssr: false, // to disable ssr with enabled prerender the package react-router version should be > 7.8.0 https://github.com/remix-run/react-router/pull/13791
-  // prerender: true, // todo try to enable prerender after react-router version becames > 7.8.0 https://github.com/remix-run/react-router/pull/13791
+  ssr: false, // todo try to disable ssr with `prerender: true` after the package react-router version will became > 7.8.0 https://github.com/remix-run/react-router/pull/13791
+  // prerender: true, // todo try to set `prerender: true` after react-router version will became > 7.8.0 https://github.com/remix-run/react-router/pull/13791
   // prerender: [
   //   `${PAGE_SLUG_MARKET}`,
   //   `${PAGE_SLUG_HISTORY}`,

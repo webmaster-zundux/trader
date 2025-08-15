@@ -1,9 +1,9 @@
 import type React from 'react'
 import { useEffect } from 'react'
-import { APP_ROOT_ELEMENT_ID } from '../../main.const'
 import type { ModalDialog } from '../../models/modal-dialogs/ModalDialog'
 import { getParentModalDialogSelector, getTheLatestModalDialogSelector } from '../../stores/modal-dialog-stores/ModalDialogs.store'
 import { createModalDialogElementId } from '../../utils/ui/createModalDialogElementId'
+import { APP_ROOT_ELEMENT_ID } from '~/App.const'
 
 function isBodyVerticleScrollBarVisible() {
   const documentRootElement = document.documentElement

@@ -1,4 +1,4 @@
-import { APP_ROOT_ELEMENT_ID } from '../../main.const'
+import { APP_ROOT_ELEMENT_ID } from '~/App.const'
 import type { ModalDialog } from '../../models/modal-dialogs/ModalDialog'
 import { createModalDialogElementId } from './createModalDialogElementId'
 
