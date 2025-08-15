@@ -13,8 +13,8 @@ if (basename !== '/') {
 
 export default {
   basename,
-  ssr: false, // todo try to disable ssr with `prerender: true` after the package react-router version will became > 7.8.0 https://github.com/remix-run/react-router/pull/13791
-  // prerender: true, // todo try to set `prerender: true` after react-router version will became > 7.8.0 https://github.com/remix-run/react-router/pull/13791
+  // ssr: false, // todo try to disable ssr with `prerender: true` after the package react-router version will became > 7.8.0 https://github.com/remix-run/react-router/pull/13791
+  prerender: true, // todo try to set `prerender: true` after react-router version will became > 7.8.0 https://github.com/remix-run/react-router/pull/13791
   // prerender: [
   //   `${PAGE_SLUG_MARKET}`,
   //   `${PAGE_SLUG_HISTORY}`,
