@@ -310,7 +310,12 @@ export function createEntityArrayStore<T extends Entity>({
     )
   )
 
-  if (isListeningStorageDOMEvent) {
+  if (
+    isListeningStorageDOMEvent
+    && (
+      persistStorageType === 'sessionStorage'
+      || persistStorageType === 'localStorage'
+    )) {
     // @ts-expect-error - todo improve types
     withStorageDOMEvent(store)
   }
