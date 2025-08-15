@@ -8,7 +8,7 @@
     "dev": "react-router dev",
     "build": "react-router build",
     "create-gh-pages-release": "git branch -D gh-pages && git checkout -b gh-pages",
-    "build:gh-pages": "cp .env.production.gh-pages .env && react-router build && rm -rf docs && cp -r build/client docs && git add docs -f",
+    "build:gh-pages": "cp .env.production.gh-pages .env && npm run build && node scripts/react-router/movePrerenderedPagesOneLevelUpperForGithubPagesOfProject.mjs && node scripts/react-router/renamePrerenderedPages.mjs && rm -rf docs && cp -r build/client docs && git add docs -f",
     "no-exist:start": "react-router-serve ./build/server/index.js",
     "typegen": "react-router typegen",
     "typecheck": "react-router typegen && tsc",
