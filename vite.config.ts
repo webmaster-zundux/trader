@@ -28,9 +28,9 @@ export default defineConfig(({ command, mode }) => {
 
   return ({
     base: basename,
-    ssr: {
-      noExternal: command === 'build' ? true : undefined,
-    },
+    // ssr: {
+    //   noExternal: command === 'build' ? true : undefined,
+    // },
     plugins: [
       tsconfigPaths(),
       svgr(),
