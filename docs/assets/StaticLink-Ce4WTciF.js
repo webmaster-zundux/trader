@@ -1,0 +1,1 @@
+import{a as i,q as s,A as n}from"./chunk-ZYFC6VSF-CTRMcuVC.js";const m=i.memo(function({children:t,href:a,...o}){return a?s.jsx(n,{to:a,...o,children:t}):s.jsx("a",{...o,children:t})});export{m as S};

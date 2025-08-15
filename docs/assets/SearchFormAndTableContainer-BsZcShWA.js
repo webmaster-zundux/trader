@@ -1,0 +1,1 @@
+import{a as o,q as r}from"./chunk-ZYFC6VSF-CTRMcuVC.js";const t="_Container_zuyoh_1",a={Container:t},i=o.memo(function({children:n}){return r.jsx("div",{className:a.Container,children:n})});export{i as S};

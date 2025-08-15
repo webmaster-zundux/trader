@@ -1,0 +1,1 @@
+import{t as i}from"./useLoadingPersistStorages-8xs7nTXU.js";const o="moving-entity",n=["uuid","entityType","id","originalId","name","position","locationUuid","homeLocationUuid","destinationLocationUuid","movingEntityClassUuid","cargo","combatShield","combatLaser","combatMissiles","note"],s=i(n);function T(t){return t?.entityType===o}export{o as E,s as M,n as a,T as i};
