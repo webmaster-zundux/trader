@@ -13,6 +13,7 @@ if (basename !== '/') {
 
 export default {
   basename,
+  routeDiscovery: { mode: basename !== '/' ? 'initial' : 'lazy' }, // it's turnes off when ssr: false https://github.com/remix-run/react-router/pull/13451/files
   // ssr: false, // todo try to disable ssr with `prerender: true` after the package react-router version will became > 7.8.0 https://github.com/remix-run/react-router/pull/13791
   prerender: true,
   // prerender: [
