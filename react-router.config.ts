@@ -16,13 +16,4 @@ export default {
   routeDiscovery: { mode: basename !== '/' ? 'initial' : 'lazy' }, // it's turnes off when ssr: false https://github.com/remix-run/react-router/pull/13451/files
   // ssr: false, // todo try to disable ssr with `prerender: true` after the package react-router version will became > 7.8.0 https://github.com/remix-run/react-router/pull/13791
   prerender: true,
-  // prerender: [
-  //   `${PAGE_SLUG_MARKET}`,
-  //   `${PAGE_SLUG_HISTORY}`,
-  //   `${PAGE_SLUG_LOCATIONS}`,
-  //   `${PAGE_SLUG_INVENTORY}`,
-  //   `${PAGE_SLUG_MOVING_ENTITIES}`,
-  //   `${PAGE_SLUG_MAP}`,
-  //   `${PAGE_SLUG_PRODUCTS}`,
-  // ],
 } satisfies Config
