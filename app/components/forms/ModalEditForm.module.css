@@ -36,7 +36,7 @@
 .ActionButtons {
   display: flex;
   gap: 0.5em;
-  justify-content: space-between;
+  justify-content: end;
   align-self: flex-end;
 }
 

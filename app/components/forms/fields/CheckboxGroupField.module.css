@@ -1,7 +1,6 @@
 .CheckboxGroupField {
   padding: 0.4em 0.8em;
   width: 100%;
-  background-color: var(--form-field-background-color);
   display: table-cell;
   margin-bottom: 0.5em;
 }

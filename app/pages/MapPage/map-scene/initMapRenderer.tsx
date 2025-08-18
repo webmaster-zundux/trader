@@ -1,7 +1,7 @@
 import type { Group, PerspectiveCamera, Scene } from 'three'
 import { type Sprite, Raycaster, Vector2, WebGLRenderer } from 'three'
 import type { OrbitControls } from 'three/addons/controls/OrbitControls.js'
-import type { PreferedColorTheme } from '~/components/PreferedColorThemeSwitch'
+import { COLOR_THEME_DARK, type PreferedColorTheme } from '~/components/PreferedColorThemeSwitch.const'
 import type { Location } from '~/models/entities/Location'
 import type { MovingEntity } from '~/models/entities/MovingEntity'
 import type { PlanetarySystem } from '~/models/entities/PlanetarySystem'
@@ -38,10 +38,10 @@ function onPointerMove(
   colorTheme: PreferedColorTheme
 ) {
   if (hoveredObjects.last) {
-    let color = colorTheme === 'light' ? SPRITE_COLOR_LIGHT_THEME : SPRITE_COLOR_DARK_THEME
+    let color = colorTheme === COLOR_THEME_DARK ? SPRITE_COLOR_DARK_THEME : SPRITE_COLOR_LIGHT_THEME
 
     if (hoveredObjects.last === selectedObjects.last) {
-      color = colorTheme === 'light' ? SPRITE_COLOR_SELECTED_COLOR_LIGHT_THEME : SPRITE_COLOR_SELECTED_COLOR_DARK_THEME
+      color = colorTheme === COLOR_THEME_DARK ? SPRITE_COLOR_SELECTED_COLOR_DARK_THEME : SPRITE_COLOR_SELECTED_COLOR_LIGHT_THEME
     }
 
     hoveredObjects.last.material.color.set(color)
@@ -70,7 +70,7 @@ function onPointerMove(
     if (res && res.object) {
       hoveredObjects.last = res.object as Sprite
 
-      const newColor = colorTheme === 'light' ? SPRITE_COLOR_HOVERED_COLOR_LIGHT_THEME : SPRITE_COLOR_HOVERED_COLOR_DARK_THEME
+      const newColor = colorTheme === COLOR_THEME_DARK ? SPRITE_COLOR_HOVERED_COLOR_DARK_THEME : SPRITE_COLOR_HOVERED_COLOR_LIGHT_THEME
 
       hoveredObjects.last.material.color.set(newColor)
     }
@@ -91,7 +91,7 @@ function onPointerClick(
   onSelectItem: (item: MovingEntity | Location | PlanetarySystem) => void
 ) {
   if (selectedObjects.last) {
-    const color = colorTheme === 'light' ? SPRITE_COLOR_LIGHT_THEME : SPRITE_COLOR_DARK_THEME
+    const color = colorTheme === COLOR_THEME_DARK ? SPRITE_COLOR_DARK_THEME : SPRITE_COLOR_LIGHT_THEME
 
     selectedObjects.last.material.color.set(color)
     selectedObjects.last = null
@@ -119,7 +119,7 @@ function onPointerClick(
     if (res && res.object) {
       selectedObjects.last = res.object as Sprite
 
-      const newColor = colorTheme === 'light' ? SPRITE_COLOR_SELECTED_COLOR_LIGHT_THEME : SPRITE_COLOR_SELECTED_COLOR_DARK_THEME
+      const newColor = colorTheme === COLOR_THEME_DARK ? SPRITE_COLOR_SELECTED_COLOR_DARK_THEME : SPRITE_COLOR_SELECTED_COLOR_LIGHT_THEME
 
       selectedObjects.last.material.color.set(newColor)
 

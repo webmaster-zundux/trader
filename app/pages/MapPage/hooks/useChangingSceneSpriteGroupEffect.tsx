@@ -1,7 +1,7 @@
 import { useEffect, type Dispatch, type RefObject, type SetStateAction } from 'react'
 import type { Group, Scene } from 'three'
 import { type Object3DEventMap } from 'three'
-import type { PreferedColorTheme } from '~/components/PreferedColorThemeSwitch'
+import type { PreferedColorTheme } from '~/components/PreferedColorThemeSwitch.const'
 import type { Location } from '~/models/entities/Location'
 import type { MovingEntity } from '~/models/entities/MovingEntity'
 import type { PlanetarySystem } from '~/models/entities/PlanetarySystem'

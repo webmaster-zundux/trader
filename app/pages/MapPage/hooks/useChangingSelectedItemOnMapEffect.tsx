@@ -1,7 +1,7 @@
 import { useEffect, type RefObject } from 'react'
 import type { Group } from 'three'
 import { type Object3DEventMap } from 'three'
-import type { PreferedColorTheme } from '~/components/PreferedColorThemeSwitch'
+import { COLOR_THEME_DARK, type PreferedColorTheme } from '~/components/PreferedColorThemeSwitch.const'
 import type { Location } from '~/models/entities/Location'
 import type { MovingEntity } from '~/models/entities/MovingEntity'
 import type { PlanetarySystem } from '~/models/entities/PlanetarySystem'
@@ -40,7 +40,9 @@ export function useChangingSelectedItemOnMapEffect({
         const sprite = child
 
         if (sprite.userData.item?.uuid === selectedItemUuid) {
-          const color = colorTheme === 'light' ? SPRITE_COLOR_SELECTED_COLOR_LIGHT_THEME : SPRITE_COLOR_SELECTED_COLOR_DARK_THEME
+          const color = colorTheme === COLOR_THEME_DARK
+            ? SPRITE_COLOR_SELECTED_COLOR_DARK_THEME
+            : SPRITE_COLOR_SELECTED_COLOR_LIGHT_THEME
 
           sprite.material.color.set(color)
 
@@ -52,9 +54,9 @@ export function useChangingSelectedItemOnMapEffect({
             }
           }
         } else {
-          const color = colorTheme === 'light'
-            ? SPRITE_COLOR_LIGHT_THEME
-            : SPRITE_COLOR_DARK_THEME
+          const color = colorTheme === COLOR_THEME_DARK
+            ? SPRITE_COLOR_DARK_THEME
+            : SPRITE_COLOR_LIGHT_THEME
 
           sprite.material.color.set(color)
 

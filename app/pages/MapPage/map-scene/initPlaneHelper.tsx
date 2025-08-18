@@ -1,6 +1,6 @@
 import type { ColorRepresentation, Scene, Vector3 } from 'three'
 import { Plane } from 'three'
-import type { PreferedColorTheme } from '~/components/PreferedColorThemeSwitch'
+import { COLOR_THEME_DARK, type PreferedColorTheme } from '~/components/PreferedColorThemeSwitch.const'
 import { SCENE_PLANE_HELPER_COLOR_DARK_THEME, SCENE_PLANE_HELPER_COLOR_LIGHT_THEME, SCENE_PLANE_HELPER_OPACITY, SCENE_PLANE_NORMAL } from '../Map.const'
 import { MapPlaneHelper } from './MapPlaneHelper'
 
@@ -24,9 +24,9 @@ export function initPlaneHelper({
   const materialColor = color
     ? color
     : (
-        colorTheme === 'light'
-          ? SCENE_PLANE_HELPER_COLOR_LIGHT_THEME
-          : SCENE_PLANE_HELPER_COLOR_DARK_THEME
+        colorTheme === COLOR_THEME_DARK
+          ? SCENE_PLANE_HELPER_COLOR_DARK_THEME
+          : SCENE_PLANE_HELPER_COLOR_LIGHT_THEME
       )
 
   const plane = new Plane(normal, constant)

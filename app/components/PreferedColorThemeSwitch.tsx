@@ -1,45 +1,48 @@
-import { memo, useCallback, useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { useLocalStorage } from '~/hooks/useLocalStorage'
 import { getPreferredColorScheme } from '../utils/ui/getPreferredColorScheme.client'
 import { Button } from './Button'
 import { DarkModeIcon } from './icons/DarkModeIcon'
 import { LightModeIcon } from './icons/LightModeIcon'
 import { RoutineIcon } from './icons/RoutineIcon'
-
-export type PreferedColorTheme = 'light' | 'dark' | undefined
-export const DEFAULT_PREFERED_COLOR_THEME: PreferedColorTheme = 'light'
-export const HTML_BODY_CSS_CLASS_FOR_DARK_THEME = 'ColorThemeDark'
-export const HTML_BODY_CSS_CLASS_FOR_LIGHT_THEME = 'ColorThemeLight'
+import { COLOR_THEME_DARK, COLOR_THEME_LIGHT, COLOR_THEME_SYSTEM, DEFAULT_PREFERED_COLOR_THEME, HTML_BODY_CSS_CLASS_FOR_DARK_THEME, HTML_BODY_CSS_CLASS_FOR_LIGHT_THEME, LOCALSTORAGE_PREFERED_COLOR_THEME_KEY, type PreferedColorTheme } from './PreferedColorThemeSwitch.const'
+import { useColorTheme } from '~/stores/simple-stores/ColorTheme.store'
 
 export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch() {
-  const [colorTheme, setColorTheme] = useState<PreferedColorTheme>(undefined)
-  const [overrideColorTheme, setOverrideColorTheme] = useLocalStorage<PreferedColorTheme>('prefered-color-scheme', undefined)
+  const [systemCurrentColorTheme, setSystemCurrentColorTheme] = useState<PreferedColorTheme>(DEFAULT_PREFERED_COLOR_THEME)
+  const [preferedColorTheme, setPreferedColorTheme] = useLocalStorage<PreferedColorTheme | typeof COLOR_THEME_SYSTEM>(LOCALSTORAGE_PREFERED_COLOR_THEME_KEY, COLOR_THEME_SYSTEM)
+
+  const setColorTheme = useColorTheme(state => state.setColorTheme)
+
+  const currentColorTheme: PreferedColorTheme = useMemo(() => preferedColorTheme || systemCurrentColorTheme || DEFAULT_PREFERED_COLOR_THEME, [preferedColorTheme, systemCurrentColorTheme])
+
+  useEffect(function trackingCurrentColorTheme() {
+    setColorTheme(currentColorTheme)
+  }, [currentColorTheme, setColorTheme])
 
   const activateDarkTheme = useCallback(function () {
-    setOverrideColorTheme('dark')
-  }, [setOverrideColorTheme])
+    setPreferedColorTheme(COLOR_THEME_DARK)
+  }, [setPreferedColorTheme])
 
   const activateLightTheme = useCallback(function () {
-    setOverrideColorTheme('light')
-  }, [setOverrideColorTheme])
+    setPreferedColorTheme(COLOR_THEME_LIGHT)
+  }, [setPreferedColorTheme])
 
-  const activateAutoTheme = useCallback(function () {
-    setOverrideColorTheme(undefined)
-  }, [setOverrideColorTheme])
+  const activateSystemTheme = useCallback(function () {
+    setPreferedColorTheme(COLOR_THEME_SYSTEM)
+  }, [setPreferedColorTheme])
 
-  useEffect(function applyCssClassForDocumentHtmlElementEffect() {
-    const currentColorTheme: Exclude<PreferedColorTheme, undefined> = overrideColorTheme || colorTheme || DEFAULT_PREFERED_COLOR_THEME
-
-    if (currentColorTheme === 'dark') {
+  useEffect(function applyCssClassToDocumentHtmlElementEffect() {
+    if (currentColorTheme === COLOR_THEME_DARK) {
       window.document.body.classList.add(HTML_BODY_CSS_CLASS_FOR_DARK_THEME)
-    } else if (currentColorTheme === 'light') {
+    } else if (currentColorTheme === COLOR_THEME_LIGHT) {
       window.document.body.classList.add(HTML_BODY_CSS_CLASS_FOR_LIGHT_THEME)
     }
 
-    return function applyCssClassForDocumentHtmlElementEffect() {
+    return function applyCssClassToDocumentHtmlElementEffect() {
       window.document.body.classList.remove(HTML_BODY_CSS_CLASS_FOR_DARK_THEME, HTML_BODY_CSS_CLASS_FOR_LIGHT_THEME)
     }
-  }, [colorTheme, overrideColorTheme])
+  }, [currentColorTheme])
 
   useEffect(function trackingChangeOfPreferedColorSchemeEffect() {
     if (!window.matchMedia) {
@@ -50,7 +53,7 @@ export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch()
 
     function onChangePreferedColorSchemeOnDark(event: MediaQueryListEvent) {
       if (event.matches) {
-        setColorTheme('dark')
+        setSystemCurrentColorTheme(COLOR_THEME_DARK)
         return
       }
     }
@@ -59,7 +62,7 @@ export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch()
 
     function onChangePreferedColorSchemeOnLight(event: MediaQueryListEvent) {
       if (event.matches) {
-        setColorTheme('light')
+        setSystemCurrentColorTheme(COLOR_THEME_LIGHT)
         return
       }
     }
@@ -71,17 +74,17 @@ export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch()
       darkColorSchemeQuery.removeEventListener('change', onChangePreferedColorSchemeOnDark)
       lightColorSchemeQuery.removeEventListener('change', onChangePreferedColorSchemeOnLight)
     }
-  }, [setColorTheme])
+  }, [setSystemCurrentColorTheme])
 
   useEffect(function setupInitialColorThemeEffect() {
     const preferedColorScheme = getPreferredColorScheme()
 
-    setColorTheme(preferedColorScheme)
-  }, [setColorTheme])
+    setSystemCurrentColorTheme(preferedColorScheme)
+  }, [setSystemCurrentColorTheme])
 
   return (
     <>
-      {((!overrideColorTheme)) && (
+      {!preferedColorTheme && (
         <Button
           title="switch to dark theme"
           onClick={activateDarkTheme}
@@ -94,7 +97,7 @@ export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch()
         </Button>
       )}
 
-      {(overrideColorTheme === 'dark') && (
+      {(preferedColorTheme === COLOR_THEME_DARK) && (
         <Button
           title="switch to light theme"
           onClick={activateLightTheme}
@@ -107,10 +110,10 @@ export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch()
         </Button>
       )}
 
-      {(overrideColorTheme === 'light') && (
+      {(preferedColorTheme === COLOR_THEME_LIGHT) && (
         <Button
           title="switch to system color scheme"
-          onClick={activateAutoTheme}
+          onClick={activateSystemTheme}
           size="small"
           transparent
           noPadding

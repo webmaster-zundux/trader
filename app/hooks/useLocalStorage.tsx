@@ -100,10 +100,10 @@ export function useLocalStorage<StorageState extends object | string | undefined
     state: StorageState,
     setState: (value: SetState<StorageState>) => void
 ] {
-  const subsribeOnStorageEventFromLocalStorage = useCallback(function subsribeOnStorageEventFromLocalStorage(callback: (ev: StorageEvent) => void) {
+  const subscribeOnStorageEventFromLocalStorage = useCallback(function subscribeOnStorageEventFromLocalStorage(callback: (ev: StorageEvent) => void) {
     window.addEventListener('storage', callback)
 
-    return function subsribeOnStorageEventFromLocalStorageCleanup() {
+    return function subscribeOnStorageEventFromLocalStorageCleanup() {
       window.removeEventListener('storage', callback)
     }
   }, [])
@@ -113,7 +113,7 @@ export function useLocalStorage<StorageState extends object | string | undefined
   }, [storageKey])
 
   const store = useSyncExternalStore(
-    subsribeOnStorageEventFromLocalStorage,
+    subscribeOnStorageEventFromLocalStorage,
     getSnapshot,
     getLocalStorageServerSnapshot
   )

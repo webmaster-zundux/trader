@@ -64,28 +64,28 @@
   align-items: baseline;
 }
 
-.FieldsContainer div>label:has(+div) {
-  vertical-align: baseline !important;
-}
-
-.FieldsContainer div:has(>label) label::first-letter {
-  text-transform: lowercase;
-}
-
-.FieldsContainer>div>label::first-letter {
-  text-transform: capitalize !important;
-}
-
-.FieldsContainer:not(> div) div:has(>label) {
-  display: flex;
-}
-
 .FieldsContainer div>label {
   padding-right: 0.5em !important;
 }
 
 .FieldsContainer>div>label {
   padding-right: 0.5em !important;
+}
+
+.FieldsContainer div>label:has(+div) {
+  vertical-align: baseline !important;
+}
+
+.FieldsContainer>div>label::first-letter {
+  text-transform: capitalize !important;
+}
+
+.FieldsContainer div:has(>label) label::first-letter {
+  text-transform: lowercase;
+}
+
+.FieldsContainer:not(> div) div:has(>label) {
+  display: flex;
 }
 
 .ActionButtons {

@@ -1,5 +1,5 @@
 import { type Sprite, Vector3 } from 'three'
-import type { PreferedColorTheme } from '~/components/PreferedColorThemeSwitch'
+import { COLOR_THEME_DARK, type PreferedColorTheme } from '~/components/PreferedColorThemeSwitch.const'
 import { type Location, isLocation } from '~/models/entities/Location'
 import { type MovingEntity, isMovingEntity } from '~/models/entities/MovingEntity'
 import { type PlanetarySystem, isPlanetarySystem } from '~/models/entities/PlanetarySystem'
@@ -23,9 +23,9 @@ export function createSprite(
     return undefined
   }
 
-  const materialColor = colorTheme === 'light'
-    ? SPRITE_COLOR_LIGHT_THEME
-    : SPRITE_COLOR_DARK_THEME
+  const materialColor = colorTheme === COLOR_THEME_DARK
+    ? SPRITE_COLOR_DARK_THEME
+    : SPRITE_COLOR_LIGHT_THEME
 
   let sprite: Sprite | undefined = undefined
 

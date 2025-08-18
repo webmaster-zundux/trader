@@ -1,6 +1,6 @@
 import type { Object3D, Quaternion } from 'three'
 import { Group, Vector3 } from 'three'
-import type { PreferedColorTheme } from '~/components/PreferedColorThemeSwitch'
+import type { PreferedColorTheme } from '~/components/PreferedColorThemeSwitch.const'
 import { QUATERNION_TO_ROTATE_BY_X_AXIS_NEGATIVE_90 } from '../Map.const'
 import { createLine } from './createLine'
 

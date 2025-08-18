@@ -1,18 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Group, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
 import type { OrbitControls } from 'three/addons/controls/OrbitControls.js'
-import type { PreferedColorTheme } from '~/components/PreferedColorThemeSwitch'
-import { useLocalStorage } from '~/hooks/useLocalStorage'
 import { type Location } from '~/models/entities/Location'
 import { type MovingEntity } from '~/models/entities/MovingEntity'
 import { type PlanetarySystem } from '~/models/entities/PlanetarySystem'
-import { useChangingSceneSpriteGroupEffect } from './useChangingSceneSpriteGroupEffect'
-import { useChangingSelectedItemOnMapEffect } from './useChangingSelectedItemOnMapEffect'
-import { useResetCamera } from './useResetCamera'
+import { useColorTheme } from '~/stores/simple-stores/ColorTheme.store'
 import type { CSS2DRendererForReactComponent } from '../map-scene/CSS2DRendererForReactComponent'
 import { initMapRenderer } from '../map-scene/initMapRenderer'
 import type { MapPlaneHelper } from '../map-scene/MapPlaneHelper'
 import { FORCED_MAP_RENDER_FRAME_DELAY_IN_MS, type MapMode } from '../Map.const'
+import { useChangingSceneSpriteGroupEffect } from './useChangingSceneSpriteGroupEffect'
+import { useChangingSelectedItemOnMapEffect } from './useChangingSelectedItemOnMapEffect'
+import { useResetCamera } from './useResetCamera'
 
 interface useInitializationMapRendererProps {
   items: (MovingEntity | Location | PlanetarySystem)[]
@@ -26,7 +25,8 @@ export function useMapRenderer({
   onSelectItem,
   selectedItemUuid,
 }: useInitializationMapRendererProps) {
-  const [colorTheme] = useLocalStorage<PreferedColorTheme>('prefered-color-scheme', undefined)
+  // const [colorTheme] = useLocalStorage<PreferedColorTheme>(LOCALSTORAGE_PREFERED_COLOR_THEME_KEY, COLOR_THEME_SYSTEM)
+  const colorTheme = useColorTheme(state => state.colorTheme)
 
   const rendererRef = useRef<WebGLRenderer>(null)
   const overlayRendererRef = useRef<CSS2DRendererForReactComponent>(null)
