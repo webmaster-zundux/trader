@@ -6,11 +6,10 @@ import { DarkModeIcon } from './icons/DarkModeIcon'
 import { LightModeIcon } from './icons/LightModeIcon'
 import { RoutineIcon } from './icons/RoutineIcon'
 
-export const DEFAULT_PREFERED_COLOR_THEME: PreferedColorTheme = 'dark'
+export type PreferedColorTheme = 'light' | 'dark' | undefined
+export const DEFAULT_PREFERED_COLOR_THEME: PreferedColorTheme = 'light'
 export const HTML_BODY_CSS_CLASS_FOR_DARK_THEME = 'ColorThemeDark'
 export const HTML_BODY_CSS_CLASS_FOR_LIGHT_THEME = 'ColorThemeLight'
-
-export type PreferedColorTheme = 'dark' | 'light' | undefined
 
 export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch() {
   const [colorTheme, setColorTheme] = useState<PreferedColorTheme>(undefined)
