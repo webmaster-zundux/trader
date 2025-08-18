@@ -154,21 +154,22 @@ export const ImageFileField = memo(function ImageFileField({
                   alt="uploaded file preview"
                 />
 
-                <div className={styles.ActionButtonGroup}>
-                  <Button
-                    title="open full size in new tab"
-                    onClick={handleOpenImageInFullSize}
-                  >
-                    open full size
-                  </Button>
+              </div>
 
-                  <Button
-                    title="delete image"
-                    onClick={handleDeleteImage}
-                  >
-                    delete
-                  </Button>
-                </div>
+              <div className={styles.ActionButtonGroup}>
+                <Button
+                  title="open full size in new tab"
+                  onClick={handleOpenImageInFullSize}
+                >
+                  open full size
+                </Button>
+
+                <Button
+                  title="delete image"
+                  onClick={handleDeleteImage}
+                >
+                  delete image
+                </Button>
               </div>
 
             </div>
