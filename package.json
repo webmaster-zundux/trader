@@ -9,6 +9,7 @@
     "build": "react-router build",
     "create-gh-pages-release": "git branch -D gh-pages && git checkout -b gh-pages",
     "build:gh-pages": "cp .env.production.gh-pages .env && npm run build && node scripts/react-router/movePrerenderedPagesOneLevelUpperForGithubPagesOfProject.mjs && node scripts/react-router/renamePrerenderedPages.mjs && rm -rf docs && cp -r build/client docs && cp .nojekyll docs/.nojekyll && git add docs -f",
+    "publish-gh-pages-release" : "git push --set-upstream origin gh-pages -f",
     "no-exist:start": "react-router-serve ./build/server/index.js",
     "typegen": "react-router typegen",
     "typecheck": "react-router typegen && tsc",
