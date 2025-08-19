@@ -42,8 +42,8 @@ export function PriceActionButtonsForOrder({
               noPadding
               noBorder
               isStaticBehaviour
-              title="no price data"
               disabled
+              title="no price data"
             >
               <BidLandscapeDisabledIcon />
             </Button>
