@@ -25,7 +25,6 @@ export function useMapRenderer({
   onSelectItem,
   selectedItemUuid,
 }: useInitializationMapRendererProps) {
-  // const [colorTheme] = useLocalStorage<PreferedColorTheme>(LOCALSTORAGE_PREFERED_COLOR_THEME_KEY, COLOR_THEME_SYSTEM)
   const colorTheme = useColorTheme(state => state.colorTheme)
 
   const rendererRef = useRef<WebGLRenderer>(null)
@@ -52,6 +51,13 @@ export function useMapRenderer({
       }, FORCED_MAP_RENDER_FRAME_DELAY_IN_MS)
     }
   }, [frameRenderCallback])
+
+  const [onWindowResizeCallback, setOnWindowResizeCallback] = useState<(() => void) | undefined>(undefined)
+  const onWindowResize = useCallback(function onWindowResize() {
+    if (typeof onWindowResizeCallback === 'function') {
+      onWindowResizeCallback()
+    }
+  }, [onWindowResizeCallback])
 
   useEffect(function initMapRendererEffect() {
     const canvasElement = mapCanvasRef.current
@@ -92,6 +98,7 @@ export function useMapRenderer({
       camera,
       cameraControls,
       renderFrame,
+      onWindowResize,
       destroyMapRenderer,
     } = initMapRenderer({ canvasElement, overlayElement, mapZoomLevelLabel, pointerDotElement, colorTheme, onSelectItem })
 
@@ -104,7 +111,9 @@ export function useMapRenderer({
     cameraRef.current = camera
     cameraControlsRef.current = cameraControls
     setFrameRenderCallback(() => renderFrame)
+    setOnWindowResizeCallback(() => onWindowResize)
 
+    onWindowResize()
     renderFrame()
 
     return function initThreeJsRendererEffectCleanup() {
@@ -157,5 +166,6 @@ export function useMapRenderer({
     mapZoomLevelLabelRef,
     pointerDotRef,
     renderFrame,
+    onWindowResize,
   }
 }

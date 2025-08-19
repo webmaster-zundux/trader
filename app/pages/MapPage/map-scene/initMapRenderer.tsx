@@ -15,7 +15,8 @@ function onWindowResize(
   canvasElement: HTMLCanvasElement,
   renderer: WebGLRenderer,
   overlayRenderer: CSS2DRendererForReactComponent,
-  camera: PerspectiveCamera) {
+  camera: PerspectiveCamera
+) {
   const { width, height } = canvasElement.getBoundingClientRect()
 
   camera.aspect = width / height
@@ -225,6 +226,7 @@ export function initMapRenderer({
     camera,
     cameraControls,
     renderFrame,
+    onWindowResize: handleWindowResize,
     destroyMapRenderer,
   }
 }

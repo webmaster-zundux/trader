@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import { useHtmlElementResize } from '~/hooks/ui/useHtmlElementResize'
 import { type Location } from '~/models/entities/Location'
 import { type MovingEntity } from '~/models/entities/MovingEntity'
@@ -32,6 +32,7 @@ export const Map = memo(function Map({
     pointerDotRef,
     noDataToDisplay,
     renderFrame,
+    onWindowResize,
   } = useMapRenderer({
     mode: mapMode,
     items,
@@ -39,7 +40,12 @@ export const Map = memo(function Map({
     selectedItemUuid,
   })
 
-  useHtmlElementResize(mapCanvasRef, renderFrame)
+  const handleCanvasResize = useCallback(function handleCanvasResize() {
+    onWindowResize()
+    renderFrame()
+  }, [onWindowResize, renderFrame])
+
+  useHtmlElementResize(mapCanvasRef, handleCanvasResize)
 
   return (
     <>
