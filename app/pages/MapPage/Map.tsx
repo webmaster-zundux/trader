@@ -16,6 +16,8 @@ interface MapProps {
   selectedPlanetarySystemUuid?: PlanetarySystem['uuid']
   onSelectItem: (item: MovingEntity | Location | PlanetarySystem) => void
   selectedItemUuid?: (MovingEntity | Location | PlanetarySystem)['uuid']
+  selectedMovingEntityUuid?: MovingEntity['uuid']
+  selectedLocationUuid?: Location['uuid']
 }
 export const Map = memo(function Map({
   isLoading = false,
@@ -24,6 +26,8 @@ export const Map = memo(function Map({
   selectedPlanetarySystemUuid,
   onSelectItem,
   selectedItemUuid,
+  selectedMovingEntityUuid,
+  selectedLocationUuid,
 }: MapProps) {
   const {
     mapCanvasRef,
@@ -60,6 +64,8 @@ export const Map = memo(function Map({
         <MapStaticOverlay
           mapZoomLevelLabelRef={mapZoomLevelLabelRef}
           selectedPlanetarySystemUuid={selectedPlanetarySystemUuid}
+          selectedMovingEntityUuid={selectedMovingEntityUuid}
+          selectedLocationUuid={selectedLocationUuid}
           mapMode={mapMode}
         />
 

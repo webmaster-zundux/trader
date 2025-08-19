@@ -141,6 +141,8 @@ export const MapPage = memo(function MapPage() {
             selectedPlanetarySystemUuid={selectedPlanetarySystemUuid}
             onSelectItem={handleSelectMapItem}
             selectedItemUuid={selectedItemUuid}
+            selectedMovingEntityUuid={selectedMovingEntityUuid}
+            selectedLocationUuid={selectedLocationUuid}
           />
         </div>
 

@@ -1,7 +1,7 @@
 import { type Location } from '~/models/entities/Location'
 import { type PlanetarySystem } from '~/models/entities/PlanetarySystem'
 import type { Entity } from '~/models/Entity'
-import { createNameFromParts, FULL_LOCATION_NAME_PART_SEPARATOR } from '~/models/utils/createNameFromParts'
+import { createNameFromParts, FULL_NAME_PART_SEPARATOR } from '~/models/utils/createNameFromParts'
 import { getLocationsAsMapSelector, useLocationsStore } from '../entity-stores/Locations.store'
 import { getPlanetarySystemsAsMapSelector, usePlanetarySystemsStore } from '../entity-stores/PlanetarySystems.store'
 import { getMapValuesAsArray } from '../utils/getMapValuesAsArray'
@@ -106,7 +106,7 @@ export function createLocationFullNameFromParts({
   name,
   planetarySystemName,
   reverseOrder = false,
-  namePartSeparator = FULL_LOCATION_NAME_PART_SEPARATOR,
+  namePartSeparator = FULL_NAME_PART_SEPARATOR,
 }: {
   id?: Location['id']
   name?: Location['name']
@@ -136,7 +136,7 @@ export function createLocationFullName({
   planetarySystemsMap,
   isUsingNoDataTextForEmptyParts = {},
   reverseOrder = false,
-  namePartSeparator = FULL_LOCATION_NAME_PART_SEPARATOR,
+  namePartSeparator = FULL_NAME_PART_SEPARATOR,
 }: {
   location: Location
   planetarySystemsMap: Map<PlanetarySystem['uuid'], PlanetarySystem>

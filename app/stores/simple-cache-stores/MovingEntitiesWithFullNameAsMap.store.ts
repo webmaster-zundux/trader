@@ -2,7 +2,7 @@ import { type Location } from '~/models/entities/Location'
 import type { MovingEntity } from '~/models/entities/MovingEntity'
 import { type PlanetarySystem } from '~/models/entities/PlanetarySystem'
 import type { Entity } from '~/models/Entity'
-import { createNameFromParts, FULL_LOCATION_NAME_PART_SEPARATOR } from '~/models/utils/createNameFromParts'
+import { createNameFromParts, FULL_NAME_PART_SEPARATOR } from '~/models/utils/createNameFromParts'
 import { getLocationsAsMapSelector } from '../entity-stores/Locations.store'
 import { getMovingEntitiesAsMapSelector, useMovingEntitiesStore } from '../entity-stores/MovingEntities.store'
 import { getPlanetarySystemsAsMapSelector, usePlanetarySystemsStore } from '../entity-stores/PlanetarySystems.store'
@@ -112,7 +112,7 @@ export function createMovingEntityFullNameFromParts({
   id,
   name,
   reverseOrder = false,
-  namePartSeparator = FULL_LOCATION_NAME_PART_SEPARATOR,
+  namePartSeparator = FULL_NAME_PART_SEPARATOR,
 }: {
   id?: MovingEntity['id']
   name?: MovingEntity['name']
@@ -142,7 +142,7 @@ export function createMovingEntityFullName({
   planetarySystemsMap,
   isUsingNoDataTextForEmptyParts = {},
   reverseOrder = false,
-  namePartSeparator = FULL_LOCATION_NAME_PART_SEPARATOR,
+  namePartSeparator = FULL_NAME_PART_SEPARATOR,
 }: {
   movingEntity: MovingEntity
   locationsMap: Map<Location['uuid'], Location>
