@@ -1,7 +1,11 @@
-import { memo } from 'react'
-import { NavLink } from 'react-router'
+import { memo, useEffect } from 'react'
+import { NavLink, useLocation } from 'react-router'
+import { hideMobileNavMenu, showMobileNavMenu, useMobileNavMenuVisibility } from '~/stores/simple-stores/MobileNavMenu.store'
 import { APP_NAME } from '../App.const'
 import { cn } from '../utils/ui/ClassNames'
+import { Button } from './Button'
+import { CloseIcon } from './icons/CloseIcon'
+import { MenuIcon } from './icons/MenuIcon'
 import { ImportExportStorageState } from './ImportExportStorageDataActionButtonGroup'
 import { mainNavLinks } from './Navbar.const'
 import styles from './Navbar.module.css'
@@ -53,8 +57,15 @@ interface PageLinkListProps {
 export const PageLinkList = memo(function PageLinkList({
   pageLinks,
 }: PageLinkListProps) {
+  const isVisibleMobileNavMenu = useMobileNavMenuVisibility(state => state.isVisible)
+
   return (
-    <ul className={styles.LinksList}>
+    <ul className={cn([
+      styles.LinksList,
+      styles.MobileNavMenu,
+      isVisibleMobileNavMenu && styles.VisibleMobileNavMenu,
+    ])}
+    >
       {pageLinks.map(link => (
         <LinkListItem
           key={link.slug}
@@ -66,6 +77,17 @@ export const PageLinkList = memo(function PageLinkList({
 })
 
 export const Navbar = memo(function Navbar() {
+  const isVisibleMobileNavMenu = useMobileNavMenuVisibility(state => state.isVisible)
+  const location = useLocation()
+
+  useEffect(function trackingLocationPathNameChangeEffect() {
+    if (location.pathname) {
+      // noop - just tracking updates
+    }
+
+    hideMobileNavMenu()
+  }, [location.pathname])
+
   return (
     <nav className={styles.Navbar}>
       <div className={styles.HeaderContainer}>
@@ -76,6 +98,36 @@ export const Navbar = memo(function Navbar() {
         <ImportExportStorageState />
 
         <PreferedColorThemeSwitch />
+      </div>
+
+      <div className={cn([
+        styles.HeaderContainer,
+        styles.MobileNavMenuActionButtons
+      ])}
+      >
+        {isVisibleMobileNavMenu && (
+          <Button
+            size="small"
+            noPadding
+            transparent
+            onClick={hideMobileNavMenu}
+            title="hide menu"
+          >
+            <CloseIcon />
+          </Button>
+        )}
+
+        {!isVisibleMobileNavMenu && (
+          <Button
+            size="small"
+            noPadding
+            transparent
+            onClick={showMobileNavMenu}
+            title="show menu"
+          >
+            <MenuIcon />
+          </Button>
+        )}
       </div>
 
       <PageLinkList pageLinks={mainNavLinks} />

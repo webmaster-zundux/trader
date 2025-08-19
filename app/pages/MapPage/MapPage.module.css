@@ -1,6 +1,6 @@
 .Container {
-  display: grid;
-  grid-template-columns: 40em auto;
+  display: flex;
+  flex-direction: row;
   position: relative;
   height: 100%;
   overflow: auto;
@@ -23,6 +23,10 @@
   height: 100%;
   overflow: auto;
   padding: 0.5em;
+  flex-basis: fit-content;
+  flex-shrink: 0;
+  min-width: 20em;
+  border-right: 0.1em solid var(--panel-border-color);
 }
 
 .SearchResultName {
@@ -42,9 +46,15 @@
 
 @media (width < 768px) {
   .Container {
-    grid-template-columns: auto;
+    flex-direction: column;
     height: auto;
-    gap: 0.5em 0;
+    flex-grow: 1;
   }
 }
  
+@media screen and (width <=480px) {
+  .SearchResults {
+    border-right: none;
+    border-bottom: 0.1em solid var(--panel-border-color);
+  }
+}

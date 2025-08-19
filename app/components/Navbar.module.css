@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 1em;
-  border-bottom: 0.1em solid gray;
+  border-bottom: 0.1em solid var(--panel-border-color);
   width: 100%;
   padding: 0.5em;
   align-items: center;
@@ -28,6 +28,10 @@
   gap: 0.1em;
   padding: 0;
   margin: 0;
+}
+
+.MobileNavMenuActionButtons{
+  display: none;
 }
 
 .LinkListItem {
@@ -72,5 +76,27 @@
 
   .NavLink {
     width: 100%;
+  }
+}
+
+@media (width <= 480px) {
+  .MobileNavMenu {
+    position: absolute;
+    top: 2.6em;
+    left: 0;
+    height: 100%;
+    background: var(--background-color);
+    z-index: 10;
+    padding: 1em 0;
+    display: none;
+  }
+
+  .MobileNavMenuActionButtons {
+    display: flex;
+    z-index: 11;
+  }
+
+  .VisibleMobileNavMenu {
+    display: flex;
   }
 }

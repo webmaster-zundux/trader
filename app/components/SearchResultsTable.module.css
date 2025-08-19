@@ -62,6 +62,7 @@
   padding: 0.6em 0;
   margin: 0;
   display: flex;
+  flex-shrink: 0;
   font-size: 1.05em;
 }
 
@@ -73,10 +74,10 @@
 }
 
 @media screen and (width <=480px) {
-  .TableHeaderContainer {
+  /* .TableHeaderContainer {
     flex-direction: column;
     padding: 0.5em;
-  }
+  } */
 
   .TableTitleActonButtons {
     flex-direction: column;
@@ -87,12 +88,12 @@
     width: 100%;
   }
 
-  .TableHeaderContainer,
-  .TableHeaderLeftPart,
+  /* .TableHeaderContainer, */
+  /* .TableHeaderLeftPart,
   .TableHeaderRightPart {
     width: 100%;
     flex-direction: column;
-  }
+  } */
 }
 
 .NoData,
