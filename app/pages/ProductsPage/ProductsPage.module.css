@@ -25,7 +25,6 @@
 @media (width < 768px) {
   .Container {
     grid-template-columns: auto;
-    height: auto;
     gap: 0.5em 0;
   }
 }

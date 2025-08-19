@@ -1,9 +1,15 @@
 .FilterParametersInfoContainer {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   font-size: 0.9em;
   padding: 0.2em 0.5em 0.55em;
-  gap: 1em;
+  gap: 0.5em;
+}
+
+.FilterParametersTitle {
+  display: flex;
+  flex-shrink: 0;
+  align-self: center;
 }
 
 .FilterParametersList {
@@ -11,7 +17,7 @@
   flex-flow: row wrap;
   margin: 0;
   padding: 0;
-  gap: 1em;
+  gap: 0.5em 1em;
 }
 
 .FilterParametersListItem {

@@ -5,7 +5,7 @@ export const SearchFormAndTableContainer = memo(function SearchFormAndTableConta
   children,
 }: PropsWithChildren) {
   return (
-    <div className={styles.Container}>
+    <div className={styles.SearchFormAndTableContainer}>
       {children}
     </div>
   )

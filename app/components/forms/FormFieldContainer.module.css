@@ -1,6 +1,7 @@
 .FieldContainer {
   display: table-row;
   vertical-align: baseline;
+  flex-grow: 1;
 }
 
 .FieldLabel {
@@ -32,4 +33,15 @@
   font-size: 0.8em;
   color: var(--form-field-required-label);
   font-family: var(--monospace-font-family);
+}
+
+@media screen and (width <=480px) {
+  .FieldLabel:has(.RequiredLabel) {
+    vertical-align: middle;
+  }
+
+  .FieldLabel .RequiredLabel {
+    display: flex;
+    justify-content: end;
+  }
 }

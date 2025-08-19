@@ -27,6 +27,7 @@
   flex-shrink: 0;
   min-width: 20em;
   border-right: 0.1em solid var(--panel-border-color);
+  max-height: 100%;
 }
 
 .SearchResultName {
@@ -47,7 +48,6 @@
 @media (width < 768px) {
   .Container {
     flex-direction: column;
-    height: auto;
     flex-grow: 1;
   }
 }

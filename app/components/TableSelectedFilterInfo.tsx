@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react'
 import styles from './TableSelectedFilterInfo.module.css'
 
-export type FilterValue<T> = { [K in keyof T ]: T[K] }
+export type FilterValue<T> = { [K in keyof T]: T[K] }
 
 export type FormatLabelAndValueProps<T> = {
   name: keyof T
@@ -80,7 +80,7 @@ export const TableFilterInfo = memo(function TableFilterInfo<T, K = keyof T>({
 
   return (
     <div className={styles.FilterParametersInfoContainer}>
-      <div>Filtered by </div>
+      <div className={styles.FilterParametersTitle}>Filtered by</div>
       <ul className={styles.FilterParametersList}>
         {
           filterInfoFields.map(({

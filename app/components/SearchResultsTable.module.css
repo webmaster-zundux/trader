@@ -28,7 +28,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0 1em;
-  padding: 0 0.5em;
+  padding: 0.3em 0.5em;
   border-radius: var(--border-radius);
   position: relative;
   flex-wrap: wrap;
@@ -39,7 +39,6 @@
   flex-direction: row;
   gap: 1em;
   align-items: center;
-  min-height: 2.45em;
 }
 
 .TableHeaderRightPart {
@@ -47,19 +46,18 @@
   flex-direction: row;
   gap: 0.5em;
   align-items: center;
-  min-height: 2.45em;
 }
 
 .TableItemsQuantity {
   display: flex;
   position: relative;
   font-size: 0.9em;
+  flex-shrink: 0;
 }
 
 .TableTitle {
   font-weight: bold;
   text-transform: capitalize;
-  padding: 0.6em 0;
   margin: 0;
   display: flex;
   flex-shrink: 0;
@@ -74,26 +72,9 @@
 }
 
 @media screen and (width <=480px) {
-  /* .TableHeaderContainer {
-    flex-direction: column;
-    padding: 0.5em;
-  } */
-
-  .TableTitleActonButtons {
-    flex-direction: column;
-    width: 100%;
-  }
-
   .TableHeaderContainer button {
     width: 100%;
   }
-
-  /* .TableHeaderContainer, */
-  /* .TableHeaderLeftPart,
-  .TableHeaderRightPart {
-    width: 100%;
-    flex-direction: column;
-  } */
 }
 
 .NoData,

@@ -12,6 +12,7 @@
 
 .SearchField input {
   padding-right: 2.3em !important;
+  margin-bottom: 0.25em;
 }
 
 .SearchField input~button[type="reset"] {
