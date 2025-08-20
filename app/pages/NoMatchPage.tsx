@@ -1,8 +1,8 @@
-import { StaticLink } from '~/components/StaticLink'
 import { createPageTitleWithAppName } from '~/routes/utils/createPageTitleWithAppName'
 import { Main } from '../components/Main'
 import { TicTacToeGame } from '../components/TicTacToeGame'
 import styles from './NoMatchPage.module.css'
+import { InternalStaticLink } from '~/components/InternalStaticLink'
 
 const pageTitle = createPageTitleWithAppName('404 page not found')
 
@@ -15,9 +15,9 @@ export function NoMatchPage() {
         <div className={styles.Content}>
           <h2>404 - page not found</h2>
           <p>
-            <StaticLink href="/">
+            <InternalStaticLink to="/">
               Go to the home page
-            </StaticLink>
+            </InternalStaticLink>
           </p>
 
           <TicTacToeGame />

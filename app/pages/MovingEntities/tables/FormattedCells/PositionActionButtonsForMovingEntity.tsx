@@ -1,5 +1,5 @@
 import { Button } from '~/components/Button'
-import { StaticLink } from '~/components/StaticLink'
+import { InternalStaticLink } from '~/components/InternalStaticLink'
 import { LocationOffIcon } from '~/components/icons/LocationOffIcon'
 import { LocationOnIcon } from '~/components/icons/LocationOnIcon'
 import { isUuid } from '~/models/Entity'
@@ -37,15 +37,15 @@ export function PositionActionButtonsForMovingEntity({
     <>
       {urlToMapPage
         ? (
-            <StaticLink href={urlToMapPage} title="show location on map">
-              <LocationOnIcon />
-            </StaticLink>
-          )
+          <InternalStaticLink to={urlToMapPage} title="show location on map">
+            <LocationOnIcon />
+          </InternalStaticLink>
+        )
         : (
-            <Button disabled noBorder noPadding transparent title="no position data">
-              <LocationOffIcon />
-            </Button>
-          )}
+          <Button disabled noBorder noPadding transparent title="no position data">
+            <LocationOffIcon />
+          </Button>
+        )}
     </>
   )
 }

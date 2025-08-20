@@ -2,6 +2,7 @@
   display: flex;
   gap: 0.5em;
   flex-grow: 1;
+  margin-bottom: 0.25em;
 }
 
 .SearchField {
@@ -12,19 +13,17 @@
 
 .SearchField input {
   padding-right: 2.3em !important;
-  margin-bottom: 0.25em;
+  margin-bottom: 0;
 }
 
 .SearchField input~button[type="reset"] {
   display: flex;
   position: absolute;
   right: 0.4em;
-  transform: translate(0, calc(-50% + 0.5em));
   border: none;
   background: none;
   border-radius: var(--border-radius);
   padding: 0;
-  fill: whitesmoke;
   align-self: center;
 }
 

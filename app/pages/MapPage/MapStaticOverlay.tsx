@@ -1,15 +1,15 @@
 import { memo, useMemo, type RefObject } from 'react'
-import { NavLink } from 'react-router'
 import { Button } from '~/components/Button'
 import { ChevronRightIcon } from '~/components/icons/ChevronRightIcon'
 import { Graph3Icon } from '~/components/icons/GraphIcon'
 import { LocationOnIcon } from '~/components/icons/LocationOnIcon'
 import { PlanetOrbitIcon } from '~/components/icons/PlanetOrbitIcon'
+import { InternalStaticLink } from '~/components/InternalStaticLink'
 import type { Location } from '~/models/entities/Location'
 import type { MovingEntity } from '~/models/entities/MovingEntity'
 import { type PlanetarySystem } from '~/models/entities/PlanetarySystem'
 import { createNameFromParts, FULL_NAME_PART_SEPARATOR } from '~/models/utils/createNameFromParts'
-import { PAGE_SLUG_MAP } from '~/router/PageSlugs.const'
+import { PAGE_SLUG_MAP } from '~/routes'
 import { getLocationByUuidSelector } from '~/stores/entity-stores/Locations.store'
 import { getMovingEntityByUuidSelector } from '~/stores/entity-stores/MovingEntities.store'
 import { getPlanetarySystemByUuidSelector } from '~/stores/entity-stores/PlanetarySystems.store'
@@ -84,6 +84,8 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
                 noPadding
                 noBorder
                 transparent
+                disabled
+                asInitial
               >
                 <Graph3Icon />
               </Button>
@@ -106,16 +108,12 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
                 styles.IconWrapper,
               ])}
               >
-                <NavLink to={`/${PAGE_SLUG_MAP}`}>
-                  <Button
-                    noPadding
-                    noBorder
-                    transparent
-                    title="universe map"
-                  >
-                    <Graph3Icon />
-                  </Button>
-                </NavLink>
+                <InternalStaticLink
+                  to={PAGE_SLUG_MAP}
+                  title="universe map"
+                >
+                  <Graph3Icon />
+                </InternalStaticLink>
               </div>
 
               <div className={styles.LevelIndicationIconWrapper}>

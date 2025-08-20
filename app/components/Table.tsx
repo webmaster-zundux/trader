@@ -117,7 +117,15 @@ export const TableHeaderCell = memo(function TableHeaderCell<
 
   return (
     <th className={cellClassName}>
-      <Button transparentOnDefaultState fluid noBorder noPadding noCapitalize onClick={handleColumnHeaderClick} disabled={!isActiveButton}>
+      <Button
+        transparentOnDefaultState
+        fluid
+        noBorder
+        noPadding
+        noCapitalize
+        onClick={handleColumnHeaderClick}
+        disabled={!isActiveButton}
+      >
         <div className={styles.HeaderCellContentWrapper}>
           <div className={styles.HeaderCellLabel}>
             {column.label ?? column.name}

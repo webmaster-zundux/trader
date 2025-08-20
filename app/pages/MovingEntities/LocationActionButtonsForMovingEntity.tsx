@@ -1,17 +1,17 @@
 import { isUuid } from '~/models/Entity'
+import { parsePositionFromString } from '~/models/Position'
 import { getUrlToLocationsPageWithParams } from '~/router/urlSearchParams/getUrlToLocationsPageWithParams'
 import { getUrlToMapPageWithParams } from '~/router/urlSearchParams/getUrlToMapPageWithParams'
 import { getLocationByUuidSelector, useLocationsStore } from '~/stores/entity-stores/Locations.store'
 import { useLoadingPersistStorages } from '~/stores/hooks/useLoadingPersistStorages'
 import { Button } from '../../components/Button'
-import { StaticLink } from '../../components/StaticLink'
+import { InternalStaticLink } from '../../components/InternalStaticLink'
 import { InfoIcon } from '../../components/icons/InfoIcon'
 import { LocationDisabledIcon } from '../../components/icons/LocationDisabledIcon'
 import { LocationOffIcon } from '../../components/icons/LocationOffIcon'
 import { LocationOnIcon } from '../../components/icons/LocationOnIcon'
 import { getPlanetarySystemByUuidSelector, usePlanetarySystemsStore } from '../../stores/entity-stores/PlanetarySystems.store'
 import { MAP_MODE_UNIVERSE } from '../MapPage/Map.const'
-import { parsePositionFromString } from '~/models/Position'
 
 export function LocationActionButtonsForMovingEntity({
   value,
@@ -54,9 +54,9 @@ export function LocationActionButtonsForMovingEntity({
   return (
     <>
       {urlToLocationsPage ? (
-        <StaticLink href={urlToLocationsPage} title="show location info">
+        <InternalStaticLink to={urlToLocationsPage} title="show location info">
           <InfoIcon />
-        </StaticLink>
+        </InternalStaticLink>
       ) : (
         <Button disabled noBorder noPadding transparent title="no location data">
           <LocationDisabledIcon />
@@ -65,15 +65,15 @@ export function LocationActionButtonsForMovingEntity({
 
       {urlToMapPage
         ? (
-            <StaticLink href={urlToMapPage} title="show location on map">
-              <LocationOnIcon />
-            </StaticLink>
-          )
+          <InternalStaticLink to={urlToMapPage} title="show location on map">
+            <LocationOnIcon />
+          </InternalStaticLink>
+        )
         : (
-            <Button disabled noBorder noPadding transparent title="no position data">
-              <LocationOffIcon />
-            </Button>
-          )}
+          <Button disabled noBorder noPadding transparent title="no position data">
+            <LocationOffIcon />
+          </Button>
+        )}
     </>
   )
 }

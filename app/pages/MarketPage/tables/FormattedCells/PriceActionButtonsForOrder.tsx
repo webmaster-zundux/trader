@@ -41,7 +41,6 @@ export function PriceActionButtonsForOrder({
               transparent
               noPadding
               noBorder
-              isStaticBehaviour
               disabled
               title="no price data"
             >

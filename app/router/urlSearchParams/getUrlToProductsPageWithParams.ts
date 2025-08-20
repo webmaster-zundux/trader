@@ -1,7 +1,7 @@
-import { PAGE_SLUG_PRODUCTS } from '../PageSlugs.const'
 import type { Product } from '../../models/entities/Product'
 import type { ProductRarity } from '../../models/entities/ProductRarity'
 import type { ProductType } from '../../models/entities/ProductType'
+import { PAGE_SLUG_PRODUCTS } from "~/routes"
 import { URL_SEARCH_PARAM_KEY_PRODUCT_NAME, URL_SEARCH_PARAM_KEY_PRODUCT_RARITY_NAME, URL_SEARCH_PARAM_KEY_PRODUCT_TYPE_NAME } from './UrlSearchParamsKeys.const'
 
 export function getUrlToProductsPageWithParams({
@@ -31,5 +31,5 @@ export function getUrlToProductsPageWithParams({
     return undefined
   }
 
-  return `/${PAGE_SLUG_PRODUCTS}?${urlSearchParams.toString()}`
+  return `${PAGE_SLUG_PRODUCTS}?${urlSearchParams.toString()}`
 }

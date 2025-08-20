@@ -1,9 +1,9 @@
 import { memo, useCallback, useMemo, useState } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { Button } from '~/components/Button'
-import { StaticLink } from '~/components/StaticLink'
 import { SearchCategoryIcon } from '~/components/icons/SearchCategoryIcon'
 import { SearchOffIcon } from '~/components/icons/SearchOffIcon'
+import { InternalStaticLink } from '~/components/InternalStaticLink'
 import type { useSearchParams } from '~/hooks/useSearchParams'
 import { getUrlToLocationsPageWithParams } from '~/router/urlSearchParams/getUrlToLocationsPageWithParams'
 import { useLocationTypesStore } from '~/stores/entity-stores/LocationTypes.store'
@@ -18,9 +18,9 @@ import { useResetOfSearchAndFilterWhenLastCreatedOrUpdatedItemIsNotVisibleAsTabl
 import { useSortableTableColumns } from '../../components/tables/hooks/useSortableTableColumns'
 import type { LocationType } from '../../models/entities/LocationType'
 import { ENTITY_TYPE_LOCATION_TYPE } from '../../models/entities/LocationType'
-import { useLocationTypesTableSearch } from './useLocationTypesTableSearch'
-import { EditLocationTypeModal } from './modals/EditLocationTypeModal'
 import { DeleteLocationTypeConfirmation } from './modals/DeleteLocationTypeConfirmation'
+import { EditLocationTypeModal } from './modals/EditLocationTypeModal'
+import { useLocationTypesTableSearch } from './useLocationTypesTableSearch'
 
 const sortableGroupColumnNames: (typeof locationTypesTableColumns)[number]['name'][] = [
   'name',
@@ -46,15 +46,15 @@ const locationTypesTableColumns: Column<LocationType>[] = [
         <>
           {urlToProductsPage
             ? (
-                <StaticLink href={urlToProductsPage} title="search by location type in locations">
-                  <SearchCategoryIcon />
-                </StaticLink>
-              )
+              <InternalStaticLink to={urlToProductsPage} title="search by location type in locations">
+                <SearchCategoryIcon />
+              </InternalStaticLink>
+            )
             : (
-                <Button disabled noBorder noPadding transparent title="no data for search">
-                  <SearchOffIcon />
-                </Button>
-              )}
+              <Button disabled noBorder noPadding transparent title="no data for search">
+                <SearchOffIcon />
+              </Button>
+            )}
         </>
       )
     },

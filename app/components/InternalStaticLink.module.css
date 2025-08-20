@@ -1,0 +1,13 @@
+.InternalStaticLink svg {
+  display: flex;
+  fill: var(--text-color);
+}
+
+.InternalStaticLink:hover svg,
+.InternalStaticLink:focus-visible svg {
+  fill: var(--svg-icon-hover-fill);
+}
+
+.InternalStaticLink:active svg {
+  fill: var(--svg-icon-active-fill);
+}

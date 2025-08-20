@@ -1,5 +1,5 @@
 import { Button } from '~/components/Button'
-import { StaticLink } from '~/components/StaticLink'
+import { InternalStaticLink } from '~/components/InternalStaticLink'
 import { InfoIcon } from '~/components/icons/InfoIcon'
 import { QueryStatsIcon } from '~/components/icons/QueryStatsIcon'
 import { SearchOffIcon } from '~/components/icons/SearchOffIcon'
@@ -25,27 +25,27 @@ export function ProductActionButtonsForOrder({ item }: { item: Order }) {
     <>
       {urlToProductsPage
         ? (
-            <StaticLink href={urlToProductsPage} title="show product info">
-              <InfoIcon />
-            </StaticLink>
-          )
+          <InternalStaticLink to={urlToProductsPage} title="show product info">
+            <InfoIcon />
+          </InternalStaticLink>
+        )
         : (
-            <Button disabled noBorder noPadding transparent title="no data for search in products">
-              <SearchOffIcon />
-            </Button>
-          )}
+          <Button disabled noBorder noPadding transparent title="no data for search in products">
+            <SearchOffIcon />
+          </Button>
+        )}
 
       {urlToMarketPage
         ? (
-            <StaticLink href={urlToMarketPage} title="search by product name in market">
-              <QueryStatsIcon />
-            </StaticLink>
-          )
+          <InternalStaticLink to={urlToMarketPage} title="search by product name in market">
+            <QueryStatsIcon />
+          </InternalStaticLink>
+        )
         : (
-            <Button disabled noBorder noPadding transparent title="no data for search in market">
-              <SearchOffIcon />
-            </Button>
-          )}
+          <Button disabled noBorder noPadding transparent title="no data for search in market">
+            <SearchOffIcon />
+          </Button>
+        )}
     </>
   )
 }

@@ -3,7 +3,7 @@ import type { MovingEntity } from '~/models/entities/MovingEntity'
 import { MAP_MODE_UNIVERSE, type MapMode } from '~/pages/MapPage/Map.const'
 import { parsePositionFromString, positionToString } from '../../models/Position'
 import type { PlanetarySystem } from '../../models/entities/PlanetarySystem'
-import { PAGE_SLUG_MAP } from '../PageSlugs.const'
+import { PAGE_SLUG_MAP } from "~/routes"
 import { URL_SEARCH_PARAM_KEY_LOCATION_ID, URL_SEARCH_PARAM_KEY_LOCATION_NAME, URL_SEARCH_PARAM_KEY_LOCATION_POSITION, URL_SEARCH_PARAM_KEY_MAP_MODE, URL_SEARCH_PARAM_KEY_MOVING_ENTITY_ID, URL_SEARCH_PARAM_KEY_MOVING_ENTITY_NAME, URL_SEARCH_PARAM_KEY_PLANETARY_SYSTEM_NAME } from './UrlSearchParamsKeys.const'
 
 export function getUrlToMapPageWithParams({
@@ -64,5 +64,5 @@ export function getUrlToMapPageWithParams({
     return undefined
   }
 
-  return `/${PAGE_SLUG_MAP}?${urlSearchParams.toString()}`
+  return `${PAGE_SLUG_MAP}?${urlSearchParams.toString()}`
 }

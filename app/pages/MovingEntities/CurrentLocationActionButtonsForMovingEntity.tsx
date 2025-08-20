@@ -6,7 +6,7 @@ import { getUrlToMapPageWithParams } from '~/router/urlSearchParams/getUrlToMapP
 import { getLocationByUuidSelector, useLocationsStore } from '~/stores/entity-stores/Locations.store'
 import { useLoadingPersistStorages } from '~/stores/hooks/useLoadingPersistStorages'
 import { Button } from '../../components/Button'
-import { StaticLink } from '../../components/StaticLink'
+import { InternalStaticLink } from '../../components/InternalStaticLink'
 import { InfoIcon } from '../../components/icons/InfoIcon'
 import { LocationDisabledIcon } from '../../components/icons/LocationDisabledIcon'
 import { LocationOffIcon } from '../../components/icons/LocationOffIcon'
@@ -62,9 +62,9 @@ export function CurrentLocationActionButtonsForMovingEntity({
   return (
     <>
       {urlToLocationsPage ? (
-        <StaticLink href={urlToLocationsPage} title="show location info">
+        <InternalStaticLink to={urlToLocationsPage} title="show location info">
           <InfoIcon />
-        </StaticLink>
+        </InternalStaticLink>
       ) : (
         <Button disabled noBorder noPadding transparent title="no location data">
           <LocationDisabledIcon />
@@ -73,15 +73,15 @@ export function CurrentLocationActionButtonsForMovingEntity({
 
       {urlToMapPage
         ? (
-            <StaticLink href={urlToMapPage} title={`show ${existingLocation ? 'location' : 'position'} on map`}>
-              <LocationOnIcon />
-            </StaticLink>
-          )
+          <InternalStaticLink to={urlToMapPage} title={`show ${existingLocation ? 'location' : 'position'} on map`}>
+            <LocationOnIcon />
+          </InternalStaticLink>
+        )
         : (
-            <Button disabled noBorder noPadding transparent title="no position data">
-              <LocationOffIcon />
-            </Button>
-          )}
+          <Button disabled noBorder noPadding transparent title="no position data">
+            <LocationOffIcon />
+          </Button>
+        )}
     </>
   )
 }

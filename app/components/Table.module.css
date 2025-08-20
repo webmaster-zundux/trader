@@ -81,13 +81,6 @@
 }
 
 @media screen and (width <=480px) {
-  .TableFilterActonButtons {
-    /* MEOW =^-^= */
-    flex-direction: column;
-    width: 100%;
-    margin-left: 0;
-  }
-
   .TableHeaderContainer button {
     width: 100%;
   }
@@ -406,7 +399,6 @@ tbody:has(.Cell.CellCheckbox input:checked) .Row:has(.Cell.CellCheckbox input:no
 .CellActionButtonsGroup a svg {
   opacity: 0;
   display: flex;
-  fill: var(--text-color);
   width: auto;
   height: 1.4em;
 }
@@ -419,17 +411,11 @@ tbody:has(.Cell.CellCheckbox input:checked) .Row:has(.Cell.CellCheckbox input:no
 }
 
 .CellActionButtonsGroup button:enabled:hover svg,
+.CellActionButtonsGroup button:enabled:focus-visible svg,
 .CellActionButtonsGroup a[href]:hover svg,
 .CellActionButtonsGroup a[href]:focus-visible svg {
   opacity: 1;
-  fill: light-dark(#5c5c5c, #adadad);
 }
-
-.CellActionButtonsGroup button:enabled:active svg,
-.CellActionButtonsGroup a[href]:active svg {
-  fill: var(--background-color);
-}
-
 
 .NoData,
 .LoadingData {

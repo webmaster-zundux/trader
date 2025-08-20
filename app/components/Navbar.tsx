@@ -7,9 +7,10 @@ import { Button } from './Button'
 import { CloseIcon } from './icons/CloseIcon'
 import { MenuIcon } from './icons/MenuIcon'
 import { ImportExportStorageState } from './ImportExportStorageDataActionButtonGroup'
-import { mainNavLinks } from './Navbar.const'
+import { MAIN_NAV_BAR_LINKS } from './Navbar.const'
 import styles from './Navbar.module.css'
 import { PreferedColorThemeSwitch } from './PreferedColorThemeSwitch'
+import { InternalNavLink } from './InternalNavLink'
 
 export type PageLink = {
   slug: string
@@ -41,12 +42,12 @@ const LinkListItem = memo(function LinkListItem({
 
   return (
     <li className={styles.LinkListItem}>
-      <NavLink
+      <InternalNavLink
         to={link.slug}
         className={navLinkClassName}
       >
         {link.text}
-      </NavLink>
+      </InternalNavLink>
     </li>
   )
 })
@@ -130,7 +131,7 @@ export const Navbar = memo(function Navbar() {
         )}
       </div>
 
-      <PageLinkList pageLinks={mainNavLinks} />
+      <PageLinkList pageLinks={MAIN_NAV_BAR_LINKS} />
     </nav>
   )
 })

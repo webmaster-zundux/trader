@@ -17,6 +17,9 @@
   --button-focus-visible-background-color: whitesmoke;
   --button-focus-visible-border-color: #807769;
   --button-focus-visible-outline-color: #0f0f0f;
+  --svg-icon-hover-fill: #5c5c5c;
+  --svg-icon-active-fill: #000;
+  --svg-icon-disabled-fill: #757575;
   --background-line-color: rgb(0 0 0 / 5%);
   --form-field-background-color: #f7f7f7;
   --form-field-border-color: #888;
@@ -56,6 +59,9 @@ html:has(> .ColorThemeDark) {
   --button-focus-visible-background-color: #454b4e;
   --button-focus-visible-border-color: #858585;
   --button-focus-visible-outline-color: #f0f0f0;
+  --svg-icon-hover-fill: #adadad;
+  --svg-icon-active-fill: #fff;
+  --svg-icon-disabled-fill: gray;
   --background-line-color: rgb(255 255 255 / 5%);
   --form-field-background-color: #0b0c0c;
   --form-field-required-label: #a5a5a5;

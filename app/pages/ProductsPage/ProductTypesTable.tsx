@@ -4,7 +4,7 @@ import type { useSearchParams } from '~/hooks/useSearchParams'
 import { useLoadingPersistStorages } from '~/stores/hooks/useLoadingPersistStorages'
 import { Button } from '../../components/Button'
 import { SearchFormAndTableContainer } from '../../components/SearchFormAndTableContainer'
-import { StaticLink } from '../../components/StaticLink'
+import { InternalStaticLink } from '../../components/InternalStaticLink'
 import type { Column, ColumnWithValue } from '../../components/Table'
 import { Table, TableBody } from '../../components/Table'
 import { SearchCategoryIcon } from '../../components/icons/SearchCategoryIcon'
@@ -44,15 +44,15 @@ const productTypesTableColumns: Column<ProductType>[] = [
         <>
           {urlToProductsPage
             ? (
-                <StaticLink href={urlToProductsPage} title="search by product type in products">
-                  <SearchCategoryIcon />
-                </StaticLink>
-              )
+              <InternalStaticLink to={urlToProductsPage} title="search by product type in products">
+                <SearchCategoryIcon />
+              </InternalStaticLink>
+            )
             : (
-                <Button disabled noBorder noPadding transparent title="no data for search">
-                  <SearchOffIcon />
-                </Button>
-              )}
+              <Button disabled noBorder noPadding transparent title="no data for search">
+                <SearchOffIcon />
+              </Button>
+            )}
         </>
       )
     },

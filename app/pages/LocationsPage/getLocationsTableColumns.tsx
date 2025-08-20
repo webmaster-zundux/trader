@@ -1,7 +1,7 @@
 import { Button } from '~/components/Button'
 import { QueryStatsIcon } from '~/components/icons/QueryStatsIcon'
 import { SearchOffIcon } from '~/components/icons/SearchOffIcon'
-import { StaticLink } from '~/components/StaticLink'
+import { InternalStaticLink } from '~/components/InternalStaticLink'
 import { type Column, NoDataCell } from '~/components/Table'
 import type { Location } from '~/models/entities/Location'
 import { getUrlToMarketPageWithParams } from '~/router/urlSearchParams/getUrlToMarketPageWithParams'
@@ -35,10 +35,10 @@ export function getLocationsTableColumns(): Column<Location>[] {
             {(typeof value === 'string')
               ? value
               : (
-                  <NoDataCell>
-                    (no&nbsp;id)
-                  </NoDataCell>
-                )}
+                <NoDataCell>
+                  (no&nbsp;id)
+                </NoDataCell>
+              )}
           </>
         )
       },
@@ -51,15 +51,15 @@ export function getLocationsTableColumns(): Column<Location>[] {
           <>
             {urlToMarketPage
               ? (
-                  <StaticLink href={urlToMarketPage} title="search by location id in market">
-                    <QueryStatsIcon />
-                  </StaticLink>
-                )
+                <InternalStaticLink to={urlToMarketPage} title="search by location id in market">
+                  <QueryStatsIcon />
+                </InternalStaticLink>
+              )
               : (
-                  <Button disabled noBorder noPadding transparent title="no data for search in market">
-                    <SearchOffIcon />
-                  </Button>
-                )}
+                <Button disabled noBorder noPadding transparent title="no data for search in market">
+                  <SearchOffIcon />
+                </Button>
+              )}
           </>
         )
       },
@@ -78,15 +78,15 @@ export function getLocationsTableColumns(): Column<Location>[] {
           <>
             {urlToMarketPage
               ? (
-                  <StaticLink href={urlToMarketPage} title="search by location name in market">
-                    <QueryStatsIcon />
-                  </StaticLink>
-                )
+                <InternalStaticLink to={urlToMarketPage} title="search by location name in market">
+                  <QueryStatsIcon />
+                </InternalStaticLink>
+              )
               : (
-                  <Button disabled noBorder noPadding transparent title="no data for search in market">
-                    <SearchOffIcon />
-                  </Button>
-                )}
+                <Button disabled noBorder noPadding transparent title="no data for search in market">
+                  <SearchOffIcon />
+                </Button>
+              )}
           </>
         )
       },

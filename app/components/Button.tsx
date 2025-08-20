@@ -11,7 +11,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWith
   transparentOnDefaultState?: boolean
   noPadding?: boolean
   noBorder?: boolean
-  isStaticBehaviour?: boolean
+  asInitial?: boolean
   isAlwaysVisible?: boolean
   asLink?: boolean
   noCapitalize?: boolean
@@ -25,7 +25,7 @@ export const Button = memo(function Button({
   transparentOnDefaultState = false,
   noPadding = false,
   noBorder = false,
-  isStaticBehaviour = false,
+  asInitial = false,
   isAlwaysVisible = false,
   asLink,
   noCapitalize = false,
@@ -45,7 +45,7 @@ export const Button = memo(function Button({
     transparentOnDefaultState && styles.TransparentOnDefaultState,
     noPadding && styles.NoPadding,
     noBorder && styles.NoBorder,
-    isStaticBehaviour && styles.IsStaticBehaviour,
+    asInitial && styles.AsInitial,
     asLink && styles.AsLink,
     noCapitalize && styles.NoCapitalize,
     isAlwaysVisible && styles.IsAlwaysVisible,
