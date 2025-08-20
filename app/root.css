@@ -36,6 +36,8 @@
   --map-label-text-shadow: 0 0 0.2em var(--background-color);
   --map-label-box-shadow: 0.1em 0.1em 0.1em rgb(0 0 0 / 30%);
   --floating-element-transparent-background-color: hsl(0deg 0% 93.33% / 70%);
+  --map-sprite-selected-highlight-color: #090;
+  --map-sprite-selected-highlight-shadow: #fff;
 }
 
 html {
@@ -73,6 +75,8 @@ html:has(> .ColorThemeDark) {
   --map-label-text-color: var(--text-color);
   --map-label-text-shadow: 0 0 0.2em var(--background-color);
   --floating-element-transparent-background-color: hsl(0deg 0% 7.77% / 70%);
+  --map-sprite-selected-highlight-color: #6f6;
+  --map-sprite-selected-highlight-shadow: #000;
 }
 
 html:has(> body.ColorThemeDark) {

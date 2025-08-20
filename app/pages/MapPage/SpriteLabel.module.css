@@ -1,9 +1,14 @@
 .SpriteLabelAnchor {
   position: absolute;
   user-select: none;
+  border: 0.1em solid var(--map-sprite-selected-highlight-color);
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  box-shadow: 0 0 0.25em var(--map-sprite-selected-highlight-shadow), inset 0 0 0.25em var(--map-sprite-selected-highlight-shadow);
 }
 
-.SpriteLabel {
+/* .SpriteLabel {
   position: relative;
   font-size: 1em;
   color: var(--map-label-text-color);
@@ -26,4 +31,4 @@
 
 .GroupItemName {
   font-size: 0.9em;
-}
+} */

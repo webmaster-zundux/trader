@@ -36,23 +36,23 @@ export const SpriteLabel = memo(function SpriteLabel({
     return undefined
   }
 
-  let itemId: string | undefined = undefined
-  const itemName = item.name || 'unknown name'
+  // let itemId: string | undefined = undefined
+  // const itemName = item.name || 'unknown name'
 
-  if (isLocation(item)) {
-    itemId = item.id
-  } else if (isMovingEntity(item)) {
-    itemId = item.id
-  } else if (isPlanetarySystem(item)) {
-    // noop
-  }
+  // if (isLocation(item)) {
+  //   itemId = item.id
+  // } else if (isMovingEntity(item)) {
+  //   itemId = item.id
+  // } else if (isPlanetarySystem(item)) {
+  //   // noop
+  // }
 
   return (
     <div
       data-item-uuid={item.uuid}
       className={spriteLabelAnchorClassNames}
     >
-      <div className={styles.SpriteLabel}>
+      {/* <div className={styles.SpriteLabel}>
         {itemId && (
           <div className={styles.GroupItemId}>
             {itemId}
@@ -61,7 +61,7 @@ export const SpriteLabel = memo(function SpriteLabel({
         <div className={styles.GroupItemName}>
           {itemName}
         </div>
-      </div>
+      </div> */}
     </div>
   )
 })
