@@ -1,0 +1,16 @@
+.SpriteHighlightAnchor {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+.SpriteHighlightAnchor::before {
+  display: flex;
+  content: '';
+  position: relative;
+  border: 0.1em solid var(--map-sprite-selected-highlight-color);
+  width: 2em;
+  height: 2em;
+  box-shadow: 0 0 0.25em var(--map-sprite-selected-highlight-shadow), inset 0 0 0.25em var(--map-sprite-selected-highlight-shadow);
+  transform: rotate(45deg);
+}

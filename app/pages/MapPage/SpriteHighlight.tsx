@@ -4,26 +4,26 @@ import { isMovingEntity, type MovingEntity } from '~/models/entities/MovingEntit
 import { isPlanetarySystem, type PlanetarySystem } from '~/models/entities/PlanetarySystem'
 import { parsePositionFromString } from '~/models/Position'
 import { cn } from '~/utils/ui/ClassNames'
-import styles from './SpriteLabel.module.css'
+import styles from './SpriteHighlight.module.css'
 
-interface SpriteLabelProps {
+interface SpriteHighlightProps {
   item: Location | MovingEntity | PlanetarySystem
 }
-export const SpriteLabel = memo(function SpriteLabel({
+export const SpriteHighlight = memo(function SpriteHighlight({
   item,
-}: SpriteLabelProps) {
-  const spriteLabelAnchorClassNames = useMemo(function spriteLabelAnchorClassNamesMemo() {
+}: SpriteHighlightProps) {
+  const spriteHighlightAnchorClassNames = useMemo(function spriteHighlightAnchorClassNamesMemo() {
     let additionalCssClassNames: string[] = []
 
     if (isLocation(item)) {
-      additionalCssClassNames = [styles.LocationLabel]
+      additionalCssClassNames = [styles.LocationHighlight]
     } else if (isMovingEntity(item)) {
-      additionalCssClassNames = [styles.MovingEntityLabel]
+      additionalCssClassNames = [styles.MovingEntityHighlight]
     } else if (isPlanetarySystem(item)) {
-      additionalCssClassNames = [styles.PlanetarySystemLabel]
+      additionalCssClassNames = [styles.PlanetarySystemHighlight]
     }
 
-    return cn([styles.SpriteLabelAnchor].concat(additionalCssClassNames))
+    return cn([styles.SpriteHighlightAnchor].concat(additionalCssClassNames))
   }, [item])
 
   if (!item) {
@@ -36,23 +36,23 @@ export const SpriteLabel = memo(function SpriteLabel({
     return undefined
   }
 
-  let itemId: string | undefined = undefined
-  const itemName = item.name || 'unknown name'
+  // let itemId: string | undefined = undefined
+  // const itemName = item.name || 'unknown name'
 
-  if (isLocation(item)) {
-    itemId = item.id
-  } else if (isMovingEntity(item)) {
-    itemId = item.id
-  } else if (isPlanetarySystem(item)) {
-    // noop
-  }
+  // if (isLocation(item)) {
+  //   itemId = item.id
+  // } else if (isMovingEntity(item)) {
+  //   itemId = item.id
+  // } else if (isPlanetarySystem(item)) {
+  //   // noop
+  // }
 
   return (
     <div
       data-item-uuid={item.uuid}
-      className={spriteLabelAnchorClassNames}
+      className={spriteHighlightAnchorClassNames}
     >
-      <div className={styles.SpriteLabel}>
+      {/* <div className={styles.SpriteHighlight}>
         {itemId && (
           <div className={styles.GroupItemId}>
             {itemId}
@@ -61,7 +61,7 @@ export const SpriteLabel = memo(function SpriteLabel({
         <div className={styles.GroupItemName}>
           {itemName}
         </div>
-      </div>
+      </div> */}
     </div>
   )
 })

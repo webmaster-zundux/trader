@@ -52,6 +52,7 @@ export class CSS2DObjectForReactComponent extends Object3D {
     this.element = element
 
     this.element.style.position = 'absolute'
+    this.element.style.pointerEvents = 'none'
     this.element.style.userSelect = 'none'
 
     this.element.setAttribute('draggable', 'false')

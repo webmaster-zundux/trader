@@ -59,6 +59,7 @@ export const Map = memo(function Map({
         <MapDynamicOverlay
           ref={mapOverlayContainerRef}
           items={items}
+          mapMode={mapMode}
         />
 
         <MapStaticOverlay
