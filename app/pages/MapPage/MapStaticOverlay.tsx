@@ -110,7 +110,7 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
               >
                 <InternalStaticLink
                   to={PAGE_SLUG_MAP}
-                  title="universe map"
+                  title="global map"
                 >
                   <Graph3Icon />
                 </InternalStaticLink>
