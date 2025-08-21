@@ -16,8 +16,9 @@ import { getLocationByUuidSelector } from '~/stores/entity-stores/Locations.stor
 import { getMovingEntityByUuidSelector } from '~/stores/entity-stores/MovingEntities.store'
 import { getPlanetarySystemByUuidSelector } from '~/stores/entity-stores/PlanetarySystems.store'
 import { cn } from '~/utils/ui/ClassNames'
-import { MAP_MODE_PLANETARY_SYSTEM, MAP_MODE_UNIVERSE, type MapMode } from './Map.const'
+import { MAP_MODE_UNIVERSE, type MapMode } from './Map.const'
 import styles from './MapStaticOverlay.module.css'
+import { MapStaticOverlayActionButtons } from './MapStaticOverlayActionButtons'
 
 interface MapStaticOverlayProps {
   selectedPlanetarySystemUuid?: PlanetarySystem['uuid']
@@ -198,18 +199,9 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
           </div>
         )}
 
-        {(mapMode === MAP_MODE_PLANETARY_SYSTEM) && (
-          <div className={styles.MapActionButtonsContainer}>
-            <ul className={styles.MapActionButtons}>
-              <li className={styles.MapActionButton}>
-                show product prices
-              </li>
-              <li className={styles.MapActionButton}>
-                plan route
-              </li>
-            </ul>
-          </div>
-        )}
+        <MapStaticOverlayActionButtons
+          mapMode={mapMode}
+        />
       </div>
 
       <div ref={mapZoomLevelLabelRef} className={styles.MapZoomLevelLabel}></div>
