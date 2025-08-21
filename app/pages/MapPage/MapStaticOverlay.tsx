@@ -3,18 +3,20 @@ import { Button } from '~/components/Button'
 import { ChevronRightIcon } from '~/components/icons/ChevronRightIcon'
 import { Graph3Icon } from '~/components/icons/GraphIcon'
 import { LocationOnIcon } from '~/components/icons/LocationOnIcon'
+import { NotListedLocation } from '~/components/icons/NotListedLocationIcon'
 import { PlanetOrbitIcon } from '~/components/icons/PlanetOrbitIcon'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
 import type { Location } from '~/models/entities/Location'
 import type { MovingEntity } from '~/models/entities/MovingEntity'
 import { type PlanetarySystem } from '~/models/entities/PlanetarySystem'
+import { parsePositionFromString } from '~/models/Position'
 import { createNameFromParts, FULL_NAME_PART_SEPARATOR } from '~/models/utils/createNameFromParts'
 import { PAGE_SLUG_MAP } from '~/routes'
 import { getLocationByUuidSelector } from '~/stores/entity-stores/Locations.store'
 import { getMovingEntityByUuidSelector } from '~/stores/entity-stores/MovingEntities.store'
 import { getPlanetarySystemByUuidSelector } from '~/stores/entity-stores/PlanetarySystems.store'
 import { cn } from '~/utils/ui/ClassNames'
-import { MAP_MODE_UNIVERSE, type MapMode } from './Map.const'
+import { MAP_MODE_PLANETARY_SYSTEM, MAP_MODE_UNIVERSE, type MapMode } from './Map.const'
 import styles from './MapStaticOverlay.module.css'
 
 interface MapStaticOverlayProps {
@@ -39,42 +41,51 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
     return selectedPlanetarySystemUuid && getPlanetarySystemByUuidSelector(selectedPlanetarySystemUuid)?.name
   }, [selectedPlanetarySystemUuid, mapMode])
 
-  const selectedMovingEntityIdWithName = useMemo(function selectedMovingEntityName() {
+  const selectedMovingEntity = useMemo(() => selectedMovingEntityUuid && getMovingEntityByUuidSelector(selectedMovingEntityUuid), [selectedMovingEntityUuid])
+  const selectedMovingEntityPosition = useMemo(() => selectedMovingEntity && parsePositionFromString(selectedMovingEntity.position), [selectedMovingEntity])
+  const selectedMovingEntityIdWithName = useMemo(function selectedMovingEntityName(): string | undefined {
     if (mapMode === MAP_MODE_UNIVERSE) {
       return undefined
     }
 
-    const movingEntity = selectedMovingEntityUuid && getMovingEntityByUuidSelector(selectedMovingEntityUuid)
-
-    if (!movingEntity) {
+    if (!selectedMovingEntity) {
       return undefined
     }
 
-    return createNameFromParts([
-      movingEntity.id,
-      movingEntity.name,
-    ], false, FULL_NAME_PART_SEPARATOR)
-  }, [selectedMovingEntityUuid, mapMode])
+    if (!selectedMovingEntity.id && !selectedMovingEntity.name) {
+      return '(no data)'
+    }
 
-  const selectedLocationIdWithName = useMemo(function selectedLocationName() {
+    return createNameFromParts([
+      selectedMovingEntity.id,
+      selectedMovingEntity.name,
+    ], false, FULL_NAME_PART_SEPARATOR)
+  }, [mapMode, selectedMovingEntity])
+
+  const selectedLocation = useMemo(() => selectedLocationUuid && getLocationByUuidSelector(selectedLocationUuid), [selectedLocationUuid])
+  const selectedLocationPosition = useMemo(() => selectedLocation && parsePositionFromString(selectedLocation.position), [selectedLocation])
+  const selectedLocationIdWithName = useMemo(function selectedLocationName(): string | undefined {
     if (mapMode === MAP_MODE_UNIVERSE) {
       return undefined
     }
 
-    const location = selectedLocationUuid && getLocationByUuidSelector(selectedLocationUuid)
-
-    if (!location) {
+    if (!selectedLocation) {
       return undefined
     }
 
+    if (!selectedLocation.id && !selectedLocation.name) {
+      return '(no data)'
+    }
+
     return createNameFromParts([
-      location.id,
-      location.name,
+      selectedLocation.id,
+      selectedLocation.name,
     ], false, FULL_NAME_PART_SEPARATOR)
-  }, [selectedLocationUuid, mapMode])
+  }, [mapMode, selectedLocation])
 
   return (
     <div className={styles.MapStaticOverlayContainer}>
+
       <div className={styles.LabelsContainer}>
 
         <div className={styles.PlaceLabelsContainer}>
@@ -146,7 +157,12 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
         {selectedMovingEntityIdWithName && (
           <div className={styles.SelectedItemLabelsContainer}>
             <div className={styles.IconAndLabelContainerWrapper}>
-              <LocationOnIcon className={cn([styles.LabelIcon, styles.Small])} />
+              {selectedMovingEntityPosition && (
+                <LocationOnIcon className={cn([styles.LabelIcon, styles.Small])} />
+              )}
+              {!selectedMovingEntityPosition && (
+                <NotListedLocation className={cn([styles.LabelIcon, styles.Small])} />
+              )}
 
               <div className={styles.LabelContainer}>
                 <div className={styles.PlanetarySystemNameLabel}>
@@ -163,7 +179,12 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
         {selectedLocationIdWithName && (
           <div className={styles.SelectedItemLabelsContainer}>
             <div className={styles.IconAndLabelContainerWrapper}>
-              <LocationOnIcon className={cn([styles.LabelIcon, styles.Small])} />
+              {selectedLocationPosition && (
+                <LocationOnIcon className={cn([styles.LabelIcon, styles.Small])} />
+              )}
+              {!selectedLocationPosition && (
+                <NotListedLocation className={cn([styles.LabelIcon, styles.Small])} />
+              )}
 
               <div className={styles.LabelContainer}>
                 <div className={styles.PlanetarySystemNameLabel}>
@@ -177,6 +198,18 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
           </div>
         )}
 
+        {(mapMode === MAP_MODE_PLANETARY_SYSTEM) && (
+          <div className={styles.MapActionButtonsContainer}>
+            <ul className={styles.MapActionButtons}>
+              <li className={styles.MapActionButton}>
+                show product prices
+              </li>
+              <li className={styles.MapActionButton}>
+                plan route
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
 
       <div ref={mapZoomLevelLabelRef} className={styles.MapZoomLevelLabel}></div>

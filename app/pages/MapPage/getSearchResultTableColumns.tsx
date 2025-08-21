@@ -71,35 +71,33 @@ export function getSearchResultTableColumns(): Column<Location | PlanetarySystem
 
         return (
           <>
-            {(typeof name === 'string')
-              ? (
-                <div className={styles.SearchResultName}>
-                  {isMovingEntity(item) && (
-                    <>
-                      <LocationOnIcon />
-                      {' '}
-                    </>
-                  )}
-                  {isLocation(item) && (
-                    <>
-                      <LocationOnIcon />
-                      {' '}
-                    </>
-                  )}
-                  {isPlanetarySystem(item) && (
-                    <>
-                      <PlanetOrbitIcon />
-                      {' '}
-                    </>
-                  )}
-                  {name}
-                </div>
-              )
-              : (
-                <NoDataCell>
-                  (no&nbsp;data)
-                </NoDataCell>
-              )}
+            {(typeof name === 'string') ? (
+              <div className={styles.SearchResultName}>
+                {isMovingEntity(item) && (
+                  <>
+                    <LocationOnIcon />
+                    {' '}
+                  </>
+                )}
+                {isLocation(item) && (
+                  <>
+                    <LocationOnIcon />
+                    {' '}
+                  </>
+                )}
+                {isPlanetarySystem(item) && (
+                  <>
+                    <PlanetOrbitIcon />
+                    {' '}
+                  </>
+                )}
+                {name}
+              </div>
+            ) : (
+              <NoDataCell>
+                (no&nbsp;data)
+              </NoDataCell>
+            )}
           </>
         )
       },
@@ -157,84 +155,73 @@ export function getSearchResultTableColumns(): Column<Location | PlanetarySystem
           <>
             {isMovingEntity(item) && (
               <>
-                {urlToMapPageWithPlanetarySystemModeForMovingEntity
-                  ? (
-                    <InternalStaticLink to={urlToMapPageWithPlanetarySystemModeForMovingEntity} title="show moving object on map">
-                      <LocationOnIcon />
-                    </InternalStaticLink>
-                  )
-                  : (
-                    <Button disabled noBorder noPadding transparent title="no position data">
-                      <NotListedLocation />
-                    </Button>
-                  )}
+                {urlToMapPageWithPlanetarySystemModeForMovingEntity ? (
+                  <InternalStaticLink to={urlToMapPageWithPlanetarySystemModeForMovingEntity} title="show moving object on map">
+                    <LocationOnIcon />
+                  </InternalStaticLink>
+                ) : (
+                  <Button disabled noBorder noPadding transparent title="no position data">
+                    <NotListedLocation />
+                  </Button>
+                )}
 
-                {urlToMovingEntitiesPage
-                  ? (
-                    <InternalStaticLink to={urlToMovingEntitiesPage} title="show moving object info">
-                      <InfoIcon />
-                    </InternalStaticLink>
-                  ) : (
-                    <Button disabled noBorder noPadding transparent title="no moving object data">
-                      <SearchOffIcon />
-                    </Button>
-                  )}
+                {urlToMovingEntitiesPage ? (
+                  <InternalStaticLink to={urlToMovingEntitiesPage} title="show moving object info">
+                    <InfoIcon />
+                  </InternalStaticLink>
+                ) : (
+                  <Button disabled noBorder noPadding transparent title="no moving object data">
+                    <SearchOffIcon />
+                  </Button>
+                )}
               </>
             )}
 
             {isLocation(item) && (
               <>
-                {urlToMapPageWithPlanetarySystemModeForLocation
-                  ? (
-                    <InternalStaticLink to={urlToMapPageWithPlanetarySystemModeForLocation} title="show location on map">
-                      <LocationOnIcon />
-                    </InternalStaticLink>
-                  )
-                  : (
-                    <Button disabled noBorder noPadding transparent title="no position data">
-                      <NotListedLocation />
-                    </Button>
-                  )}
+                {urlToMapPageWithPlanetarySystemModeForLocation ? (
+                  <InternalStaticLink to={urlToMapPageWithPlanetarySystemModeForLocation} title="show location on map">
+                    <LocationOnIcon />
+                  </InternalStaticLink>
+                ) : (
+                  <Button disabled noBorder noPadding transparent title="no position data">
+                    <NotListedLocation />
+                  </Button>
+                )}
 
-                {urlToLocationsPageForLocation
-                  ? (
-                    <InternalStaticLink to={urlToLocationsPageForLocation} title="show location info">
-                      <InfoIcon />
-                    </InternalStaticLink>
-                  )
-                  : (
-                    <Button disabled noBorder noPadding transparent title="no location data">
-                      <SearchOffIcon />
-                    </Button>
-                  )}
+                {urlToLocationsPageForLocation ? (
+                  <InternalStaticLink to={urlToLocationsPageForLocation} title="show location info">
+                    <InfoIcon />
+                  </InternalStaticLink>
+                ) : (
+                  <Button disabled noBorder noPadding transparent title="no location data">
+                    <SearchOffIcon />
+                  </Button>
+                )}
               </>
             )}
 
             {isPlanetarySystem(item) && (
               <>
-                {urlToMapPageWithUniverseMode
-                  ? (
-                    <InternalStaticLink to={urlToMapPageWithUniverseMode} title="show planetary system on map">
-                      <LocationOnIcon />
-                    </InternalStaticLink>
-                  )
-                  : (
-                    <Button disabled noBorder noPadding transparent title="no position data">
-                      <NotListedLocation />
-                    </Button>
-                  )}
+                {urlToMapPageWithUniverseMode ? (
+                  <InternalStaticLink to={urlToMapPageWithUniverseMode} title="show planetary system on map">
+                    <LocationOnIcon />
+                  </InternalStaticLink>
+                ) : (
+                  <Button disabled noBorder noPadding transparent title="no position data">
+                    <NotListedLocation />
+                  </Button>
+                )}
 
-                {urlToLocationsPageForPlanetarySystem
-                  ? (
-                    <InternalStaticLink to={urlToLocationsPageForPlanetarySystem} title="show planetary system info">
-                      <InfoIcon />
-                    </InternalStaticLink>
-                  )
-                  : (
-                    <Button disabled noBorder noPadding transparent title="no planetary system data">
-                      <SearchOffIcon />
-                    </Button>
-                  )}
+                {urlToLocationsPageForPlanetarySystem ? (
+                  <InternalStaticLink to={urlToLocationsPageForPlanetarySystem} title="show planetary system info">
+                    <InfoIcon />
+                  </InternalStaticLink>
+                ) : (
+                  <Button disabled noBorder noPadding transparent title="no planetary system data">
+                    <SearchOffIcon />
+                  </Button>
+                )}
               </>
             )}
           </>
