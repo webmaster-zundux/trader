@@ -1,0 +1,1 @@
+import{a as r,q as s,C as c}from"./chunk-ZYFC6VSF-CMH1ev_s.js";import{b as e}from"./ClassNames-CKSStW4U.js";const o="_InternalStaticLink_n06g7_1",l={InternalStaticLink:o},L=r.memo(function({to:t,className:n,children:a,...i}){return s.jsx(c,{to:t,className:e([l.InternalStaticLink,n]),...i,children:a})});export{L as I};

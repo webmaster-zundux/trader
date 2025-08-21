@@ -1,0 +1,1 @@
+import{a,q as e}from"./chunk-ZYFC6VSF-CMH1ev_s.js";const n="_SearchFormAndTableContainer_h2wdx_1",o={SearchFormAndTableContainer:n},c=a.memo(function({children:r}){return e.jsx("div",{className:o.SearchFormAndTableContainer,children:r})});export{c as S};
