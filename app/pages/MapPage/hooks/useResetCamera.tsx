@@ -5,6 +5,9 @@ import type { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { CAMERA_DEFAULT_POSITION, CAMERA_DEFAULT_POSITION_FOR_PLANETARY_SYSTEM, CAMERA_DEFAULT_TARGET, MAP_MODE_PLANETARY_SYSTEM, MAP_MODE_UNIVERSE, type MapMode } from '../Map.const'
 import { calculateBoundingBoxByPositions } from '../map-scene/calculateBoundingBoxByPositions'
 
+const BOUNDING_BOX_MAX_COORINATE_MULTIPLIER_FOR_MAP_UNIVERSE_MODE = 1.5
+const BOUNDING_BOX_MAX_COORINATE_MULTIPLIER_FOR_MAP_PLANETARY_MODE = 2
+
 function adjustCameraPositionToSeeAllSpritesInGroup({
   group,
   camera,
@@ -13,6 +16,7 @@ function adjustCameraPositionToSeeAllSpritesInGroup({
   defaultCameraPos,
   defaultCameraTarget,
   cameraControls,
+  maxCoordinateMultiplier,
 }: {
   group: Group
   camera: PerspectiveCamera
@@ -21,6 +25,7 @@ function adjustCameraPositionToSeeAllSpritesInGroup({
   defaultCameraPos?: Vector3
   defaultCameraTarget?: Vector3
   cameraControls: OrbitControls
+  maxCoordinateMultiplier: number
 }) {
   if (defaultCameraPos || defaultCameraTarget) {
     if (defaultCameraPos) {
@@ -34,7 +39,7 @@ function adjustCameraPositionToSeeAllSpritesInGroup({
   const boundingBox = calculateBoundingBoxByPositions(group)
   const maxCoordinate = Math.max.apply(undefined, new Array<number>().concat(boundingBox.min.toArray(), boundingBox.max.toArray()).map(Math.abs))
   const boxOrigin = cameraTarget || new Vector3()
-  const boxMaxSize = maxCoordinate * 2
+  const boxMaxSize = maxCoordinate * maxCoordinateMultiplier
 
   const fitHeightDistance = boxMaxSize / (2 * Math.atan((Math.PI * camera.fov) / 360))
   const fitWidthDistance = fitHeightDistance / camera.aspect
@@ -91,7 +96,8 @@ export function useResetCamera({
         camera,
         cameraControls,
         defaultCameraPos: CAMERA_DEFAULT_POSITION,
-        defaultCameraTarget: CAMERA_DEFAULT_TARGET
+        defaultCameraTarget: CAMERA_DEFAULT_TARGET,
+        maxCoordinateMultiplier: BOUNDING_BOX_MAX_COORINATE_MULTIPLIER_FOR_MAP_UNIVERSE_MODE,
       })
     } else if (mode === MAP_MODE_PLANETARY_SYSTEM) {
       adjustCameraPositionToSeeAllSpritesInGroup({
@@ -100,7 +106,8 @@ export function useResetCamera({
         cameraControls,
         cameraTarget: CAMERA_DEFAULT_TARGET,
         defaultCameraPos: CAMERA_DEFAULT_POSITION_FOR_PLANETARY_SYSTEM,
-        defaultCameraTarget: CAMERA_DEFAULT_TARGET
+        defaultCameraTarget: CAMERA_DEFAULT_TARGET,
+        maxCoordinateMultiplier: BOUNDING_BOX_MAX_COORINATE_MULTIPLIER_FOR_MAP_PLANETARY_MODE,
       })
     }
   }, [cameraRef, cameraControlsRef, spritesGroupRef])
