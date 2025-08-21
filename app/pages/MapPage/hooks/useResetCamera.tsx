@@ -99,6 +99,8 @@ export function useResetCamera({
         defaultCameraTarget: CAMERA_DEFAULT_TARGET,
         maxCoordinateMultiplier: BOUNDING_BOX_MAX_COORINATE_MULTIPLIER_FOR_MAP_UNIVERSE_MODE,
       })
+
+      cameraControls.screenSpacePanning = true
     } else if (mode === MAP_MODE_PLANETARY_SYSTEM) {
       adjustCameraPositionToSeeAllSpritesInGroup({
         group: spritesGroup,
@@ -109,6 +111,8 @@ export function useResetCamera({
         defaultCameraTarget: CAMERA_DEFAULT_TARGET,
         maxCoordinateMultiplier: BOUNDING_BOX_MAX_COORINATE_MULTIPLIER_FOR_MAP_PLANETARY_MODE,
       })
+
+      cameraControls.screenSpacePanning = false
     }
   }, [cameraRef, cameraControlsRef, spritesGroupRef])
 

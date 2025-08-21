@@ -32,5 +32,7 @@ export function initCameraControls(
   controls.minDistance = minDistance
   controls.maxDistance = maxDistance
 
+  controls.screenSpacePanning = true
+
   return controls
 }

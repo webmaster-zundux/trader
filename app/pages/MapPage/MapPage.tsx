@@ -120,7 +120,6 @@ export const MapPage = memo(function MapPage() {
               items={searchResults}
               noItemsLabel="no results"
               isLoading={isLoading}
-
               searchFieldValue={searchFieldValue}
             >
               <SearchResultsTableBody
