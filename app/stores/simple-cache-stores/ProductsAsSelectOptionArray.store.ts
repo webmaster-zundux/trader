@@ -80,7 +80,7 @@ function createProductTree({
 }): TreeNode[] {
   const productTree: TreeNode[] = []
 
-  const products = getMapValuesAsArray(productsMap) as Product[]
+  const products = getMapValuesAsArray(productsMap)
 
   products.forEach(function forEach(product) {
     const productAsOptionUuid = product.uuid

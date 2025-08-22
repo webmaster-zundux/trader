@@ -78,7 +78,7 @@ function createProductTypeTree({
 }): TreeNode[] {
   const tree: TreeNode[] = []
 
-  const items = getMapValuesAsArray(productTypesMap) as ProductType[]
+  const items = getMapValuesAsArray(productTypesMap)
 
   items.forEach(function forEach(item) {
     const uuid = item.uuid

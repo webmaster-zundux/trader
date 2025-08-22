@@ -81,7 +81,7 @@ function createPlanetarySystemTree({
 }): TreeNode[] {
   const planetarySystemTree: TreeNode[] = []
 
-  const planetarySystems = getMapValuesAsArray(planetarySystemsMap) as PlanetarySystem[]
+  const planetarySystems = getMapValuesAsArray(planetarySystemsMap)
 
   planetarySystems.forEach(function forEach(planetarySystem) {
     const planetarySystemAsOptionUuid = planetarySystem.uuid

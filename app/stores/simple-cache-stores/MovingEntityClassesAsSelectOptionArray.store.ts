@@ -78,7 +78,7 @@ function createMovingEntityClassTree({
 }): TreeNode[] {
   const tree: TreeNode[] = []
 
-  const items = getMapValuesAsArray(movingEntitiesMap) as MovingEntityClass[]
+  const items = getMapValuesAsArray(movingEntitiesMap)
 
   items.forEach(function forEach(item) {
     const uuid = item.uuid

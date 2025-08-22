@@ -96,8 +96,8 @@ function createLocationTree({
 }): TreeNode[] {
   const locationTree: TreeNode[] = []
 
-  const planetarySystems = getMapValuesAsArray(planetarySystemsMap) as PlanetarySystem[]
-  const locations = getMapValuesAsArray(locationsMap) as Location[]
+  const planetarySystems = getMapValuesAsArray(planetarySystemsMap)
+  const locations = getMapValuesAsArray(locationsMap)
 
   planetarySystems.forEach(function forEach(planetarySystem) {
     const planetarySystemAsOptionUuid = planetarySystem ? planetarySystem.uuid : undefined

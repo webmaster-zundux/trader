@@ -81,7 +81,7 @@ function createLocationTypeTree({
 }): TreeNode[] {
   const locationTypeTree: TreeNode[] = []
 
-  const locationTypes = getMapValuesAsArray(locationTypesMap) as LocationType[]
+  const locationTypes = getMapValuesAsArray(locationTypesMap)
 
   locationTypes.forEach(function forEach(locationType) {
     const locationTypeAsOptionUuid = locationType.uuid

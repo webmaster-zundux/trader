@@ -78,7 +78,7 @@ function createProductRarityTree({
 }): TreeNode[] {
   const tree: TreeNode[] = []
 
-  const items = getMapValuesAsArray(productRaritiesMap) as ProductRarity[]
+  const items = getMapValuesAsArray(productRaritiesMap)
 
   items.forEach(function forEach(item) {
     const uuid = item.uuid

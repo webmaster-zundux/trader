@@ -170,8 +170,8 @@ function createLocationWithFullNameMap({
 }): Map<Entity['uuid'], string> {
   const locationWithFullNameMap = new Map<Entity['uuid'], string>()
 
-  const planetarySystems = getMapValuesAsArray(planetarySystemsMap) as PlanetarySystem[]
-  const locations = getMapValuesAsArray(locationsMap) as Location[]
+  const planetarySystems = getMapValuesAsArray(planetarySystemsMap)
+  const locations = getMapValuesAsArray(locationsMap)
 
   planetarySystems.forEach(function forEach(planetarySystem) {
     const planetarySystemAsOptionUuid = planetarySystem.uuid

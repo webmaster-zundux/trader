@@ -181,8 +181,8 @@ function createMovingEntityWithFullNameMap({
 }): Map<Entity['uuid'], string> {
   const movingEntityWithFullNameMap = new Map<Entity['uuid'], string>()
 
-  const planetarySystems = getMapValuesAsArray(planetarySystemsMap) as PlanetarySystem[]
-  const movingEntities = getMapValuesAsArray(movingEntitiesMap) as MovingEntity[]
+  const planetarySystems = getMapValuesAsArray(planetarySystemsMap)
+  const movingEntities = getMapValuesAsArray(movingEntitiesMap)
 
   planetarySystems.forEach(function forEach(planetarySystem) {
     const planetarySystemAsOptionUuid = planetarySystem.uuid

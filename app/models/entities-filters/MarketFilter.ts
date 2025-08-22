@@ -9,4 +9,6 @@ export type MarketFilter = {
 
   minQuantity?: number
   maxQuantity?: number
+
+  minProfit?: number
 }

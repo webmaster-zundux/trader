@@ -103,8 +103,8 @@ function createMovingEntityTree({
 }): TreeNode[] {
   const movingEntityTree: TreeNode[] = []
 
-  const planetarySystems = getMapValuesAsArray(planetarySystemsMap) as PlanetarySystem[]
-  const movingEntities = getMapValuesAsArray(movingEntitiesMap) as MovingEntity[]
+  const planetarySystems = getMapValuesAsArray(planetarySystemsMap)
+  const movingEntities = getMapValuesAsArray(movingEntitiesMap)
 
   planetarySystems.forEach(function forEach(planetarySystem) {
     const planetarySystemAsOptionUuid = planetarySystem ? planetarySystem.uuid : undefined

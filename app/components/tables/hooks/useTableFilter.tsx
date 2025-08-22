@@ -7,7 +7,7 @@ export type FilterValue = object
 export type FieldFilterPredicate<
   T,
   F extends FilterValue = FilterValue
-> = (item: T, filterValue: F) => boolean
+> = (item: T, filterValue: F, items: T[]) => boolean
 
 export type FieldFilterPredicates<
   T,
@@ -51,7 +51,8 @@ export function isItemPassedFilterPredicate<
 >(
   item: T,
   itemFilterFieldsPredicates: FieldFilterPredicates<T, F>,
-  itemsFilterValue: F
+  itemsFilterValue: F,
+  items: T[]
 ): boolean {
   let result = true
 
@@ -60,7 +61,7 @@ export function isItemPassedFilterPredicate<
       Boolean(itemsFilterValue[parameterName])
       && (typeof itemFilterFieldsPredicates[parameterName] === 'function')
     ) {
-      result = itemFilterFieldsPredicates[parameterName](item, itemsFilterValue)
+      result = itemFilterFieldsPredicates[parameterName](item, itemsFilterValue, items)
 
       if (!result) {
         return false
@@ -83,7 +84,7 @@ export function useTableFilter<
     return getFilterPredicatesFromFilterFormFields(filterFormFields)
   }, [filterFormFields])
 
-  const itemFilterPredicate = useCallback(function itemFilterPredicate(item: T): boolean {
+  const itemFilterPredicate = useCallback(function itemFilterPredicate(item: T, _index: number, items: T[]): boolean {
     if (!filterValue || !filterFieldsPredicates) {
       return true
     }
@@ -91,7 +92,8 @@ export function useTableFilter<
     return isItemPassedFilterPredicate(
       item,
       filterFieldsPredicates,
-      filterValue
+      filterValue,
+      items
     )
   }, [filterValue, filterFieldsPredicates])
 
