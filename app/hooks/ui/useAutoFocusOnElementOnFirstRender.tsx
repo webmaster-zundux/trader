@@ -50,7 +50,6 @@ export function useAutoFocusOnElementOnFirstRender<
     timeoutId = window.setTimeout(function focusOnTargetElementTimeoutHandler() {
       autoFocusTargetElement.focus()
       setElementWasAutoFocused(true)
-      console.log('focus', autoFocusTargetElement)
     }, autoFocusDelay)
 
     return function checkVisibilityOfTargetElementEffectCleanup() {

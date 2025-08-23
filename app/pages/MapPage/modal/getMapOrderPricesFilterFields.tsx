@@ -44,9 +44,8 @@ export const getMapOrderPricesFilterFields = ({
     },
     {
       type: 'row-container',
-      label: 'price',
+      label: 'quantity',
       labelForFieldName: 'minQuantity',
-      // delimiter: ' - ',
       fields: [
         {
           name: 'minQuantity',
@@ -98,7 +97,6 @@ export const getMapOrderPricesFilterFields = ({
       type: 'row-container',
       label: 'price',
       labelForFieldName: 'minPrice',
-      // delimiter: ' - ',
       fields: [
         {
           name: 'minPrice',

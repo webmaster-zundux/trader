@@ -11,6 +11,10 @@ import { useResetFormFieldsToDefaultValues } from '../../../components/forms/hoo
 import { useSubmitForm } from '../../../components/forms/hooks/useSubmitForm'
 import styles from './MapOrderPricesFilterDialog.module.css'
 import { getMapOrderPricesFilterFields } from './getMapOrderPricesFilterFields'
+import { useProductsStore } from '~/stores/entity-stores/Products.store'
+import { useLoadingPersistStorages } from '~/stores/hooks/useLoadingPersistStorages'
+import { useLocationsStore } from '~/stores/entity-stores/Locations.store'
+import { usePlanetarySystemsStore } from '~/stores/entity-stores/PlanetarySystems.store'
 
 const validateFilterFormData = (
   filterData: MapOrderPricesFilter
@@ -90,12 +94,14 @@ export const MapOrderPricesFilterDialog = memo(function MapOrderPricesFilterDial
   onHide,
 }: MapOrderPricesFilterDialogProps) {
   const formRef = useRef<HTMLFormElement>(null)
+  const isLoadingPersistStorages = useLoadingPersistStorages([useLocationsStore, usePlanetarySystemsStore, useProductsStore])
   const isLoadingSimpleCacheStorages = useLoadingSimpleCacheStorages([useLocationsAsSelectOptionArrayStore, useProductsAsSelectOptionArrayStore])
   const locationsAsSelectOptions = useLocationsAsSelectOptionArrayStore(state => state.items)
   const productsAsSelectOptions = useProductsAsSelectOptionArrayStore(state => state.items)
+  const isLoading = isLoadingPersistStorages || isLoadingSimpleCacheStorages
 
   const filterFields = useMemo(function filterFieldsMemo() {
-    if (isLoadingSimpleCacheStorages) {
+    if (isLoading) {
       return getMapOrderPricesFilterFields({
         locationsAsSelectOptions: [],
         productsAsSelectOptions: [],
@@ -106,7 +112,7 @@ export const MapOrderPricesFilterDialog = memo(function MapOrderPricesFilterDial
       locationsAsSelectOptions,
       productsAsSelectOptions
     })
-  }, [isLoadingSimpleCacheStorages, locationsAsSelectOptions, productsAsSelectOptions])
+  }, [isLoading, locationsAsSelectOptions, productsAsSelectOptions])
 
   const handleHideFilterOrderDialog = useCallback(function handleHideFilterOrderDialog() {
     onHide()
