@@ -3,3 +3,56 @@
   table-layout: auto;
   width: 100%;
 }
+
+.Row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+}
+
+.Row>div {
+  display: flex;
+}
+
+.Row > div:not(:last-child)::after {
+  display: flex;
+  content: ' - ';
+  padding-left: 0.5em;
+  margin-bottom: 0.5em;
+  align-items: center;
+}
+
+.FieldsContainer {
+  display: table;
+  table-layout: auto;
+  width: 100%;
+  max-width: 30em;
+}
+
+.FieldsContainer div:has(>label) {
+  align-items: baseline;
+}
+
+.FieldsContainer div>label {
+  padding-right: 0.5em !important;
+}
+
+.FieldsContainer>div>label {
+  padding-right: 0.5em !important;
+}
+
+.FieldsContainer div>label:has(+div) {
+  vertical-align: baseline !important;
+}
+
+.FieldsContainer>div>label::first-letter {
+  text-transform: capitalize !important;
+}
+
+.FieldsContainer div:has(>label) label::first-letter {
+  text-transform: lowercase;
+}
+
+.FieldsContainer:not(> div) div:has(>label) {
+  display: flex;
+}

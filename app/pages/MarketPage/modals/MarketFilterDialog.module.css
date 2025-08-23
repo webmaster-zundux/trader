@@ -37,7 +37,7 @@
   text-transform: capitalize;
 }
 
-.Row {
+/* .Row {
   display: flex;
   align-items: baseline;
   gap: 0.5em;
@@ -45,7 +45,7 @@
 
 .Row>div {
   display: flex;
-}
+} */
 
 .Column {
   display: flex;
@@ -53,7 +53,7 @@
   gap: 0.5em;
 }
 
-.FieldsContainer {
+/* .FieldsContainer {
   display: table;
   table-layout: auto;
   width: 100%;
@@ -86,7 +86,7 @@
 
 .FieldsContainer:not(> div) div:has(>label) {
   display: flex;
-}
+} */
 
 .ActionButtons {
   display: flex;

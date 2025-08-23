@@ -1,10 +1,10 @@
 import type { RefObject } from 'react'
 import { useEffect } from 'react'
-import type { FormField } from '../FormFieldWithLabel.const'
+import { getFlatFormFields, type FormField, type FormFieldsRowContainer } from '../FormFieldWithLabel.const'
 
 export const useResetFormFieldsToDefaultValues = <T extends object = object>(
   formRef: RefObject<HTMLFormElement | null>,
-  formFields: FormField<T>[],
+  formFields: FormField<T>[] | FormFieldsRowContainer<T>[],
   onReset?: () => void
 ) => {
   useEffect(function addEventListenerHandleResetFormToDefaultFieldValuesEffect() {
@@ -21,7 +21,9 @@ export const useResetFormFieldsToDefaultValues = <T extends object = object>(
         return
       }
 
-      formFields.forEach(({ name, defaultValue }) => {
+      const flatFormFields = getFlatFormFields(formFields)
+
+      flatFormFields.forEach(({ name, defaultValue }) => {
         const fieldElement = form.querySelector(`[name="${name}"]`) as unknown as FormField<T>
 
         if (!fieldElement) {

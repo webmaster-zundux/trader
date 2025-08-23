@@ -4,6 +4,7 @@
 }
 
 .InternalStaticLink:hover svg,
+.InternalStaticLink:focus svg,
 .InternalStaticLink:focus-visible svg {
   fill: var(--svg-icon-hover-fill);
 }

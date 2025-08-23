@@ -1,22 +1,22 @@
 import type { PropsWithChildren } from 'react'
 import { memo } from 'react'
-import styles from './FormFieldContainer.module.css'
+import styles from './FormFieldWrapper.module.css'
 
-interface FormFieldContainerProps extends PropsWithChildren {
+interface FormFieldWrapperProps extends PropsWithChildren {
   name?: string
   label?: string
   hideFieldLabel?: boolean
   required?: boolean
 }
-export const FormFieldContainer = memo(function FormFieldContainer({
+export const FormFieldWrapper = memo(function FormFieldWrapper({
   name,
   label,
   hideFieldLabel,
   required,
   children,
-}: FormFieldContainerProps) {
+}: FormFieldWrapperProps) {
   return (
-    <div className={styles.FieldContainer}>
+    <div className={styles.FormFieldWrapper}>
       {!hideFieldLabel && !!label && (
         <label
           htmlFor={name}

@@ -17,9 +17,7 @@ type CheckboxGroupFieldProps = {
   defaultValue?: Entity['uuid'][]
   value?: Entity['uuid'][]
   autoFocusOnFirstRender?: boolean
-} & Pick<SelectHTMLAttributes<HTMLSelectElement>,
-'id' | 'name' | 'required' | 'onChange'
-| 'disabled'>
+} & Pick<SelectHTMLAttributes<HTMLSelectElement>, 'id' | 'name' | 'required' | 'onChange' | 'disabled'>
 export const CheckboxGroupField = memo(function CheckboxGroupField({
   items,
   noItemsLabel = 'no items',

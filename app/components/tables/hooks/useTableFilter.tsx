@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react'
-import type { FormField } from '~/components/forms/FormFieldWithLabel.const'
+import { isFormFieldRowContainer, type FormField, type FormFieldsRowContainer } from '~/components/forms/FormFieldWithLabel.const'
 import type { Entity } from '../../../models/Entity'
 
 export type FilterValue = object
@@ -19,10 +19,14 @@ export type FieldFilterPredicates<
 export type FilterField<
   T,
   F extends FilterValue = FilterValue
-> = FormField<F> & {
-  filterPredicate?: FieldFilterPredicate<T, F>
-  name: Extract<keyof F, string>
-}
+> =
+  | (FormField<F> & {
+    filterPredicate?: FieldFilterPredicate<T, F>
+    name: Extract<keyof F, string>
+  })
+  | (FormFieldsRowContainer<F> & {
+    fields: FilterField<T, F>[]
+  })
 
 export function getFilterPredicatesFromFilterFormFields<
   T extends Entity = Entity,
@@ -36,9 +40,23 @@ export function getFilterPredicatesFromFilterFormFields<
     [key: string]: FieldFilterPredicate<T, F>
   } = {}
 
-  filterFields.forEach(({ name, filterPredicate }) => {
-    if (typeof filterPredicate === 'function') {
-      fieldPredicates[name] = filterPredicate
+  filterFields.forEach((filterField) => {
+    if (isFormFieldRowContainer(filterField)) {
+      const { fields } = filterField
+
+      if (fields instanceof Array) {
+        const subFields = getFilterPredicatesFromFilterFormFields(fields)
+
+        Object.keys(subFields).forEach((subFieldName) => {
+          fieldPredicates[subFieldName] = subFields[subFieldName]
+        })
+      }
+    } else {
+      const { name, filterPredicate } = filterField
+
+      if (typeof filterPredicate === 'function') {
+        fieldPredicates[name] = filterPredicate
+      }
     }
   })
 

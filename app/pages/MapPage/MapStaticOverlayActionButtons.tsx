@@ -6,6 +6,9 @@ import { Package2Icon } from '~/components/icons/Package2Icon'
 import { RouteIcon } from '~/components/icons/RouteIcon'
 import { useIsVisible } from '~/hooks/ui/useIsVisible'
 import { cn } from '~/utils/ui/ClassNames'
+import { MapOrderPricesFilterDialog } from './modal/MapOrderPricesFilterDialog'
+import { useMapOrderPricesTableFilter } from './useMapOrderPricesTableFilter'
+import { useSearchParams } from '~/hooks/useSearchParams'
 
 interface MapStaticOverlayActionButtonsProps {
   mapMode: MapMode
@@ -13,18 +16,25 @@ interface MapStaticOverlayActionButtonsProps {
 export const MapStaticOverlayActionButtons = memo(function MapStaticOverlayActionButtons({
   mapMode,
 }: MapStaticOverlayActionButtonsProps) {
+  const { urlSearchParams, setUrlSearchParams } = useSearchParams()
+
   const {
-    isVisible: isVisibleProductSearch,
-    show: showProductSearch,
-    hide: hideProductSearch,
-    toggle: toggleProductSearch,
+    mapOrderPricesFilterValue,
+    setMapOrderPricesFilterValueToUrlSearchParams,
+  } = useMapOrderPricesTableFilter({ urlSearchParams, setUrlSearchParams })
+
+  const {
+    isVisible: isVisibleMapOrderPricesFilterDialog,
+    show: showMapOrderPricesFilterDialog,
+    hide: hideMapOrderPricesFilterDialog,
+    toggle: toggleVisibilityOfMapOrderPricesFilterDialog,
   } = useIsVisible(false)
 
   const {
     isVisible: isVisibleRoutePlanning,
     show: showRoutePlanning,
     hide: hideRoutePlanning,
-    toggle: toggleRoutePlanning,
+    toggle: toggleVisibilityOfRoutePlanningDialog,
   } = useIsVisible(false)
 
   return (
@@ -40,7 +50,7 @@ export const MapStaticOverlayActionButtons = memo(function MapStaticOverlayActio
                   noBorder
                   transparent
                   title="show a product prices"
-                  onClick={toggleProductSearch}
+                  onClick={toggleVisibilityOfMapOrderPricesFilterDialog}
                 >
                   <Package2Icon />
                   {/* <span>
@@ -56,7 +66,7 @@ export const MapStaticOverlayActionButtons = memo(function MapStaticOverlayActio
                   noBorder
                   transparent
                   title="route planning"
-                  onClick={toggleRoutePlanning}
+                  onClick={toggleVisibilityOfRoutePlanningDialog}
                 >
                   <RouteIcon />
                   {/* <span>
@@ -68,9 +78,14 @@ export const MapStaticOverlayActionButtons = memo(function MapStaticOverlayActio
           </div>
 
           <div className={styles.ActionPanelsContainer}>
-            {isVisibleProductSearch && (
+            {isVisibleMapOrderPricesFilterDialog && (
               <div className={cn([styles.ActionPanel, styles.ProductSearch])}>
-                product search form and results
+                {/* product search form and results */}
+                <MapOrderPricesFilterDialog
+                  filterValue={mapOrderPricesFilterValue}
+                  onSetFilterValue={setMapOrderPricesFilterValueToUrlSearchParams}
+                  onHide={hideMapOrderPricesFilterDialog}
+                />
               </div>
             )}
 

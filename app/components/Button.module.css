@@ -133,6 +133,7 @@
 }
 
 .Button:hover:not(:disabled),
+.Button:focus:not(:disabled),
 .Button:focus-visible:not(:disabled) {
   background-color: light-dark(#bdbdbd, #5c5c5c);
   border-color: #252525;
@@ -148,12 +149,14 @@
 }
 
 .Primary:hover:not(:disabled),
+.Primary:focus:not(:disabled),
 .Primary:focus-visible:not(:disabled) {
   background-color: var(--primary-hover-color);
   color: var(--primary-hover-text-color);
 }
 
 .Transparent:hover:not(:disabled),
+.Transparent:focus:not(:disabled),
 .Transparent:focus-visible:not(:disabled) {
   background-color: transparent;
   border-color: #252525;
@@ -164,6 +167,7 @@
 }
 
 .Transparent:hover:not(:disabled) svg,
+.Transparent:focus:not(:disabled) svg,
 .Transparent:focus-visible:not(:disabled) svg {
   fill: var(--svg-icon-hover-fill);
 }
@@ -179,6 +183,7 @@
 }
 
 .AsLink:hover,
+.AsLink:focus,
 .AsLink:focus-visible {
   text-decoration-line: none;
 }

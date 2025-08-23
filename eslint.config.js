@@ -57,6 +57,7 @@ export default tseslint.config(
         { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] }
       ],
       '@stylistic/multiline-ternary': ['error', 'always-multiline', { ignoreJSX: true }],
+      '@stylistic/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before', '|': 'before', '&&': 'before', '||': 'before' } }],
       '@typescript-eslint/consistent-type-imports': 'error',
       'react-refresh/only-export-components': ['warn',
         {

@@ -1,4 +1,4 @@
-.FieldContainer {
+.FormFieldWrapper {
   display: table-row;
   vertical-align: baseline;
   flex-grow: 1;
@@ -18,12 +18,12 @@
   text-transform: capitalize;
 }
 
-.FieldContainer .FieldLabel:has(+ textarea) {
+.FormFieldWrapper .FieldLabel:has(+ textarea) {
   vertical-align: middle;
   padding-bottom: 0.5em;
 }
 
-.FieldContainer .FieldLabel:has(+ div) {
+.FormFieldWrapper .FieldLabel:has(+ div) {
   vertical-align: middle;
   padding-bottom: 0.2em;
 }

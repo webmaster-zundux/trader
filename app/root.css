@@ -148,6 +148,7 @@ button:active {
   border-color: var(--button-active-border-color);
 }
 
+button:focus,
 button:focus-visible {
   background-color: var(--button-focus-visible-background-color);
   border-color: var(--button-focus-visible-border-color);

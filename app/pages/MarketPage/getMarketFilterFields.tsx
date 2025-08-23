@@ -23,87 +23,102 @@ export const getMarketFilterFields = (
       },
     },
     {
-      name: 'minQuantity',
-      label: 'min',
-      type: 'number',
-      min: 0,
-      max: Number.MAX_SAFE_INTEGER,
-      filterPredicate: (item, filterValue) => {
-        const minQuantity = filterValue.minQuantity
+      type: 'row-container',
+      label: 'quantity',
+      labelForFieldName: 'minQuantity',
+      // delimiter: ' - ',
+      fields: [
+        {
+          name: 'minQuantity',
+          label: 'min',
+          type: 'number',
+          min: 0,
+          max: Number.MAX_SAFE_INTEGER,
+          filterPredicate: (item, filterValue) => {
+            const minQuantity = filterValue.minQuantity
 
-        if (minQuantity === undefined) {
-          return true
-        }
+            if (minQuantity === undefined) {
+              return true
+            }
 
-        if (isSellOrder(item)) {
-          return item.availableQuantity >= minQuantity
-        } else if (isBuyOrder(item)) {
-          return item.desirableQuantity >= minQuantity
-        }
+            if (isSellOrder(item)) {
+              return item.availableQuantity >= minQuantity
+            } else if (isBuyOrder(item)) {
+              return item.desirableQuantity >= minQuantity
+            }
 
-        return true
-      },
+            return true
+          },
+        },
+        {
+          name: 'maxQuantity',
+          label: 'max',
+          type: 'number',
+          min: 0,
+          max: Number.MAX_SAFE_INTEGER,
+          filterPredicate: (item, filterValue) => {
+            const maxQuantity = filterValue.maxQuantity
+
+            if (maxQuantity === undefined) {
+              return true
+            }
+
+            if (isSellOrder(item)) {
+              return item.availableQuantity <= maxQuantity
+            } else if (isBuyOrder(item)) {
+              return item.desirableQuantity <= maxQuantity
+            }
+
+            return true
+          },
+        },
+      ],
     },
     {
-      name: 'maxQuantity',
-      label: 'max',
-      type: 'number',
-      min: 0,
-      max: Number.MAX_SAFE_INTEGER,
-      filterPredicate: (item, filterValue) => {
-        const maxQuantity = filterValue.maxQuantity
+      type: 'row-container',
+      label: 'price',
+      labelForFieldName: 'minPrice',
+      // delimiter: ' - ',
+      fields: [
+        {
+          name: 'minPrice',
+          label: 'min',
+          type: 'number',
+          valueType: 'float',
+          pattern: '[0-9]+[.][0-9]{2}',
+          min: 0,
+          max: Number.MAX_SAFE_INTEGER,
+          step: '0.01',
+          filterPredicate: (item, filterValue) => {
+            const minPrice = filterValue.minPrice
 
-        if (maxQuantity === undefined) {
-          return true
-        }
+            if (minPrice === undefined) {
+              return true
+            }
 
-        if (isSellOrder(item)) {
-          return item.availableQuantity <= maxQuantity
-        } else if (isBuyOrder(item)) {
-          return item.desirableQuantity <= maxQuantity
-        }
+            return item.price >= minPrice
+          },
+        },
+        {
+          name: 'maxPrice',
+          label: 'max',
+          type: 'number',
+          valueType: 'float',
+          pattern: '[0-9]+[.][0-9]{2}',
+          min: 0,
+          max: Number.MAX_SAFE_INTEGER,
+          step: '0.01',
+          filterPredicate: (item, filterValue) => {
+            const maxPrice = filterValue.maxPrice
 
-        return true
-      },
-    },
+            if (maxPrice === undefined) {
+              return true
+            }
 
-    {
-      name: 'minPrice',
-      label: 'min',
-      type: 'number',
-      valueType: 'float',
-      pattern: '[0-9]+[.][0-9]{2}',
-      min: 0,
-      max: Number.MAX_SAFE_INTEGER,
-      step: '0.01',
-      filterPredicate: (item, filterValue) => {
-        const minPrice = filterValue.minPrice
-
-        if (minPrice === undefined) {
-          return true
-        }
-
-        return item.price >= minPrice
-      },
-    },
-    {
-      name: 'maxPrice',
-      label: 'max',
-      type: 'number',
-      valueType: 'float',
-      pattern: '[0-9]+[.][0-9]{2}',
-      min: 0,
-      max: Number.MAX_SAFE_INTEGER,
-      step: '0.01',
-      filterPredicate: (item, filterValue) => {
-        const maxPrice = filterValue.maxPrice
-
-        if (maxPrice === undefined) {
-          return true
-        }
-
-        return item.price <= maxPrice
-      },
+            return item.price <= maxPrice
+          },
+        },
+      ],
     },
   ]
 }

@@ -2,7 +2,7 @@ import type React from 'react'
 import type { FormEvent, RefObject } from 'react'
 import { useCallback, useEffect, useState } from 'react'
 import type { Promisefy } from '../../../models/utils/utility-types'
-import type { FormField } from '../FormFieldWithLabel.const'
+import { getFlatFormFields, type FormField, type FormFieldsRowContainer } from '../FormFieldWithLabel.const'
 
 export const getFormData = <T extends object = object>(
   formRef: RefObject<HTMLFormElement | null>
@@ -26,7 +26,7 @@ interface UseSubmitFormProps<
 > {
   formRef: RefObject<HTMLFormElement | null>
   onSubmit: (itemData: T) => Promisefy<string | (() => React.JSX.Element) | undefined | void>
-  formFields: FormField<T>[]
+  formFields: FormField<T>[] | FormFieldsRowContainer<T>[]
   validateFormData?: (item: P) => string | (() => React.JSX.Element) | undefined
   showErrorWhenAllVisibleFieldsEmpty?: boolean
 }
@@ -57,7 +57,9 @@ export const useSubmitForm = <
 
     const itemData: P = {} as P
 
-    for (const formField of formFields) {
+    const flatFormFields = getFlatFormFields(formFields)
+
+    for (const formField of flatFormFields) {
       const { name, type, valueType } = formField
 
       try {
@@ -122,7 +124,7 @@ export const useSubmitForm = <
     if (showErrorWhenAllVisibleFieldsEmpty) {
       const visibleFieldsData: string[] = []
 
-      formFields.forEach(({ name, type }) => {
+      flatFormFields.forEach(({ name, type }) => {
         if (
           (type !== 'hidden')
           && (itemData[name as Extract<keyof T, 'string'>])

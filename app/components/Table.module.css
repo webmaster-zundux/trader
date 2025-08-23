@@ -369,6 +369,7 @@ tbody:has(.Cell.CellCheckbox input:checked) .Row:has(.Cell.CellCheckbox input:no
 }
 
 .CellValueLabelAsLink:hover button,
+.CellValueLabelAsLink:focus button,
 .CellValueLabelAsLink:focus-visible button {
   text-decoration-line: none !important;
 }
@@ -404,6 +405,7 @@ tbody:has(.Cell.CellCheckbox input:checked) .Row:has(.Cell.CellCheckbox input:no
 }
 
 .CellActionButtonsGroup a:hover svg,
+.CellActionButtonsGroup a:focus svg,
 .CellActionButtonsGroup a:focus-visible svg,
 .Row:hover .CellActionButtonsGroup button svg,
 .Row:hover .CellActionButtonsGroup a svg {
@@ -411,8 +413,10 @@ tbody:has(.Cell.CellCheckbox input:checked) .Row:has(.Cell.CellCheckbox input:no
 }
 
 .CellActionButtonsGroup button:enabled:hover svg,
+.CellActionButtonsGroup button:enabled:focus svg,
 .CellActionButtonsGroup button:enabled:focus-visible svg,
 .CellActionButtonsGroup a[href]:hover svg,
+.CellActionButtonsGroup a[href]:focus svg,
 .CellActionButtonsGroup a[href]:focus-visible svg {
   opacity: 1;
 }

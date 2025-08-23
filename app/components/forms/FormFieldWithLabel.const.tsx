@@ -13,6 +13,17 @@ export type FormFieldBase<
   InputHTMLAttributes<HTMLInputElement>, 'required' | 'defaultValue' | 'value'
 >
 
+export type FormFieldsRowContainer<
+  T,
+  K extends Extract<keyof T, string> = Extract<keyof T, string>
+> = {
+  type: 'row-container'
+  label?: string
+  labelForFieldName?: K
+  // delimiter?: string
+  fields: FormField<T>[]
+}
+
 export type FormFieldHidden<T> = FormFieldBase<T> & {
   type: 'hidden'
 }
@@ -66,14 +77,36 @@ export type FormFieldFileInput<T> = FormFieldBase<T> & {
   valueType?: 'string'
 } & Pick<InputHTMLAttributes<HTMLInputElement>, 'accept'>
 
-export type FormField<T>
-  = | FormFieldHidden<T>
-    | FormFieldTextInput<T>
-    | FormFieldMultilineTextInput<T>
-    | FormFieldNumberInput<T>
-    | FormFieldSelect<T>
-    | FormFieldCheckboxGroup<T>
-    | FormFieldFileInput<T>
+export type FormField<T> =
+  | FormFieldHidden<T>
+  | FormFieldTextInput<T>
+  | FormFieldMultilineTextInput<T>
+  | FormFieldNumberInput<T>
+  | FormFieldSelect<T>
+  | FormFieldCheckboxGroup<T>
+  | FormFieldFileInput<T>
+
+export function isFormFieldRowContainer<T>(value: FormField<T> | FormFieldsRowContainer<T>): value is FormFieldsRowContainer<T> {
+  return ((value as FormFieldsRowContainer<T>)?.type === 'row-container')
+}
+
+export function getFlatFormFields<T>(
+  formFields: FormField<T>[] | FormFieldsRowContainer<T>[]
+) {
+  const flatFormFields = new Array<FormField<T>>()
+
+  for (const formField of formFields) {
+    if (isFormFieldRowContainer(formField)) {
+      for (const subFormField of formField.fields) {
+        flatFormFields.push(subFormField)
+      }
+    } else {
+      flatFormFields.push(formField)
+    }
+  }
+
+  return flatFormFields
+}
 
 export type FormFieldNotHidden<T> = Exclude<FormField<T>, FormFieldHidden<T>>
 
@@ -81,7 +114,7 @@ export function isFormFieldHidden<T>(value: FormField<T>): value is FormFieldHid
   return ((value as FormField<T>)?.type === 'hidden')
 }
 
-export function isNotFormFieldHidden<T>(value: FormField<T>): value is FormFieldHidden<T> {
+export function isNotFormFieldHidden<T>(value: FormField<T>): value is FormFieldNotHidden<T> {
   return ((value as FormField<T>)?.type !== 'hidden')
 }
 

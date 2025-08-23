@@ -34,8 +34,11 @@
 
 .ActionPanel {
   display: flex;
-  background-color: var(--background-color);
+  flex-direction: column;
+  gap: 1em;
+  
+  /* background-color: var(--background-color);
   border: 0.1em solid var(--panel-border-color);
   border-radius: var(--border-radius);
-  box-shadow: var(--floating-element-box-shadow);
+  box-shadow: var(--floating-element-box-shadow); */
 }

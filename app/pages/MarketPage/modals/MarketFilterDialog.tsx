@@ -1,12 +1,11 @@
 import type React from 'react'
 import { memo, useCallback, useMemo, useRef } from 'react'
+import { FormFieldList } from '~/components/forms/FormFieldList'
 import type { MarketFilter } from '~/models/entities-filters/MarketFilter'
 import { useLoadingSimpleCacheStorages } from '~/stores/hooks/useLoadingSimpleCacheStorages'
 import { useLocationsAsSelectOptionArrayStore } from '~/stores/simple-cache-stores/LocationsAsSelectOptionArray.store'
 import { Button } from '../../../components/Button'
 import { Dialog } from '../../../components/dialogs/Dialog'
-import { FormFieldContainer } from '../../../components/forms/FormFieldContainer'
-import { FormFieldWithLabel } from '../../../components/forms/FormFieldWithLabel'
 import { useResetFormFieldsToDefaultValues } from '../../../components/forms/hooks/useResetFormFieldsToDefaultValues'
 import { useSubmitForm } from '../../../components/forms/hooks/useSubmitForm'
 import { getMarketFilterFields } from '../getMarketFilterFields'
@@ -129,20 +128,20 @@ export const MarketFilterDialog = memo(function MarketFilterDialog({
 
   useResetFormFieldsToDefaultValues(formRef, filterFields, handleReset)
 
-  const locationField = filterFields.find(v => v.name === 'locationUuid')!
-  const locationFieldValue = filterValue?.[locationField.name]
+  // const locationField = filterFields.find(v => v.name === 'locationUuid')!
+  // const locationFieldValue = filterValue?.[locationField.name]
 
-  const minPriceField = filterFields.find(v => v.name === 'minPrice')!
-  const minPriceFieldValue = filterValue?.[minPriceField.name]
+  // const minPriceField = filterFields.find(v => v.name === 'minPrice')!
+  // const minPriceFieldValue = filterValue?.[minPriceField.name]
 
-  const maxPriceField = filterFields.find(v => v.name === 'maxPrice')!
-  const maxPriceFieldValue = filterValue?.[maxPriceField.name]
+  // const maxPriceField = filterFields.find(v => v.name === 'maxPrice')!
+  // const maxPriceFieldValue = filterValue?.[maxPriceField.name]
 
-  const minQuantityField = filterFields.find(v => v.name === 'minQuantity')!
-  const minQuantityFieldValue = filterValue?.[minQuantityField.name]
+  // const minQuantityField = filterFields.find(v => v.name === 'minQuantity')!
+  // const minQuantityFieldValue = filterValue?.[minQuantityField.name]
 
-  const maxQuantityField = filterFields.find(v => v.name === 'maxQuantity')!
-  const maxQuantityFieldValue = filterValue?.[maxQuantityField.name]
+  // const maxQuantityField = filterFields.find(v => v.name === 'maxQuantity')!
+  // const maxQuantityFieldValue = filterValue?.[maxQuantityField.name]
 
   const dialogTitle = `filter orders`
   const filterButtonLabel = 'apply filter'
@@ -166,14 +165,19 @@ export const MarketFilterDialog = memo(function MarketFilterDialog({
             onSubmit={handleSubmit}
           >
             <div className={styles.Content}>
-              <div className={styles.FieldsContainer}>
+              <FormFieldList
+                formFields={filterFields}
+                item={filterValue}
+              />
+
+              {/* <div className={styles.FieldsContainer}>
 
                 <FormFieldWithLabel
                   field={locationField}
                   fieldValue={locationFieldValue}
                 />
 
-                <FormFieldContainer
+                <FormFieldWrapper
                   name={minPriceField.name}
                   label="price"
                 >
@@ -190,9 +194,9 @@ export const MarketFilterDialog = memo(function MarketFilterDialog({
                       hideFieldLabel
                     />
                   </div>
-                </FormFieldContainer>
+                </FormFieldWrapper>
 
-                <FormFieldContainer
+                <FormFieldWrapper
                   name={minQuantityField.name}
                   label="quantity"
                 >
@@ -209,9 +213,9 @@ export const MarketFilterDialog = memo(function MarketFilterDialog({
                       hideFieldLabel
                     />
                   </div>
-                </FormFieldContainer>
+                </FormFieldWrapper>
 
-              </div>
+              </div> */}
 
               {(formValidationErrorMessage !== undefined) && (
                 <div className={styles.ErrorMessageContainer}>
