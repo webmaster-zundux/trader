@@ -78,6 +78,7 @@ export const URL_SEARCH_PARAM_KEY_MIN_PRICE = 'minPrice'
 export const URL_SEARCH_PARAM_KEY_MAX_PRICE = 'maxPrice'
 export const URL_SEARCH_PARAM_KEY_MIN_QUANTITY = 'minQuantity'
 export const URL_SEARCH_PARAM_KEY_MAX_QUANTITY = 'maxQuantity'
+export const URL_SEARCH_PARAM_KEY_MIN_PROFIT = 'minProfit'
 
 export const URL_SEARCH_PARAM_KEY_MOVING_ENTITY_ID = 'movingEntityId' as const
 export const URL_SEARCH_PARAM_KEY_MOVING_ENTITY_NAME = 'movingEntityName' as const

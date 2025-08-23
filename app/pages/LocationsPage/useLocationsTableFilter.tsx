@@ -79,9 +79,9 @@ export function useLocationsTableFilter({
       filterValue: locationsTableUrlSearchParamsData,
     })
     const prev = lastFilterValueRef.current
-    const thereAreAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prev, newFilterValue)
+    const areThereAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prev, newFilterValue)
 
-    if (thereAreAnyChanges) {
+    if (areThereAnyChanges) {
       lastFilterValueRef.current = newFilterValue
       return newFilterValue
     }
@@ -102,9 +102,9 @@ export function useLocationsTableFilter({
 
     setUrlSearchParams((prev) => {
       const prevFilterValue = getLocationsTableUrlSearchParams(prev)
-      const thereAreAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prevFilterValue, newFilterValue)
+      const areThereAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prevFilterValue, newFilterValue)
 
-      if (thereAreAnyChanges) {
+      if (areThereAnyChanges) {
         if (!newFilterValue) {
           LOCATIONS_TABLE_URL_SEARCH_PARAM_KEYS_ALLOWED_IN_FILTER.forEach((key) => {
             prev.delete(key)

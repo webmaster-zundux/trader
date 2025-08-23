@@ -10,7 +10,7 @@ import { getMovingEntityByIdAndNameAndPlanetarySystemNameSelector, useMovingEnti
 import { getPlanetarySystemByNameSelector, usePlanetarySystemsStore } from '~/stores/entity-stores/PlanetarySystems.store'
 import { useLoadingPersistStorages } from '~/stores/hooks/useLoadingPersistStorages'
 import { isObjectsHaveAtLeastOneDifferentAttribute } from '~/utils/isObjectsHaveAtLeastOneDifferentAttribute'
-import { setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams } from '../../router/urlSearchParams/setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams'
+import { setMovingEntityOrLocationOrPlanetarySystemOrProductToUrlSearchParams } from '../../router/urlSearchParams/setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams'
 import { isMapMode, type MapMode } from './Map.const'
 
 export const URL_SEARCH_PARAM_KEY_ALLOWED_IN_MAP_FILTER = [
@@ -119,9 +119,9 @@ export function useMapFilter({
       filterValue: searchingFilterValue
     })
     const prev = lastMapFilterValueRef.current
-    const thereAreAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prev, newFilterValue)
+    const areThereAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prev, newFilterValue)
 
-    if (thereAreAnyChanges) {
+    if (areThereAnyChanges) {
       lastMapFilterValueRef.current = newFilterValue
       return newFilterValue
     }
@@ -144,9 +144,9 @@ export function useMapFilter({
 
     setUrlSearchParams((prev) => {
       const prevFilterValue = getMapUrlSearchParams(prev)
-      const thereAreAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prevFilterValue, newMapFilterValue)
+      const areThereAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prevFilterValue, newMapFilterValue)
 
-      if (thereAreAnyChanges) {
+      if (areThereAnyChanges) {
         if (!newMapFilterValue) {
           URL_SEARCH_PARAM_KEY_ALLOWED_IN_MAP_FILTER.forEach((key) => {
             prev.delete(key)
@@ -160,7 +160,7 @@ export function useMapFilter({
         const planetarySystemUuid = newMapFilterValue['planetarySystemUuid']
         const mapMode = newMapFilterValue['mapMode']
 
-        setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams({
+        setMovingEntityOrLocationOrPlanetarySystemOrProductToUrlSearchParams({
           urlSearchParams: prev,
 
           movingEntityUuid,

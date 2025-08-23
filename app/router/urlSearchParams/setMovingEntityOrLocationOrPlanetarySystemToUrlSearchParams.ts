@@ -1,11 +1,28 @@
 import type { Location } from '~/models/entities/Location'
 import type { MovingEntity } from '~/models/entities/MovingEntity'
 import type { PlanetarySystem } from '~/models/entities/PlanetarySystem'
+import type { Product } from '~/models/entities/Product'
 import type { MapMode } from '~/pages/MapPage/Map.const'
-import { URL_SEARCH_PARAM_KEY_LOCATION_ID, URL_SEARCH_PARAM_KEY_LOCATION_NAME, URL_SEARCH_PARAM_KEY_MAP_MODE, URL_SEARCH_PARAM_KEY_MOVING_ENTITY_ID, URL_SEARCH_PARAM_KEY_MOVING_ENTITY_NAME, URL_SEARCH_PARAM_KEY_PLANETARY_SYSTEM_NAME } from '~/router/urlSearchParams/UrlSearchParamsKeys.const'
+import { URL_SEARCH_PARAM_KEY_LOCATION_ID, URL_SEARCH_PARAM_KEY_LOCATION_NAME, URL_SEARCH_PARAM_KEY_MAP_MODE, URL_SEARCH_PARAM_KEY_MOVING_ENTITY_ID, URL_SEARCH_PARAM_KEY_MOVING_ENTITY_NAME, URL_SEARCH_PARAM_KEY_PLANETARY_SYSTEM_NAME, URL_SEARCH_PARAM_KEY_PRODUCT_NAME } from '~/router/urlSearchParams/UrlSearchParamsKeys.const'
 import { getLocationByUuidSelector } from '~/stores/entity-stores/Locations.store'
 import { getMovingEntityByUuidSelector } from '~/stores/entity-stores/MovingEntities.store'
 import { getPlanetarySystemByUuidSelector } from '~/stores/entity-stores/PlanetarySystems.store'
+import { getProductByUuidSelector } from '~/stores/entity-stores/Products.store'
+
+function setProductToUrlSearchParams(
+  urlSearchParams: URLSearchParams,
+  productUuid?: Product['uuid'],
+  productNameUrlSearchParamsKeyName: string = URL_SEARCH_PARAM_KEY_PRODUCT_NAME
+): void {
+  const product = productUuid ? getProductByUuidSelector(productUuid) : undefined
+  const productName = product?.name
+
+  if (productName) {
+    urlSearchParams.set(productNameUrlSearchParamsKeyName, productName)
+  } else {
+    urlSearchParams.delete(productNameUrlSearchParamsKeyName)
+  }
+}
 
 function setPlanetarySystemToUrlSearchParams(
   urlSearchParams: URLSearchParams,
@@ -119,12 +136,24 @@ function removePlanetarySystemFromUrlSearchParams(
   })
 }
 
-export function setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams({
+function removeProductFromUrlSearchParams(
+  urlSearchParams: URLSearchParams,
+  productNameUrlSearchParamsKeyName: string = URL_SEARCH_PARAM_KEY_PRODUCT_NAME
+) {
+  [
+    productNameUrlSearchParamsKeyName,
+  ].forEach((key) => {
+    urlSearchParams.delete(key)
+  })
+}
+
+export function setMovingEntityOrLocationOrPlanetarySystemOrProductToUrlSearchParams({
   urlSearchParams,
 
   movingEntityUuid,
   locationUuid,
   planetarySystemUuid,
+  productUuid,
   mapMode,
 
   movingEntityIdUrlSearchParamsKeyName = URL_SEARCH_PARAM_KEY_MOVING_ENTITY_ID,
@@ -135,6 +164,8 @@ export function setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams({
 
   planetarySystemNameUrlSearchParamsKeyName = URL_SEARCH_PARAM_KEY_PLANETARY_SYSTEM_NAME,
 
+  productNameUrlSearchParamsKeyName = URL_SEARCH_PARAM_KEY_PRODUCT_NAME,
+
   mapModeUrlSearchParamsKeyName = URL_SEARCH_PARAM_KEY_MAP_MODE,
 }: {
   urlSearchParams: URLSearchParams
@@ -142,6 +173,7 @@ export function setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams({
   locationUuid?: Location['uuid']
   movingEntityUuid?: MovingEntity['uuid']
   planetarySystemUuid?: PlanetarySystem['uuid']
+  productUuid?: Product['uuid']
   mapMode?: MapMode
 
   movingEntityIdUrlSearchParamsKeyName?: string
@@ -152,8 +184,18 @@ export function setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams({
 
   planetarySystemNameUrlSearchParamsKeyName?: string
 
+  productNameUrlSearchParamsKeyName?: string
+
   mapModeUrlSearchParamsKeyName?: string
 }): void {
+  const product = productUuid ? getProductByUuidSelector(productUuid) : undefined
+
+  if (product) {
+    setProductToUrlSearchParams(urlSearchParams, productUuid, productNameUrlSearchParamsKeyName)
+  } else {
+    removeProductFromUrlSearchParams(urlSearchParams, productNameUrlSearchParamsKeyName)
+  }
+
   const movingEntity = movingEntityUuid ? getMovingEntityByUuidSelector(movingEntityUuid) : undefined
 
   if (movingEntity) {

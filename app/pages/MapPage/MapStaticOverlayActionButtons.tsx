@@ -80,7 +80,7 @@ export const MapStaticOverlayActionButtons = memo(function MapStaticOverlayActio
           <div className={styles.ActionPanelsContainer}>
             {isVisibleMapOrderPricesFilterDialog && (
               <div className={cn([styles.ActionPanel, styles.ProductSearch])}>
-                {/* product search form and results */}
+                {/* order filter form and results */}
                 <MapOrderPricesFilterDialog
                   filterValue={mapOrderPricesFilterValue}
                   onSetFilterValue={setMapOrderPricesFilterValueToUrlSearchParams}

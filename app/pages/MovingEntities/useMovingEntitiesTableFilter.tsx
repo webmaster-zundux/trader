@@ -5,7 +5,7 @@ import type { Location } from '~/models/entities/Location'
 import type { PlanetarySystem } from '~/models/entities/PlanetarySystem'
 import { getFilterValueOnlyWithExistingAttributes } from '~/models/utils/getFilterValueOnlyWithExistingAttributes'
 import { URL_SEARCH_PARAM_KEY_DESTINATION_LOCATION_ID, URL_SEARCH_PARAM_KEY_DESTINATION_LOCATION_NAME, URL_SEARCH_PARAM_KEY_DESTINATION_PLANETARY_SYSTEM_NAME, URL_SEARCH_PARAM_KEY_HOME_LOCATION_ID, URL_SEARCH_PARAM_KEY_HOME_LOCATION_NAME, URL_SEARCH_PARAM_KEY_HOME_PLANETARY_SYSTEM_NAME, URL_SEARCH_PARAM_KEY_LOCATION_ID, URL_SEARCH_PARAM_KEY_LOCATION_NAME, URL_SEARCH_PARAM_KEY_MOVING_ENTITY_CLASS_NAME, URL_SEARCH_PARAM_KEY_PLANETARY_SYSTEM_NAME } from '~/router/urlSearchParams/UrlSearchParamsKeys.const'
-import { setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams } from '~/router/urlSearchParams/setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams'
+import { setMovingEntityOrLocationOrPlanetarySystemOrProductToUrlSearchParams } from '~/router/urlSearchParams/setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams'
 import { getLocationByIdAndNameAndPlanetarySystemNameSelector, useLocationsStore } from '~/stores/entity-stores/Locations.store'
 import { getMovingEntityClassByNameSelector, getMovingEntityClassByUuidSelector, useMovingEntityClassesStore } from '~/stores/entity-stores/MovingEntityClasses.store'
 import { getPlanetarySystemByNameSelector, usePlanetarySystemsStore } from '~/stores/entity-stores/PlanetarySystems.store'
@@ -151,9 +151,9 @@ export function useMovingEntitiesTableFilter({
       filterValue: searchingFilterValue,
     })
     const prev = lastFilterValueRef.current
-    const thereAreAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prev, newFilterValue)
+    const areThereAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prev, newFilterValue)
 
-    if (thereAreAnyChanges) {
+    if (areThereAnyChanges) {
       lastFilterValueRef.current = newFilterValue
       return newFilterValue
     }
@@ -174,9 +174,9 @@ export function useMovingEntitiesTableFilter({
 
     setUrlSearchParams((prev) => {
       const prevFilterValue = getMovingEntitiesTableUrlSearchParams(prev)
-      const thereAreAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prevFilterValue, newFilterValue)
+      const areThereAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prevFilterValue, newFilterValue)
 
-      if (thereAreAnyChanges) {
+      if (areThereAnyChanges) {
         if (!newFilterValue) {
           MOVING_ENTITIES_TABLE_URL_SEARCH_PARAM_KEYS_ALLOWED_IN_FILTER.forEach((key) => {
             prev.delete(key)
@@ -196,7 +196,7 @@ export function useMovingEntitiesTableFilter({
 
         const locationUuid = newFilterValue['locationUuid']
 
-        setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams({
+        setMovingEntityOrLocationOrPlanetarySystemOrProductToUrlSearchParams({
           urlSearchParams: prev,
           locationUuid,
           planetarySystemUuid: locationUuid,
@@ -207,7 +207,7 @@ export function useMovingEntitiesTableFilter({
 
         const destinationLocationUuid = newFilterValue['destinationLocationUuid']
 
-        setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams({
+        setMovingEntityOrLocationOrPlanetarySystemOrProductToUrlSearchParams({
           urlSearchParams: prev,
           locationUuid: destinationLocationUuid,
           planetarySystemUuid: destinationLocationUuid,
@@ -218,7 +218,7 @@ export function useMovingEntitiesTableFilter({
 
         const homeLocationUuid = newFilterValue['homeLocationUuid']
 
-        setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams({
+        setMovingEntityOrLocationOrPlanetarySystemOrProductToUrlSearchParams({
           urlSearchParams: prev,
           locationUuid: homeLocationUuid,
           planetarySystemUuid: homeLocationUuid,

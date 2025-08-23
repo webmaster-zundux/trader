@@ -11,7 +11,7 @@ import { useLoadingSimpleCacheStorages } from '~/stores/hooks/useLoadingSimpleCa
 import { useLocationsAsSelectOptionArrayStore } from '~/stores/simple-cache-stores/LocationsAsSelectOptionArray.store'
 import { useLocationsWithFullNameAsMapStore } from '~/stores/simple-cache-stores/LocationsWithFullNameAsMap.store'
 import { isObjectsHaveAtLeastOneDifferentAttribute } from '~/utils/isObjectsHaveAtLeastOneDifferentAttribute'
-import { setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams } from '../../router/urlSearchParams/setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams'
+import { setMovingEntityOrLocationOrPlanetarySystemOrProductToUrlSearchParams } from '../../router/urlSearchParams/setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams'
 
 export const ATOMIC_URL_SEARCH_PARAM_KEY_ALLOWED_IN_MARKET_FILTER = [
   URL_SEARCH_PARAM_KEY_MIN_PRICE,
@@ -100,9 +100,9 @@ export function useOrdersTableFilter({
       filterValue: searchingFilterValue
     })
     const prev = lastMarketFilterValueRef.current
-    const thereAreAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prev, newFilterValue)
+    const areThereAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prev, newFilterValue)
 
-    if (thereAreAnyChanges) {
+    if (areThereAnyChanges) {
       lastMarketFilterValueRef.current = newFilterValue
       return newFilterValue
     }
@@ -123,9 +123,9 @@ export function useOrdersTableFilter({
 
     setUrlSearchParams((prev) => {
       const prevFilterValue = getOrdersTableUrlSearchParams(prev)
-      const thereAreAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prevFilterValue, newMarketFilterValue)
+      const areThereAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prevFilterValue, newMarketFilterValue)
 
-      if (thereAreAnyChanges) {
+      if (areThereAnyChanges) {
         if (!newMarketFilterValue) {
           ATOMIC_URL_SEARCH_PARAM_KEY_ALLOWED_IN_MARKET_FILTER.forEach((key) => {
             prev.delete(key)
@@ -148,7 +148,7 @@ export function useOrdersTableFilter({
 
         const locationUuid = newMarketFilterValue['locationUuid']
 
-        setMovingEntityOrLocationOrPlanetarySystemToUrlSearchParams({
+        setMovingEntityOrLocationOrPlanetarySystemOrProductToUrlSearchParams({
           urlSearchParams: prev,
           locationUuid,
           planetarySystemUuid: locationUuid,

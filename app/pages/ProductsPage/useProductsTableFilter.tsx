@@ -79,9 +79,9 @@ export function useProductsTableFilter({
       filterValue: searchingFilterValue,
     })
     const prev = lastFilterValueRef.current
-    const thereAreAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prev, newFilterValue)
+    const areThereAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prev, newFilterValue)
 
-    if (thereAreAnyChanges) {
+    if (areThereAnyChanges) {
       lastFilterValueRef.current = newFilterValue
       return newFilterValue
     }
@@ -102,9 +102,9 @@ export function useProductsTableFilter({
 
     setUrlSearchParams((prev) => {
       const prevFilterValue = getProductsTableUrlSearchParams(prev)
-      const thereAreAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prevFilterValue, newFilterValue)
+      const areThereAnyChanges = isObjectsHaveAtLeastOneDifferentAttribute(prevFilterValue, newFilterValue)
 
-      if (thereAreAnyChanges) {
+      if (areThereAnyChanges) {
         if (!newFilterValue) {
           PRODUCTS_TABLE_URL_SEARCH_PARAM_KEYS_ALLOWED_IN_FILTER.forEach((key) => {
             prev.delete(key)
