@@ -9,6 +9,7 @@ import { cn } from '~/utils/ui/ClassNames'
 import { MapOrderPricesFilterDialog } from './modal/MapOrderPricesFilterDialog'
 import { useMapOrderPricesTableFilter } from './useMapOrderPricesTableFilter'
 import { useSearchParams } from '~/hooks/useSearchParams'
+import { MapSellOrderPricesTable } from './tables/MapSellOrderPricesTable'
 
 interface MapStaticOverlayActionButtonsProps {
   mapMode: MapMode
@@ -86,6 +87,27 @@ export const MapStaticOverlayActionButtons = memo(function MapStaticOverlayActio
                   onSetFilterValue={setMapOrderPricesFilterValueToUrlSearchParams}
                   onHide={hideMapOrderPricesFilterDialog}
                 />
+
+                <div className={styles.ActionPanelResultsContainer}>
+                  <MapSellOrderPricesTable
+                    sellOrderFilterValue={mapOrderPricesFilterValue}
+                    // setSellOrderFilterValue={setMapOrderPricesFilterValueToUrlSearchParams}
+                  />
+
+                  {/* <SellOrdersTable
+                    searchFieldValue={searchFieldValue}
+                    sellOrderFilterValue={marketFilterValue}
+                    setSellOrderFilterValue={setMarketFilterValueToUrlSearchParams}
+                    resetSearchFieldValue={resetSearchFieldValue}
+                  />
+
+                  <BuyOrdersTable
+                    searchFieldValue={searchFieldValue}
+                    buyOrderFilterValue={marketFilterValue}
+                    setBuyOrderFilterValue={setMarketFilterValueToUrlSearchParams}
+                    resetSearchFieldValue={resetSearchFieldValue}
+                  /> */}
+                </div>
               </div>
             )}
 
