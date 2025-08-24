@@ -221,7 +221,8 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
             onClick={showImportStorageDataModal}
             title="import"
           >
-            <UploadFileIcon />
+            {/* <UploadFileIcon /> */}
+            <i className="icon icon-upload_file"></i>
           </Button>
 
           <Button

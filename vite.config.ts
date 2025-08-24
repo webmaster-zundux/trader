@@ -1,10 +1,13 @@
 import { reactRouter } from '@react-router/dev/vite'
 import { readFileSync } from 'fs'
+import path, { resolve } from 'path'
 import { defineConfig, loadEnv } from 'vite'
 import svgr from 'vite-plugin-svgr'
+import viteSvgToWebFont from 'vite-svg-2-webfont'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import { appDirectory, basename } from './react-router.config'
 
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
   let useBasicSslCerts = false
@@ -20,21 +23,37 @@ export default defineConfig(({ command, mode }) => {
     customHostName = env.USE_SERVER_HOST_NAME
   }
 
-  const basename = typeof env.USE_BASE_PUBLIC_PATH === 'string' ? env.USE_BASE_PUBLIC_PATH : '/'
+  // const basename = typeof env.USE_BASE_PUBLIC_PATH === 'string' ? env.USE_BASE_PUBLIC_PATH : '/'
 
-  if (basename !== '/') {
-    console.log(`vite.config: using basename`, basename)
-  }
+  // if (basename !== '/') {
+  //   console.log(`vite.config: using basename`, basename)
+  // }
+
+  const svgIconFontName = 'iconfont'
+  const svgIconsFolderPath = resolve(__dirname, appDirectory, 'svg-icons-for-font')
+  const svgIconFontDestFolderPath = resolve(svgIconsFolderPath, '..', 'artifacts', basename.replaceAll('/', '')) //
+  const svgIconFontCssDestFolderPath = path.join(svgIconFontDestFolderPath, svgIconFontName + '.css')
+  // const svgIconFontCssDestFolderPath = path.join(svgIconFontDestFolderPath, basename.replaceAll('/', ''), svgIconFontName + '.css') // , basename.replaceAll('/', '')
+
+  // console.log({ svgIconsFolderPath, svgIconFontDestFolderPath, svgIconFontCssDestFolderPath }) // for debug only
 
   return ({
     base: basename,
-    // ssr: {
-    //   noExternal: command === 'build' ? true : undefined,
-    // },
     plugins: [
       tsconfigPaths(),
       svgr(),
       reactRouter(),
+      viteSvgToWebFont({
+        allowWriteFilesInBuild: true,
+        context: svgIconsFolderPath,
+        fontHeight: 24,
+        types: ['woff', 'woff2'],
+        fontName: svgIconFontName,
+        dest: svgIconFontDestFolderPath,
+        cssDest: svgIconFontCssDestFolderPath,
+        cssFontsUrl: path.join(basename),
+        inline: false,
+      })
     ],
     define: {
       __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
@@ -44,11 +63,11 @@ export default defineConfig(({ command, mode }) => {
       ...[
         (useBasicSslCerts && customHostName)
           ? {
-              https: {
-                key: readFileSync(`./.ssl/${customHostName}-key.pem`),
-                cert: readFileSync(`./.ssl/${customHostName}.pem`),
-              },
-            }
+            https: {
+              key: readFileSync(`./.ssl/${customHostName}-key.pem`),
+              cert: readFileSync(`./.ssl/${customHostName}.pem`),
+            },
+          }
           : undefined,
       ]
     }
