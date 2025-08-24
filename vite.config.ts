@@ -1,11 +1,17 @@
 import { reactRouter } from '@react-router/dev/vite'
 import { readFileSync } from 'fs'
-import path, { resolve } from 'path'
+import { resolve } from 'path'
 import { defineConfig, loadEnv } from 'vite'
 import svgr from 'vite-plugin-svgr'
-import viteSvgToWebFont from 'vite-svg-2-webfont'
+// import viteSvgToWebFont from 'vite-svg-2-webfont'
+import viteSvgToWebFontPatchedVersion5 from './vite-plugins/vite-svg-2-webfont' // todo - replace by npm package 'vite-svg-2-webfont' when patch will be released (details in ./vite-plugins/vite-svg-2-webfont/README.md)
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { appDirectory, basename } from './react-router.config'
+import type { GeneratedFontTypes } from '@vusion/webfonts-generator'
+
+const svgIconFontName = 'iconfont'
+const svgIconFontTypes: GeneratedFontTypes[] = ['woff', 'woff2']
+const svgIconsFolderPath = resolve(__dirname, appDirectory, 'svg-icons-for-font')
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
@@ -23,36 +29,18 @@ export default defineConfig(({ mode }) => {
     customHostName = env.USE_SERVER_HOST_NAME
   }
 
-  // const basename = typeof env.USE_BASE_PUBLIC_PATH === 'string' ? env.USE_BASE_PUBLIC_PATH : '/'
-
-  // if (basename !== '/') {
-  //   console.log(`vite.config: using basename`, basename)
-  // }
-
-  const svgIconFontName = 'iconfont'
-  const svgIconsFolderPath = resolve(__dirname, appDirectory, 'svg-icons-for-font')
-  const svgIconFontDestFolderPath = resolve(svgIconsFolderPath, '..', 'artifacts', basename.replaceAll('/', '')) //
-  const svgIconFontCssDestFolderPath = path.join(svgIconFontDestFolderPath, svgIconFontName + '.css')
-  // const svgIconFontCssDestFolderPath = path.join(svgIconFontDestFolderPath, basename.replaceAll('/', ''), svgIconFontName + '.css') // , basename.replaceAll('/', '')
-
-  // console.log({ svgIconsFolderPath, svgIconFontDestFolderPath, svgIconFontCssDestFolderPath }) // for debug only
-
   return ({
     base: basename,
     plugins: [
       tsconfigPaths(),
       svgr(),
       reactRouter(),
-      viteSvgToWebFont({
+      viteSvgToWebFontPatchedVersion5({
         allowWriteFilesInBuild: true,
         context: svgIconsFolderPath,
-        fontHeight: 24,
-        types: ['woff', 'woff2'],
+        fontHeight: 100,
+        types: svgIconFontTypes,
         fontName: svgIconFontName,
-        dest: svgIconFontDestFolderPath,
-        cssDest: svgIconFontCssDestFolderPath,
-        cssFontsUrl: path.join(basename),
-        inline: false,
       })
     ],
     define: {

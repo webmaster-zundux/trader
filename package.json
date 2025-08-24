@@ -30,8 +30,8 @@
     "source:decompress": "node scripts/unzip-source.mjs"
   },
   "dependencies": {
-    "@material-design-icons/svg": "^0.14.15",
     "@react-router/node": "^7.8.0",
+    "@vusion/webfonts-generator": "^0.8.0",
     "d3": "^7.9.0",
     "idb-keyval": "^6.2.2",
     "isbot": "^5",
@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
+    "@material-design-icons/svg": "^0.14.15",
     "@react-router/dev": "^7.8.0",
     "@react-router/serve": "^7.8.0",
     "@stylistic/eslint-plugin": "^5.2.3",
@@ -55,6 +56,7 @@
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@types/three": "^0.179.0",
+    "@types/vusion__webfonts-generator": "^0.8.6",
     "@vitejs/plugin-react": "^5.0.0",
     "archiver": "^7.0.1",
     "decompress": "^4.2.1",
@@ -73,6 +75,7 @@
     "vite": "^7.1.2",
     "vite-plugin-svgr": "^4.3.0",
     "vite-svg-2-webfont": "^5.0.0",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
   }
 }
