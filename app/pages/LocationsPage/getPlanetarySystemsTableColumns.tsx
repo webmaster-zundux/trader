@@ -1,11 +1,4 @@
 import { Button } from '~/components/Button'
-import { LocationOnIcon } from '~/components/icons/LocationOnIcon'
-import { LocationSearchingIcon } from '~/components/icons/LocationSearchIcon'
-import { NotListedLocation } from '~/components/icons/NotListedLocationIcon'
-import { PlanetOrbitIcon } from '~/components/icons/PlanetOrbitIcon'
-import { QueryStatsIcon } from '~/components/icons/QueryStatsIcon'
-import { RocketLaunchIcon } from '~/components/icons/RocketLaunchIcon'
-import { SearchOffIcon } from '~/components/icons/SearchOffIcon'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
 import type { Column } from '~/components/Table'
 import type { PlanetarySystem } from '~/models/entities/PlanetarySystem'
@@ -44,41 +37,35 @@ export function getPlanetarySystemsTableColumns(): Column<PlanetarySystem>[] {
 
         return (
           <>
-            {urlToMovingEntitiesPage
-              ? (
-                <InternalStaticLink to={urlToMovingEntitiesPage} title="search moving objects in the planetary system">
-                  <RocketLaunchIcon />
-                </InternalStaticLink>
-              )
-              : (
-                <Button disabled noBorder noPadding transparent title="no data for search">
-                  <SearchOffIcon />
-                </Button>
-              )}
+            {urlToMovingEntitiesPage ? (
+              <InternalStaticLink to={urlToMovingEntitiesPage} title="search moving objects in the planetary system">
+                <i className="icon icon-rocket_launch"></i>
+              </InternalStaticLink>
+            ) : (
+              <Button disabled noBorder noPadding transparent title="no data for search">
+                <i className="icon icon-search_off"></i>
+              </Button>
+            )}
 
-            {urlToLocationsPage
-              ? (
-                <InternalStaticLink to={urlToLocationsPage} title="search locations in the planetary system">
-                  <LocationSearchingIcon />
-                </InternalStaticLink>
-              )
-              : (
-                <Button disabled noBorder noPadding transparent title="no data for search">
-                  <SearchOffIcon />
-                </Button>
-              )}
+            {urlToLocationsPage ? (
+              <InternalStaticLink to={urlToLocationsPage} title="search locations in the planetary system">
+                <i className="icon icon-location_searching"></i>
+              </InternalStaticLink>
+            ) : (
+              <Button disabled noBorder noPadding transparent title="no data for search">
+                <i className="icon icon-search_off"></i>
+              </Button>
+            )}
 
-            {urlToMarketPage
-              ? (
-                <InternalStaticLink to={urlToMarketPage} title="search orders in market">
-                  <QueryStatsIcon />
-                </InternalStaticLink>
-              )
-              : (
-                <Button disabled noBorder noPadding transparent title="no data for search">
-                  <SearchOffIcon />
-                </Button>
-              )}
+            {urlToMarketPage ? (
+              <InternalStaticLink to={urlToMarketPage} title="search orders in market">
+                <i className="icon icon-query_stats"></i>
+              </InternalStaticLink>
+            ) : (
+              <Button disabled noBorder noPadding transparent title="no data for search">
+                <i className="icon icon-search_off"></i>
+              </Button>
+            )}
           </>
         )
       },
@@ -102,29 +89,25 @@ export function getPlanetarySystemsTableColumns(): Column<PlanetarySystem>[] {
 
         return (
           <>
-            {urlToMapPageWithPlanetarySystemMode
-              ? (
-                <InternalStaticLink to={urlToMapPageWithPlanetarySystemMode} title="show on map what the planetary system contains">
-                  <PlanetOrbitIcon />
-                </InternalStaticLink>
-              )
-              : (
-                <Button disabled noBorder noPadding transparent title="no data for search">
-                  <NotListedLocation />
-                </Button>
-              )}
+            {urlToMapPageWithPlanetarySystemMode ? (
+              <InternalStaticLink to={urlToMapPageWithPlanetarySystemMode} title="show on map what the planetary system contains">
+                <i className="icon icon-planet_orbit"></i>
+              </InternalStaticLink>
+            ) : (
+              <Button disabled noBorder noPadding transparent title="no data for search">
+                <i className="icon icon-not_listed_location"></i>
+              </Button>
+            )}
 
-            {urlToMapPageWithUniverseMode
-              ? (
-                <InternalStaticLink to={urlToMapPageWithUniverseMode} title="show planetary system on map">
-                  <LocationOnIcon />
-                </InternalStaticLink>
-              )
-              : (
-                <Button disabled noBorder noPadding transparent title="no data for search">
-                  <NotListedLocation />
-                </Button>
-              )}
+            {urlToMapPageWithUniverseMode ? (
+              <InternalStaticLink to={urlToMapPageWithUniverseMode} title="show planetary system on map">
+                <i className="icon icon-location_on"></i>
+              </InternalStaticLink>
+            ) : (
+              <Button disabled noBorder noPadding transparent title="no data for search">
+                <i className="icon icon-not_listed_location"></i>
+              </Button>
+            )}
           </>
         )
       },

@@ -1,7 +1,6 @@
 import type { ChangeEventHandler, FormEventHandler } from 'react'
 import { memo, useCallback, useRef } from 'react'
 import { Button } from '../Button'
-import { ClearIcon } from '../icons/ClearIcon'
 import styles from './SearchByNameForm.module.css'
 import { InputField } from './fields/InputField'
 
@@ -69,7 +68,7 @@ export const SearchByNameForm = memo(function SearchByNameForm({
         />
 
         <Button type="reset" title="clear search field value">
-          <ClearIcon />
+          <i className="icon icon-clear"></i>
         </Button>
       </div>
 

@@ -1,14 +1,18 @@
-.InternalStaticLink svg {
+.InternalStaticLink {
+  text-decoration: none;
+}
+
+.InternalStaticLink i {
   display: flex;
-  fill: var(--text-color);
+  color: var(--text-color);
 }
 
-.InternalStaticLink:hover svg,
-.InternalStaticLink:focus svg,
-.InternalStaticLink:focus-visible svg {
-  fill: var(--svg-icon-hover-fill);
+.InternalStaticLink:hover i,
+.InternalStaticLink:focus i,
+.InternalStaticLink:focus-visible i {
+  color: var(--svg-icon-hover-fill);
 }
 
-.InternalStaticLink:active svg {
-  fill: var(--svg-icon-active-fill);
+.InternalStaticLink:active i {
+  color: var(--svg-icon-active-fill);
 }

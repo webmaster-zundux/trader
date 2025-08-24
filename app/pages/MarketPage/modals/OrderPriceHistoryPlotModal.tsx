@@ -1,20 +1,19 @@
 import { memo, useCallback, useMemo } from 'react'
 import { useIsVisible } from '~/hooks/ui/useIsVisible'
+import { useLocationsStore } from '~/stores/entity-stores/Locations.store'
+import { usePlanetarySystemsStore } from '~/stores/entity-stores/PlanetarySystems.store'
 import { getPriceHistoryByOrderUuidSelector, hasEnoughDataForPriceHistoryPlot } from '~/stores/entity-stores/PriceHistories.store'
 import { getProductByUuidSelector, useProductsStore } from '~/stores/entity-stores/Products.store'
 import { useLoadingPersistStorages } from '~/stores/hooks/useLoadingPersistStorages'
 import { useLoadingSimpleCacheStorages } from '~/stores/hooks/useLoadingSimpleCacheStorages'
 import { getLocationWithFullNameByUuidSelector, useLocationsWithFullNameAsMapStore } from '~/stores/simple-cache-stores/LocationsWithFullNameAsMap.store'
+import { Button } from '../../../components/Button'
+import { Modal } from '../../../components/modals/Modal'
 import type { Order } from '../../../models/Order'
 import { ORDER_PRICE_HISTORY_RECORDS_MAX_LIMIT, usePriceHistoriesStore } from '../../../stores/entity-stores/PriceHistories.store'
-import { Button } from '../../../components/Button'
-import { DeleteForeverIcon } from '../../../components/icons/DeleteForeverIcon'
 import { PriceLinePlot } from '../plots/PriceLinePlot'
-import { Modal } from '../../../components/modals/Modal'
-import styles from './OrderPriceHistoryPlotModal.module.css'
 import { DeletePriceHistoryConfirmation } from './DeletePriceHistoryConfirmation'
-import { useLocationsStore } from '~/stores/entity-stores/Locations.store'
-import { usePlanetarySystemsStore } from '~/stores/entity-stores/PlanetarySystems.store'
+import styles from './OrderPriceHistoryPlotModal.module.css'
 
 interface OrderPricePlotModalTitleProps {
   formTitle: string
@@ -40,7 +39,7 @@ const OrderPricePlotModalTitle = memo(function OrderPricePlotModalTitle({
           onClick={handleShowDeletePriceAtMarksConfirmation}
           title={deleteItemButtonLabel}
         >
-          <DeleteForeverIcon />
+          <i className="icon icon-delete_forever"></i>
         </Button>
       )}
     </div>

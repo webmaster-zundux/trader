@@ -1,6 +1,4 @@
 import { Button } from '~/components/Button'
-import { QueryStatsIcon } from '~/components/icons/QueryStatsIcon'
-import { SearchOffIcon } from '~/components/icons/SearchOffIcon'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
 import { type Column, NoDataCell } from '~/components/Table'
 import type { Location } from '~/models/entities/Location'
@@ -52,12 +50,12 @@ export function getLocationsTableColumns(): Column<Location>[] {
             {urlToMarketPage
               ? (
                 <InternalStaticLink to={urlToMarketPage} title="search by location id in market">
-                  <QueryStatsIcon />
+                  <i className="icon icon-query_stats"></i>
                 </InternalStaticLink>
               )
               : (
                 <Button disabled noBorder noPadding transparent title="no data for search in market">
-                  <SearchOffIcon />
+                  <i className="icon icon-search_off"></i>
                 </Button>
               )}
           </>
@@ -79,12 +77,12 @@ export function getLocationsTableColumns(): Column<Location>[] {
             {urlToMarketPage
               ? (
                 <InternalStaticLink to={urlToMarketPage} title="search by location name in market">
-                  <QueryStatsIcon />
+                  <i className="icon icon-query_stats"></i>
                 </InternalStaticLink>
               )
               : (
                 <Button disabled noBorder noPadding transparent title="no data for search in market">
-                  <SearchOffIcon />
+                  <i className="icon icon-search_off"></i>
                 </Button>
               )}
           </>

@@ -13,9 +13,10 @@
   text-transform: capitalize;
 }
 
-.Button svg {
+.Button i {
   display: flex;
-  fill: var(--text-color);
+  color: var(--text-color);
+  margin: -0.05em;
 }
 
 .Primary {
@@ -32,27 +33,24 @@
   padding: 0.1em 0.5em;
 }
 
-.Tiny svg {
-  width: 1.2em;
-  height: auto;
+.Tiny i {
+  font-size: 1.4em;
 }
 
 .Small {
   padding: 0.3em 1em;
 }
 
-.Small svg {
-  width: 1.4em;
-  height: auto;
+.Small i {
+  font-size: 1.5em;
 }
 
 .Big {
   padding: 0.8em 1em;
 }
 
-.Big svg {
-  width: 1.6em;
-  height: auto;
+.Big i {
+  font-size: 1.6em;
 }
 
 .TransparentOnDefaultState,
@@ -65,7 +63,7 @@
   padding: 0;
 }
 
-.Button.NoPadding:has(>svg+span)>svg+span {
+.Button.NoPadding:has(>i+span)>i+span {
   padding-right:0.2em;
 }
 
@@ -74,31 +72,25 @@
   border-radius: 0;
 }
 
-.Button:has(>svg+span) {
+.Button:has(>i+span) {
   display: flex;
   gap: 0.25em;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-left: 2.4em;
 }
 
-.Button:has(>svg+span)>svg {
-  height: 1.3em;
-  width: auto;
+.Button:has(>i+span)>i {
+  font-size: 1.3em;
   display: flex;
-  position: absolute;
-  left: 0.8em;
-  top: 50%;
-  transform: translate(0, -50%);
 }
 
 .Button.AsInitial {
   color: var(--text-color);
 }
 
-.Button.AsInitial svg {
-  fill: var(--text-color) !important;
+.Button.AsInitial i {
+  color: var(--text-color) !important;
 }
 
 .Button:disabled {
@@ -107,28 +99,27 @@
   border-color: initial;
 }
 
-.Button:disabled svg {
-  fill: var(--svg-icon-disabled-fill);
+.Button:disabled i {
+  color: var(--svg-icon-disabled-fill);
 }
 
-.Button.IsAlwaysVisible svg {
+.Button.IsAlwaysVisible i {
   opacity: 1 !important;
 }
 
-.Button.NoPadding:has(>svg+span) {
+.Button.NoPadding:has(>i+span) {
   padding-left: 0;
 }
 
-.Button.NoPadding:has(>svg+span)>svg {
-  width: 1.4em;
-  height: auto;
+.Button.NoPadding:has(>i+span)>i {
+  font-size: 1.4em;
   position: relative;
   top: auto;
   transform: none;
   left: auto;
 }
 
-.Button:has(>svg+span)>span::first-letter {
+.Button:has(>i+span)>span::first-letter {
   text-transform: capitalize;
 }
 
@@ -166,14 +157,14 @@
   background-color: transparent;
 }
 
-.Transparent:hover:not(:disabled) svg,
-.Transparent:focus:not(:disabled) svg,
-.Transparent:focus-visible:not(:disabled) svg {
-  fill: var(--svg-icon-hover-fill);
+.Transparent:hover:not(:disabled) i,
+.Transparent:focus:not(:disabled) i,
+.Transparent:focus-visible:not(:disabled) i {
+  color: var(--svg-icon-hover-fill);
 }
 
-.Transparent:active:not(:disabled) svg {
-  fill: var(--svg-icon-active-fill);
+.Transparent:active:not(:disabled) i {
+  color: var(--svg-icon-active-fill);
 }
 
 .AsLink {

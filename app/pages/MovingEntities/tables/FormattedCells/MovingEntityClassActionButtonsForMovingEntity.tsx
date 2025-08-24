@@ -1,7 +1,5 @@
 import { Button } from '~/components/Button'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
-import { InfoIcon } from '~/components/icons/InfoIcon'
-import { SearchOffIcon } from '~/components/icons/SearchOffIcon'
 import { isUuid } from '~/models/Entity'
 import type { MovingEntity } from '~/models/entities/MovingEntity'
 import { getUrlToMovingEntitiesPageWithParams } from '~/router/urlSearchParams/getUrlToMovingEntitiesPageWithParams'
@@ -28,11 +26,11 @@ export function MovingEntityClassActionButtonsForMovingEntity({
     <>
       {urlToMovingEntitiesPage ? (
         <InternalStaticLink to={urlToMovingEntitiesPage} title="show moving object class info">
-          <InfoIcon />
+          <i className="icon icon-info"></i>
         </InternalStaticLink>
       ) : (
         <Button disabled noBorder noPadding transparent title="no moving object class data">
-          <SearchOffIcon />
+          <i className="icon icon-search_off"></i>
         </Button>
       )}
     </>

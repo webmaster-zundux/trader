@@ -27,10 +27,9 @@
   align-self: center;
 }
 
-.SearchField input~button[type="reset"] svg {
+.SearchField input~button[type="reset"] i {
   display: flex;
-  height: 1.5em;
-  width: 1.5em;
+  font-size: 1.5em;
 }
 
 .SearchField input:placeholder-shown~button[type="reset"] {

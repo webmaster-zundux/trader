@@ -1,15 +1,13 @@
 import { memo } from 'react'
-import styles from './MapStaticOverlayActionButtons.module.css'
-import { MAP_MODE_PLANETARY_SYSTEM, type MapMode } from './Map.const'
 import { Button } from '~/components/Button'
-import { Package2Icon } from '~/components/icons/Package2Icon'
-import { RouteIcon } from '~/components/icons/RouteIcon'
 import { useIsVisible } from '~/hooks/ui/useIsVisible'
-import { cn } from '~/utils/ui/ClassNames'
-import { MapOrderPricesFilterDialog } from './modal/MapOrderPricesFilterDialog'
-import { useMapOrderPricesTableFilter } from './useMapOrderPricesTableFilter'
 import { useSearchParams } from '~/hooks/useSearchParams'
+import { cn } from '~/utils/ui/ClassNames'
+import { MAP_MODE_PLANETARY_SYSTEM, type MapMode } from './Map.const'
+import styles from './MapStaticOverlayActionButtons.module.css'
+import { MapOrderPricesFilterDialog } from './modal/MapOrderPricesFilterDialog'
 import { MapSellOrderPricesTable } from './tables/MapSellOrderPricesTable'
+import { useMapOrderPricesTableFilter } from './useMapOrderPricesTableFilter'
 
 interface MapStaticOverlayActionButtonsProps {
   mapMode: MapMode
@@ -53,7 +51,7 @@ export const MapStaticOverlayActionButtons = memo(function MapStaticOverlayActio
                   title="show a product prices"
                   onClick={toggleVisibilityOfMapOrderPricesFilterDialog}
                 >
-                  <Package2Icon />
+                  <i className="icon icon-package_2"></i>
                   {/* <span>
                     show product prices
                   </span> */}
@@ -69,7 +67,7 @@ export const MapStaticOverlayActionButtons = memo(function MapStaticOverlayActio
                   title="route planning"
                   onClick={toggleVisibilityOfRoutePlanningDialog}
                 >
-                  <RouteIcon />
+                  <i className="icon icon-route"></i>
                   {/* <span>
                     plan route
                   </span> */}

@@ -1,11 +1,5 @@
 import { Button } from '~/components/Button'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
-import { InfoIcon } from '~/components/icons/InfoIcon'
-import { LocationDisabledIcon } from '~/components/icons/LocationDisabledIcon'
-import { LocationOffIcon } from '~/components/icons/LocationOffIcon'
-import { LocationOnIcon } from '~/components/icons/LocationOnIcon'
-import { QueryStatsIcon } from '~/components/icons/QueryStatsIcon'
-import { SearchOffIcon } from '~/components/icons/SearchOffIcon'
 import type { Order } from '~/models/Order'
 import { getUrlToLocationsPageWithParams } from '~/router/urlSearchParams/getUrlToLocationsPageWithParams'
 import { getUrlToMapPageWithParams } from '~/router/urlSearchParams/getUrlToMapPageWithParams'
@@ -47,35 +41,35 @@ export function LocationActionButtonsForOrder({ item }: { item: Order }) {
     <>
       {urlToLocationsPage ? (
         <InternalStaticLink to={urlToLocationsPage} title="show location info">
-          <InfoIcon />
+          <i className="icon icon-info"></i>
         </InternalStaticLink>
       ) : (
         <Button disabled noBorder noPadding transparent title="no location data">
-          <LocationDisabledIcon />
+          <i className="icon icon-location_disabled"></i>
         </Button>
       )}
 
       {urlToMapPage
         ? (
           <InternalStaticLink to={urlToMapPage} title="show location on map">
-            <LocationOnIcon />
+            <i className="icon icon-location_on"></i>
           </InternalStaticLink>
         )
         : (
           <Button disabled noBorder noPadding transparent title="no position data">
-            <LocationOffIcon />
+            <i className="icon icon-location_off"></i>
           </Button>
         )}
 
       {urlToMarketPage
         ? (
           <InternalStaticLink to={urlToMarketPage} title="search by location in market">
-            <QueryStatsIcon />
+            <i className="icon icon-query_stats"></i>
           </InternalStaticLink>
         )
         : (
           <Button disabled noBorder noPadding transparent title="no data for search in market">
-            <SearchOffIcon />
+            <i className="icon icon-search_off"></i>
           </Button>
         )}
     </>

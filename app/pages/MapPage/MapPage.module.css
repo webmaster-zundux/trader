@@ -37,12 +37,10 @@
   gap: 0.5em;
 }
 
-.SearchResultName svg {
+.SearchResultName i {
   display: flex;
-  fill: var(--text-color);
-  width: 1.4em;
-  min-width: 1.4em;
-  height: 1.4em;
+  color: var(--text-color);
+  font-size: 1.5em;
 }
 
 @media (width < 768px) {

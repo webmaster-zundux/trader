@@ -8,7 +8,6 @@ import { useMadeInertParentModalDialogOrAppRoot } from '../../hooks/ui/useMadeIn
 import { cn } from '../../utils/ui/ClassNames'
 import { createModalDialogElementId } from '../../utils/ui/createModalDialogElementId'
 import { Button } from '../Button'
-import { CloseIcon } from '../icons/CloseIcon'
 import styles from './Modal.module.css'
 import { useDialogOrder } from './hooks/useDialogOrder'
 
@@ -120,7 +119,7 @@ function ModalByReactPortal({
                     onClick={handleHide}
                     title="close"
                   >
-                    <CloseIcon />
+                    <i className="icon icon-close"></i>
                   </Button>
                 </div>
               )}

@@ -3,12 +3,10 @@ import { useShallow } from 'zustand/react/shallow'
 import type { useSearchParams } from '~/hooks/useSearchParams'
 import { useLoadingPersistStorages } from '~/stores/hooks/useLoadingPersistStorages'
 import { Button } from '../../components/Button'
-import { SearchFormAndTableContainer } from '../../components/SearchFormAndTableContainer'
 import { InternalStaticLink } from '../../components/InternalStaticLink'
+import { SearchFormAndTableContainer } from '../../components/SearchFormAndTableContainer'
 import type { Column, ColumnWithValue } from '../../components/Table'
 import { Table, TableBody } from '../../components/Table'
-import { SearchCategoryIcon } from '../../components/icons/SearchCategoryIcon'
-import { SearchOffIcon } from '../../components/icons/SearchOffIcon'
 import { useItemsSelecting } from '../../components/tables/hooks/useItemsSelecting'
 import { useResetOfSearchAndFilterWhenLastCreatedOrUpdatedItemIsNotVisibleAsTableRow } from '../../components/tables/hooks/useResetOfSearchAndFilterWhenLastCreatedOrUpdatedItemIsNotVisibleAsTableRow'
 import { useSortableTableColumns } from '../../components/tables/hooks/useSortableTableColumns'
@@ -44,12 +42,12 @@ const productRaritiesTableColumns: Column<ProductRarity>[] = [
           {urlToProductsPage
             ? (
               <InternalStaticLink to={urlToProductsPage} title="search by product rarity in products">
-                <SearchCategoryIcon />
+                <i className="icon icon-search_category"></i>
               </InternalStaticLink>
             )
             : (
               <Button disabled noBorder noPadding transparent title="no data for search">
-                <SearchOffIcon />
+                <i className="icon icon-search_off"></i>
               </Button>
             )}
         </>

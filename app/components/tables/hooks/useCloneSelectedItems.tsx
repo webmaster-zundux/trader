@@ -1,5 +1,4 @@
 import { useCallback, useState } from 'react'
-import { ContentCopyIcon } from '~/components/icons/ContentCopyIcon'
 import { useIsVisible } from '~/hooks/ui/useIsVisible'
 import type { Entity } from '../../../models/Entity'
 import { Button } from '../../Button'
@@ -99,7 +98,7 @@ export function useCloneSelectedItems<
             title={buttonTitle}
             onClick={handleShowCopyingDialog}
           >
-            <ContentCopyIcon />
+            <i className="icon icon-content_copy"></i>
           </Button>
         )}
       </>

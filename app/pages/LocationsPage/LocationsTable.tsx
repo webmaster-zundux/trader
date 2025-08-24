@@ -9,7 +9,6 @@ import { Button } from '../../components/Button'
 import { SearchFormAndTableContainer } from '../../components/SearchFormAndTableContainer'
 import type { ColumnWithValue } from '../../components/Table'
 import { Table, TableBody } from '../../components/Table'
-import { TuneIcon } from '../../components/icons/TuneIcon'
 import { useItemsSelecting } from '../../components/tables/hooks/useItemsSelecting'
 import { useResetOfSearchAndFilterWhenLastCreatedOrUpdatedItemIsNotVisibleAsTableRow } from '../../components/tables/hooks/useResetOfSearchAndFilterWhenLastCreatedOrUpdatedItemIsNotVisibleAsTableRow'
 import { useSortableTableColumns } from '../../components/tables/hooks/useSortableTableColumns'
@@ -191,7 +190,7 @@ export const LocationsTable = memo(function LocationTable({
         {SearchForm}
 
         <Button onClick={showFilterDialog} title="show filter form">
-          <TuneIcon />
+          <i className="icon icon-tune"></i>
           <span>filter</span>
         </Button>
 

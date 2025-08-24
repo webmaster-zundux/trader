@@ -51,7 +51,7 @@
 .TableItemsQuantity {
   display: flex;
   position: relative;
-  font-size: 0.9em;
+  font-size: 0.95em;
   flex-shrink: 0;
 }
 

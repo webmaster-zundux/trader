@@ -5,7 +5,6 @@ import { useCloseOnEsc } from '~/hooks/ui/useCloseOnEsc'
 import { useFocusOut } from '~/hooks/ui/useFocusOut'
 import { cn } from '~/utils/ui/ClassNames'
 import { Button } from '../Button'
-import { CloseIcon } from '../icons/CloseIcon'
 import { useDialogOrder } from '../modals/hooks/useDialogOrder'
 import styles from './Dialog.module.css'
 
@@ -98,7 +97,7 @@ export const Dialog = memo(function Dialog({
               onClick={handleHide}
               title="close"
             >
-              <CloseIcon />
+              <i className="icon icon-close"></i>
             </Button>
           </div>
         )}

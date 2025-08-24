@@ -3,7 +3,6 @@ import { memo, useCallback, useMemo, useRef } from 'react'
 import type { Entity } from '../../models/Entity'
 import type { Promisefy } from '../../models/utils/utility-types'
 import { Button } from '../Button'
-import { DeleteForeverIcon } from '../icons/DeleteForeverIcon'
 import { Modal } from '../modals/Modal'
 import { FormFieldList } from './FormFieldList'
 import type { FormField } from './FormFieldWithLabel.const'
@@ -90,7 +89,7 @@ export const ModalEditForm = memo(function ModalEditForm<
             onClick={handleDelete}
             title={deleteItemButtonLabel}
           >
-            <DeleteForeverIcon />
+            <i className="icon icon-delete_forever"></i>
           </Button>
         )}
       </div>

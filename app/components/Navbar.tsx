@@ -1,16 +1,14 @@
 import { memo, useEffect } from 'react'
-import { NavLink, useLocation } from 'react-router'
+import { useLocation } from 'react-router'
 import { hideMobileNavMenu, showMobileNavMenu, useMobileNavMenuVisibility } from '~/stores/simple-stores/MobileNavMenu.store'
 import { APP_NAME } from '../App.const'
 import { cn } from '../utils/ui/ClassNames'
 import { Button } from './Button'
-import { CloseIcon } from './icons/CloseIcon'
-import { MenuIcon } from './icons/MenuIcon'
 import { ImportExportStorageState } from './ImportExportStorageDataActionButtonGroup'
+import { InternalNavLink } from './InternalNavLink'
 import { MAIN_NAV_BAR_LINKS } from './Navbar.const'
 import styles from './Navbar.module.css'
 import { PreferedColorThemeSwitch } from './PreferedColorThemeSwitch'
-import { InternalNavLink } from './InternalNavLink'
 
 export type PageLink = {
   slug: string
@@ -114,7 +112,7 @@ export const Navbar = memo(function Navbar() {
             onClick={hideMobileNavMenu}
             title="hide menu"
           >
-            <CloseIcon />
+            <i className="icon icon-close"></i>
           </Button>
         )}
 
@@ -126,7 +124,7 @@ export const Navbar = memo(function Navbar() {
             onClick={showMobileNavMenu}
             title="show menu"
           >
-            <MenuIcon />
+            <i className="icon icon-menu"></i>
           </Button>
         )}
       </div>

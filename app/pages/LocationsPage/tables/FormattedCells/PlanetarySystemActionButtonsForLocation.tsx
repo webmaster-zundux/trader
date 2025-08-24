@@ -1,10 +1,4 @@
 import { Button } from '~/components/Button'
-import { LocationDisabledIcon } from '~/components/icons/LocationDisabledIcon'
-import { LocationOffIcon } from '~/components/icons/LocationOffIcon'
-import { LocationOnIcon } from '~/components/icons/LocationOnIcon'
-import { LocationSearchingIcon } from '~/components/icons/LocationSearchIcon'
-import { QueryStatsIcon } from '~/components/icons/QueryStatsIcon'
-import { SearchOffIcon } from '~/components/icons/SearchOffIcon'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
 import { isUuid } from '~/models/Entity'
 import { getUrlToLocationsPageWithParams } from '~/router/urlSearchParams/getUrlToLocationsPageWithParams'
@@ -41,36 +35,36 @@ export function PlanetarySystemActionButtonsForLocation({
       {urlToMapPage
         ? (
           <InternalStaticLink to={urlToMapPage} title="show planetary system on map">
-            <LocationOnIcon />
+            <i className="icon icon-location_on"></i>
           </InternalStaticLink>
         )
         : (
           <Button disabled noBorder noPadding transparent title="no planetary systems data">
-            <LocationOffIcon />
+            <i className="icon icon-location_off"></i>
           </Button>
         )}
 
       {urlToLocationsPage
         ? (
           <InternalStaticLink to={urlToLocationsPage} title="search locations in the planetary system">
-            <LocationSearchingIcon />
+            <i className="icon icon-location_searching"></i>
           </InternalStaticLink>
         )
         : (
           <Button disabled noBorder noPadding transparent title="no planetary system data">
-            <LocationDisabledIcon />
+            <i className="icon icon-location_disabled"></i>
           </Button>
         )}
 
       {urlToMarketPage
         ? (
           <InternalStaticLink to={urlToMarketPage} title="search by planetary system name in market">
-            <QueryStatsIcon />
+            <i className="icon icon-query_stats"></i>
           </InternalStaticLink>
         )
         : (
           <Button disabled noBorder noPadding transparent title="no data for search in market">
-            <SearchOffIcon />
+            <i className="icon icon-search_off"></i>
           </Button>
         )}
     </>

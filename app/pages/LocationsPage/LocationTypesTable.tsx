@@ -1,8 +1,6 @@
 import { memo, useCallback, useMemo, useState } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { Button } from '~/components/Button'
-import { SearchCategoryIcon } from '~/components/icons/SearchCategoryIcon'
-import { SearchOffIcon } from '~/components/icons/SearchOffIcon'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
 import type { useSearchParams } from '~/hooks/useSearchParams'
 import { getUrlToLocationsPageWithParams } from '~/router/urlSearchParams/getUrlToLocationsPageWithParams'
@@ -44,17 +42,15 @@ const locationTypesTableColumns: Column<LocationType>[] = [
 
       return (
         <>
-          {urlToProductsPage
-            ? (
-              <InternalStaticLink to={urlToProductsPage} title="search by location type in locations">
-                <SearchCategoryIcon />
-              </InternalStaticLink>
-            )
-            : (
-              <Button disabled noBorder noPadding transparent title="no data for search">
-                <SearchOffIcon />
-              </Button>
-            )}
+          {urlToProductsPage ? (
+            <InternalStaticLink to={urlToProductsPage} title="search by location type in locations">
+              <i className="icon icon-search_category"></i>
+            </InternalStaticLink>
+          ) : (
+            <Button disabled noBorder noPadding transparent title="no data for search">
+              <i className="icon icon-search_off"></i>
+            </Button>
+          )}
         </>
       )
     },

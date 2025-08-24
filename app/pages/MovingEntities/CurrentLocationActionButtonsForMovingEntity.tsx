@@ -7,10 +7,6 @@ import { getLocationByUuidSelector, useLocationsStore } from '~/stores/entity-st
 import { useLoadingPersistStorages } from '~/stores/hooks/useLoadingPersistStorages'
 import { Button } from '../../components/Button'
 import { InternalStaticLink } from '../../components/InternalStaticLink'
-import { InfoIcon } from '../../components/icons/InfoIcon'
-import { LocationDisabledIcon } from '../../components/icons/LocationDisabledIcon'
-import { LocationOffIcon } from '../../components/icons/LocationOffIcon'
-import { LocationOnIcon } from '../../components/icons/LocationOnIcon'
 import { getPlanetarySystemByUuidSelector, usePlanetarySystemsStore } from '../../stores/entity-stores/PlanetarySystems.store'
 
 export function CurrentLocationActionButtonsForMovingEntity({
@@ -63,23 +59,23 @@ export function CurrentLocationActionButtonsForMovingEntity({
     <>
       {urlToLocationsPage ? (
         <InternalStaticLink to={urlToLocationsPage} title="show location info">
-          <InfoIcon />
+          <i className="icon icon-info"></i>
         </InternalStaticLink>
       ) : (
         <Button disabled noBorder noPadding transparent title="no location data">
-          <LocationDisabledIcon />
+          <i className="icon icon-location_disabled"></i>
         </Button>
       )}
 
       {urlToMapPage
         ? (
           <InternalStaticLink to={urlToMapPage} title={`show ${existingLocation ? 'location' : 'position'} on map`}>
-            <LocationOnIcon />
+            <i className="icon icon-location_on"></i>
           </InternalStaticLink>
         )
         : (
           <Button disabled noBorder noPadding transparent title="no position data">
-            <LocationOffIcon />
+            <i className="icon icon-location_off"></i>
           </Button>
         )}
     </>

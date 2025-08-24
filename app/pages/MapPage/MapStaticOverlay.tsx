@@ -1,10 +1,5 @@
 import { memo, useMemo, type RefObject } from 'react'
 import { Button } from '~/components/Button'
-import { ChevronRightIcon } from '~/components/icons/ChevronRightIcon'
-import { Graph3Icon } from '~/components/icons/GraphIcon'
-import { LocationOnIcon } from '~/components/icons/LocationOnIcon'
-import { NotListedLocation } from '~/components/icons/NotListedLocationIcon'
-import { PlanetOrbitIcon } from '~/components/icons/PlanetOrbitIcon'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
 import type { Location } from '~/models/entities/Location'
 import type { MovingEntity } from '~/models/entities/MovingEntity'
@@ -99,7 +94,7 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
                 disabled
                 asInitial
               >
-                <Graph3Icon />
+                <i className="icon icon-graph_3"></i>
               </Button>
 
               <div className={styles.LabelContainer}>
@@ -124,7 +119,7 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
                   to={PAGE_SLUG_MAP}
                   title="global map"
                 >
-                  <Graph3Icon />
+                  <i className="icon icon-graph_3"></i>
                 </InternalStaticLink>
               </div>
 
@@ -135,12 +130,12 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
                   transparent
                   disabled
                 >
-                  <ChevronRightIcon />
+                  <i className="icon icon-chevron_right"></i>
                 </Button>
               </div>
 
               <div className={styles.IconAndLabelContainerWrapper}>
-                <PlanetOrbitIcon className={styles.LabelIcon} />
+                <i className={cn(['icon icon-planet_orbit', styles.LabelIcon])}></i>
 
                 <div className={styles.LabelContainer}>
                   <div className={styles.PlanetarySystemNameLabel}>
@@ -159,10 +154,10 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
           <div className={styles.SelectedItemLabelsContainer}>
             <div className={styles.IconAndLabelContainerWrapper}>
               {selectedMovingEntityPosition && (
-                <LocationOnIcon className={cn([styles.LabelIcon, styles.Small])} />
+                <i className={cn(['icon icon-location_on', styles.LabelIcon, styles.Small])}></i>
               )}
               {!selectedMovingEntityPosition && (
-                <NotListedLocation className={cn([styles.LabelIcon, styles.Small])} />
+                <i className={cn(['icon icon-not_listed_location', styles.LabelIcon, styles.Small])}></i>
               )}
 
               <div className={styles.LabelContainer}>
@@ -181,10 +176,10 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
           <div className={styles.SelectedItemLabelsContainer}>
             <div className={styles.IconAndLabelContainerWrapper}>
               {selectedLocationPosition && (
-                <LocationOnIcon className={cn([styles.LabelIcon, styles.Small])} />
+                <i className={cn(['icon icon-location_on', styles.LabelIcon, styles.Small])}></i>
               )}
               {!selectedLocationPosition && (
-                <NotListedLocation className={cn([styles.LabelIcon, styles.Small])} />
+                <i className={cn(['icon icon-not_listed_location', styles.LabelIcon, styles.Small])}></i>
               )}
 
               <div className={styles.LabelContainer}>

@@ -1,7 +1,5 @@
 import { Button } from '~/components/Button'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
-import { SearchCategoryIcon } from '~/components/icons/SearchCategoryIcon'
-import { SearchOffIcon } from '~/components/icons/SearchOffIcon'
 import type { MovingEntityClass } from '~/models/entities/MovingEntityClass'
 import { getUrlToMovingEntitiesPageWithParams } from '~/router/urlSearchParams/getUrlToMovingEntitiesPageWithParams'
 import type { Column } from '../../components/Table'
@@ -28,12 +26,12 @@ export function getMovingEntityClassesTableColumns(): Column<MovingEntityClass>[
             {urlToMovingEntitiesPage
               ? (
                 <InternalStaticLink to={urlToMovingEntitiesPage} title="search by moving entity class in moving entities">
-                  <SearchCategoryIcon />
+                  <i className="icon icon-search_category"></i>
                 </InternalStaticLink>
               )
               : (
                 <Button disabled noBorder noPadding transparent title="no data for search">
-                  <SearchOffIcon />
+                  <i className="icon icon-search_off"></i>
                 </Button>
               )}
           </>

@@ -1,6 +1,5 @@
 import { memo, useEffect, useMemo } from 'react'
 import { Button } from '~/components/Button'
-import { TuneIcon } from '~/components/icons/TuneIcon'
 import { useIsVisible } from '~/hooks/ui/useIsVisible'
 import { useSearchParams } from '~/hooks/useSearchParams'
 import { getProductNameFromUrlSearchParams } from '~/router/urlSearchParams/UrlSearchParamsKeys.const'
@@ -77,7 +76,7 @@ export const MarketPage = memo(function MarketPage() {
           {SearchForm}
 
           <Button onClick={showMarketFilterDialog} title="show filter form">
-            <TuneIcon />
+            <i className="icon icon-tune"></i>
             <span>filter</span>
           </Button>
 

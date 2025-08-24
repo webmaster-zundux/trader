@@ -8,11 +8,6 @@ import { isHtmlElementVisibleInScrollableContainer } from '../utils/ui/isHtmlEle
 import { Button } from './Button'
 import styles from './Table.module.css'
 import { TableFilterInfo, type FilterInfoField, type FilterValue } from './TableSelectedFilterInfo'
-import { AddIcon } from './icons/AddIcon'
-import { DeleteForeverIcon } from './icons/DeleteForeverIcon'
-import { FilterAltIcon } from './icons/FilterAltIcon'
-import { FilterAltOffIcon } from './icons/FilterAltOffIcon'
-import { RemoveSelectionIcon } from './icons/RemoveSelectionIcon'
 import { COLUMN_SORT_ASC, COLUMN_SORT_DESC, COLUMN_SORT_NONE, getNextColumnSortDirection, type ColumnSortingDirection } from './tables/utils/columnSorting'
 import { isCheckboxColumn } from './tables/utils/isCheckboxColumn'
 import { isLinkToEditItemColumn } from './tables/utils/isLinkToEditItemColumn'
@@ -87,8 +82,7 @@ export const TableHeaderCell = memo(function TableHeaderCell<
   ])
 
   const columnSortDirection = useMemo(function columnSortDirectionMemo() {
-    const currentColumnForSorting
-      = columnsToSortBy.find(columnToSortBy => columnToSortBy.name === column.name)
+    const currentColumnForSorting = columnsToSortBy.find(columnToSortBy => columnToSortBy.name === column.name)
 
     return currentColumnForSorting?.sort
   }, [column, columnsToSortBy])
@@ -510,10 +504,10 @@ export type ColumnWithLinkToEditItem<T> = ColumnWithValue<T> & {
   asLinkToSelectItem?: boolean
 }
 
-export type Column<T>
-  = | ColumnWithValue<T>
-    | ColumnWithCheckbox<T>
-    | ColumnWithLinkToEditItem<T>
+export type Column<T> =
+  | ColumnWithValue<T>
+  | ColumnWithCheckbox<T>
+  | ColumnWithLinkToEditItem<T>
 
 interface TableHeadProps<T extends Entity = Entity> {
   tableColumns: Column<T>[]
@@ -707,7 +701,7 @@ export const Table = memo(function Table<
                     onClick={onShowCreateItemModal}
                     title={showCreateItemModalButtonLabel}
                   >
-                    <AddIcon />
+                    <i className="icon icon-add"></i>
                   </Button>
                 )}
 
@@ -725,7 +719,7 @@ export const Table = memo(function Table<
                     onClick={onResetSelectedItems}
                     title="clear selection"
                   >
-                    <RemoveSelectionIcon />
+                    <i className="icon icon-remove_selection"></i>
                   </Button>
                 )}
 
@@ -738,7 +732,7 @@ export const Table = memo(function Table<
                     onClick={onDeleteSelectedItems}
                     title="delete selected"
                   >
-                    <DeleteForeverIcon />
+                    <i className="icon icon-delete_forever"></i>
                   </Button>
                 )}
 
@@ -767,7 +761,8 @@ export const Table = memo(function Table<
             (typeof onEnableFilter === 'function')
             && (typeof onDisableFilter === 'function')
           ) && (
-            !!filterValue && (
+            !!filterValue
+            && (
               isAppliedFilter
                 ? (
                     <Button
@@ -777,7 +772,7 @@ export const Table = memo(function Table<
                       onClick={onDisableFilter}
                       title="disable filter"
                     >
-                      <FilterAltOffIcon />
+                      <i className="icon icon-filter_alt_off"></i>
                     </Button>
                   )
                 : (
@@ -788,7 +783,7 @@ export const Table = memo(function Table<
                       onClick={onEnableFilter}
                       title="apply filter"
                     >
-                      <FilterAltIcon />
+                      <i className="icon icon-filter_alt"></i>
                     </Button>
                   )
             )

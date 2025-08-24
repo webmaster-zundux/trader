@@ -1,7 +1,5 @@
 import { useCallback } from 'react'
 import { Button } from '~/components/Button'
-import { BidLandscapeDisabledIcon } from '~/components/icons/BidLandscapeDisabledIcon'
-import { MonitoringIcon } from '~/components/icons/MonitoringIcon'
 import type { Order } from '~/models/Order'
 import { hasEnoughDataForPriceHistoryPlotForOrderSelector, usePriceHistoriesStore } from '~/stores/entity-stores/PriceHistories.store'
 import { useLoadingPersistStorages } from '~/stores/hooks/useLoadingPersistStorages'
@@ -33,7 +31,7 @@ export function PriceActionButtonsForOrder({
               onClick={handleSetOrderForPriceChart}
               title="show price chart"
             >
-              <MonitoringIcon />
+              <i className="icon icon-monitoring"></i>
             </Button>
           )
         : (
@@ -44,7 +42,7 @@ export function PriceActionButtonsForOrder({
               disabled
               title="no price data"
             >
-              <BidLandscapeDisabledIcon />
+              <i className="icon icon-bid_landscape_disabled"></i>
             </Button>
           )}
     </>

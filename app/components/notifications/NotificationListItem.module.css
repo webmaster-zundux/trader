@@ -99,7 +99,7 @@
   height: 0.2em;
   background-color: hsl(219deg 64% 61%);
   animation: AnimationLinearDisappear linear forwards;
-  animation-duration: 0;
+  animation-duration: 0ms;
   display: none;
 }
 

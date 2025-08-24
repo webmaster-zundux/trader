@@ -24,14 +24,13 @@
   width: max-content;
 }
 
-.LabelIcon {
+i.LabelIcon {
   display: flex;
-  fill: var(--text-color);
+  color: var(--text-color);
 }
 
-.LabelIcon.Small {
-  height: 1.6em;
-  width: auto;
+i.LabelIcon.Small {
+  font-size: 1.6em;
 }
 
 .LabelContainer {
@@ -63,8 +62,7 @@
 }
 
 .LevelIndicationIconWrapper {
-  width: auto;
-  height: 2em;
+  font-size: 2em;
   margin: 0 -0.5em;
   display: flex;
   align-items: center;

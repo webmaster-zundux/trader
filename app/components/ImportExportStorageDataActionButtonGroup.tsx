@@ -9,10 +9,6 @@ import { downloadStateAsJsonFile } from '~/utils/file/import-export-storage-data
 import { useIsVisible } from '../hooks/ui/useIsVisible'
 import { Button } from './Button'
 import styles from './ImportExportStorageDataActionButtonGroup.module.css'
-import { DescriptionIcon } from './icons/DescriptionIcon'
-import { FileDownloadIcon } from './icons/FileDownloadIcon'
-import { InkEraserIcon } from './icons/InkEraserIcon'
-import { UploadFileIcon } from './icons/UploadFileIcon'
 import { ImportStorageDataModal } from './modals/ImportStorageDataModal'
 import { ClearStorageConfirmation } from './modals/confirmations/ClearStorageConfirmation'
 import { EmptyDataStorageAndSuggestionToLoadDemoDataConfirmation } from './modals/confirmations/EmptyDataStorageAndSuggestionToLoadDemoDataConfirmation'
@@ -211,7 +207,7 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
             onClick={showClearStorageConfirmation}
             title="clear storage"
           >
-            <InkEraserIcon />
+            <i className="icon icon-ink_eraser"></i>
           </Button>
 
           <Button
@@ -221,7 +217,6 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
             onClick={showImportStorageDataModal}
             title="import"
           >
-            {/* <UploadFileIcon /> */}
             <i className="icon icon-upload_file"></i>
           </Button>
 
@@ -232,7 +227,7 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
             onClick={handleExportButtonClick}
             title="export"
           >
-            <FileDownloadIcon />
+            <i className="icon icon-file_download"></i>
           </Button>
 
           <Button
@@ -242,7 +237,7 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
             onClick={showLoadDemoDataConfirmation}
             title="load demo data"
           >
-            <DescriptionIcon />
+            <i className="icon icon-description"></i>
             <span>
               load demo data
             </span>

@@ -51,7 +51,7 @@
 .TableItemsQuantity {
   display: flex;
   position: relative;
-  font-size: 0.9em;
+  font-size: 0.95em;
   flex-shrink: 0;
 }
 
@@ -165,8 +165,6 @@ tbody:has(.Cell.CellCheckbox input:checked) .Row:has(.Cell.CellCheckbox input:no
   animation-iteration-count: infinite; 
 }
 
-
-
 .HeaderCell {
   position: relative;
   padding: 0;
@@ -226,6 +224,7 @@ tbody:has(.Cell.CellCheckbox input:checked) .Row:has(.Cell.CellCheckbox input:no
 
 .HeaderCellAlignToCenter .HeaderCellContentWrapper {
   justify-content: center;
+  width: 100%;
 }
 
 .HeaderCellAlignToRight .HeaderCellContentWrapper {
@@ -268,7 +267,7 @@ tbody:has(.Cell.CellCheckbox input:checked) .Row:has(.Cell.CellCheckbox input:no
 
 .Cell {
   position: relative;
-  padding: 0.25em 0.5em;
+  padding: 0 0.5em;
 }
 
 .CellContent {
@@ -313,7 +312,7 @@ tbody:has(.Cell.CellCheckbox input:checked) .Row:has(.Cell.CellCheckbox input:no
   display: none;
 }
 
-.Cell button:not(:has(svg)) {
+.Cell button:not(:has(i)) {
   padding: 0 0.5em;
 }
 
@@ -394,30 +393,30 @@ tbody:has(.Cell.CellCheckbox input:checked) .Row:has(.Cell.CellCheckbox input:no
   position: relative;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 }
 
-.CellActionButtonsGroup button svg,
-.CellActionButtonsGroup a svg {
+.CellActionButtonsGroup button i,
+.CellActionButtonsGroup a i {
   opacity: 0;
   display: flex;
-  width: auto;
-  height: 1.4em;
+  font-size: 1.4em;
 }
 
-.CellActionButtonsGroup a:hover svg,
-.CellActionButtonsGroup a:focus svg,
-.CellActionButtonsGroup a:focus-visible svg,
-.Row:hover .CellActionButtonsGroup button svg,
-.Row:hover .CellActionButtonsGroup a svg {
+.CellActionButtonsGroup a:hover i,
+.CellActionButtonsGroup a:focus i,
+.CellActionButtonsGroup a:focus-visible i,
+.Row:hover .CellActionButtonsGroup button i,
+.Row:hover .CellActionButtonsGroup a i {
   opacity: 1;
 }
 
-.CellActionButtonsGroup button:enabled:hover svg,
-.CellActionButtonsGroup button:enabled:focus svg,
-.CellActionButtonsGroup button:enabled:focus-visible svg,
-.CellActionButtonsGroup a[href]:hover svg,
-.CellActionButtonsGroup a[href]:focus svg,
-.CellActionButtonsGroup a[href]:focus-visible svg {
+.CellActionButtonsGroup button:enabled:hover i,
+.CellActionButtonsGroup button:enabled:focus i,
+.CellActionButtonsGroup button:enabled:focus-visible i,
+.CellActionButtonsGroup a[href]:hover i,
+.CellActionButtonsGroup a[href]:focus i,
+.CellActionButtonsGroup a[href]:focus-visible i {
   opacity: 1;
 }
 

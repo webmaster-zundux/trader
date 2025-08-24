@@ -42,8 +42,6 @@
 
 html {
   height: 100%;
-  font-size: 0.875rem;
-  font-weight: 400;
 }
 
 
@@ -100,6 +98,8 @@ body {
   height: 100%;
   background-color: var(--background-color);
   color: var(--text-color);
+  font-size: 0.875rem;
+  font-weight: 400;
 }
 
 #root {
@@ -153,4 +153,22 @@ button:focus-visible {
   background-color: var(--button-focus-visible-background-color);
   border-color: var(--button-focus-visible-border-color);
   outline-color: var(--button-focus-visible-outline-color);
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.icon {
+  min-height: fit-content;
+  position: relative;
+  display: inline-block;
+  font-size: 1em;
+  line-height: normal !important;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.icon::before {
+  line-height: 1em !important;
+  min-height: 1em;
+  min-width: 1em;
+  right: -0.02em;
+  position: relative;
 }
