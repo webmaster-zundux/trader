@@ -695,7 +695,6 @@ export const Table = memo(function Table<
               <>
                 {onShowCreateItemModal && (
                   <Button
-                    size="small"
                     noPadding
                     transparent
                     onClick={onShowCreateItemModal}
@@ -713,7 +712,6 @@ export const Table = memo(function Table<
                 {(typeof onResetSelectedItems === 'function') && (
                   <Button
                     disabled={!selectedItemsUuids?.length}
-                    size="small"
                     noPadding
                     transparent
                     onClick={onResetSelectedItems}
@@ -726,7 +724,6 @@ export const Table = memo(function Table<
                 {(typeof onDeleteSelectedItems === 'function') && (
                   <Button
                     disabled={!selectedItemsUuids?.length}
-                    size="small"
                     noPadding
                     transparent
                     onClick={onDeleteSelectedItems}
@@ -766,7 +763,6 @@ export const Table = memo(function Table<
               isAppliedFilter
                 ? (
                     <Button
-                      size="small"
                       noPadding
                       transparent
                       onClick={onDisableFilter}
@@ -777,7 +773,6 @@ export const Table = memo(function Table<
                   )
                 : (
                     <Button
-                      size="small"
                       noPadding
                       transparent
                       onClick={onEnableFilter}

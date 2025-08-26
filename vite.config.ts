@@ -43,6 +43,13 @@ export default defineConfig(({ mode }) => {
         fontName: svgIconFontName,
         baseSelector: '.icon',
         classPrefix: 'icon-',
+
+        centerHorizontally: true,
+        fixedWidth: true,
+        normalize: true,
+        // descent: 0,
+        // round: 1e3,
+
         svgo: { // todo replace by using `svgo.config.mjs`
           multipass: true,
           plugins: [ // snippet in ./scripts/svgo/svgoPlaygroundCollectTurnedOnPluginsNames.snippet.js
@@ -97,11 +104,11 @@ export default defineConfig(({ mode }) => {
       ...[
         (useBasicSslCerts && customHostName)
           ? {
-              https: {
-                key: readFileSync(`./.ssl/${customHostName}-key.pem`),
-                cert: readFileSync(`./.ssl/${customHostName}.pem`),
-              },
-            }
+            https: {
+              key: readFileSync(`./.ssl/${customHostName}-key.pem`),
+              cert: readFileSync(`./.ssl/${customHostName}.pem`),
+            },
+          }
           : undefined,
       ]
     }

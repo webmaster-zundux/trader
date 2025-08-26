@@ -1,0 +1,18 @@
+.SearchAndFilterFormContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  width: 100%;
+  position: relative;
+  margin-bottom: 0.25em;
+}
+
+.SearchAndFilterFormContainer form + button {
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  height: 100%;
+}
+
+.SearchAndFilterFormContainer form + button i {
+  font-size: 1.3em;
+}

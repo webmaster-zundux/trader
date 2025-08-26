@@ -54,18 +54,23 @@
   position: absolute;
   left: 2%;
   width: 96%;
+  background-color: light-dark(#494949, #797979);
+  border-radius: 0.1em;
 }
 
 .NavLink.Pending::after {
-  border-bottom: none;
+  height: 0;
+  display: none;
 }
 
 .NavLink.Active::after {
-  border-bottom: 0.2em solid light-dark(#494949, #797979);
+  height: 0.2em;
 }
 
-.NavLink:hover::after {
-  border-bottom: 0.4em solid light-dark(#494949, #797979);
+.NavLink:hover::after,
+.NavLink:focus::after,
+.NavLink:focus-visible::after {
+  height: 0.4em;
 }
 
 @media (width < 768px) {

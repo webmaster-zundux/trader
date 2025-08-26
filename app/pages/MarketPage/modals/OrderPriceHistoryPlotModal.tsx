@@ -33,7 +33,6 @@ const OrderPricePlotModalTitle = memo(function OrderPricePlotModalTitle({
 
       {hasEnoughDataForPlot && (
         <Button
-          size="small"
           noPadding
           transparent
           onClick={handleShowDeletePriceAtMarksConfirmation}
@@ -138,7 +137,6 @@ export const OrderPriceHistoryPlotModal = memo(function OrderPriceHistoryPlotMod
         )}
         subTitle={subTitle}
         onHide={handleHideModal}
-        size="small"
       >
         <div className={styles.ModalBody}>
           <div className={styles.Content}>

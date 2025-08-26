@@ -16,7 +16,7 @@
 .Button i {
   display: flex;
   color: var(--text-color);
-  margin: -0.05em;
+  font-size: 1.5em;
 }
 
 .Primary {
@@ -29,12 +29,12 @@
   height: 100%;
 }
 
-.Tiny {
-  padding: 0.1em 0.5em;
+.Big {
+  padding: 0.8em 1em;
 }
 
-.Tiny i {
-  font-size: 1.4em;
+.Big i {
+  font-size: 1.6em;
 }
 
 .Small {
@@ -42,15 +42,15 @@
 }
 
 .Small i {
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
-.Big {
-  padding: 0.8em 1em;
+.Tiny {
+  padding: 0.1em 0.5em;
 }
 
-.Big i {
-  font-size: 1.6em;
+.Tiny i {
+  font-size: 1.2em;
 }
 
 .TransparentOnDefaultState,
@@ -64,7 +64,7 @@
 }
 
 .Button.NoPadding:has(>i+span)>i+span {
-  padding-right:0.2em;
+  padding-right:0.3em;
 }
 
 .NoBorder {
@@ -74,14 +74,14 @@
 
 .Button:has(>i+span) {
   display: flex;
-  gap: 0.25em;
+  gap: 0.3em;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
 .Button:has(>i+span)>i {
-  font-size: 1.3em;
+  /* font-size: 1.3em; */
   display: flex;
 }
 
@@ -105,18 +105,6 @@
 
 .Button.IsAlwaysVisible i {
   opacity: 1 !important;
-}
-
-.Button.NoPadding:has(>i+span) {
-  padding-left: 0;
-}
-
-.Button.NoPadding:has(>i+span)>i {
-  font-size: 1.4em;
-  position: relative;
-  top: auto;
-  transform: none;
-  left: auto;
 }
 
 .Button:has(>i+span)>span::first-letter {

@@ -1,5 +1,6 @@
 import { memo, useEffect, useMemo } from 'react'
 import { Button } from '~/components/Button'
+import { SearchAndFilterFormContainer } from '~/components/SearchAndFilterFormContainer'
 import { useIsVisible } from '~/hooks/ui/useIsVisible'
 import { useSearchParams } from '~/hooks/useSearchParams'
 import { getProductNameFromUrlSearchParams } from '~/router/urlSearchParams/UrlSearchParamsKeys.const'
@@ -71,11 +72,15 @@ export const MarketPage = memo(function MarketPage() {
       <title>{pageTitle}</title>
 
       <Main>
-        <div className={styles.SearchAndFilterFormContainer}>
+
+        <SearchAndFilterFormContainer>
 
           {SearchForm}
 
-          <Button onClick={showMarketFilterDialog} title="show filter form">
+          <Button
+            title="show filter form"
+            onClick={showMarketFilterDialog}
+          >
             <i className="icon icon-tune"></i>
             <span>filter</span>
           </Button>
@@ -87,7 +92,7 @@ export const MarketPage = memo(function MarketPage() {
               onHide={hideMarketFilerDialog}
             />
           )}
-        </div>
+        </SearchAndFilterFormContainer>
 
         <div className={styles.Container}>
           <SellOrdersTable

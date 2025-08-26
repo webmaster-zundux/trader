@@ -10,6 +10,3 @@
   gap: 0.5em;
 }
 
-.ActionButtons button:has(span){
-  padding: 0 0.2em 0 0;
-}

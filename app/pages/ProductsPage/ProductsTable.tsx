@@ -1,5 +1,6 @@
 import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { useShallow } from 'zustand/react/shallow'
+import { SearchAndFilterFormContainer } from '~/components/SearchAndFilterFormContainer'
 import { useIsVisible } from '~/hooks/ui/useIsVisible'
 import type { useSearchParams } from '~/hooks/useSearchParams'
 import { useLoadingPersistStorages } from '~/stores/hooks/useLoadingPersistStorages'
@@ -19,7 +20,7 @@ import { useProductTypesStore } from '../../stores/entity-stores/ProductTypes.st
 import { useProductsStore } from '../../stores/entity-stores/Products.store'
 import { ProductFilterDialog } from '../LocationsPage/modals/ProductFilterDialog'
 import { getProductFilterFields } from '../LocationsPage/modals/getProductFilterFields'
-import styles from './ProductTable.module.css'
+import styles from './ProductsTable.module.css'
 import { getProductsTableFilterInfoFields } from './filterInfoFields/getProductsTableFilterInfoFields'
 import { getProductsTableColumns } from './getProductsTableColumns'
 import { DeleteProductConfirmation } from './modals/DeleteProductConfirmation'
@@ -201,11 +202,14 @@ export const ProductsTable = memo(function ProductsTable({
   return (
     <SearchFormAndTableContainer>
 
-      <div className={styles.SearchAndFilterFormContainer}>
+      <SearchAndFilterFormContainer>
 
         {SearchForm}
 
-        <Button onClick={showFilterDialog} title="show filter form">
+        <Button
+          onClick={showFilterDialog}
+          title="show filter form"
+        >
           <i className="icon icon-tune"></i>
           <span>filter</span>
         </Button>
@@ -217,7 +221,7 @@ export const ProductsTable = memo(function ProductsTable({
             onHide={hideFilerDialog}
           />
         )}
-      </div>
+      </SearchAndFilterFormContainer>
 
       <div className={styles.Container}>
         <Table

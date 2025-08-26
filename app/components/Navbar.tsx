@@ -106,7 +106,6 @@ export const Navbar = memo(function Navbar() {
       >
         {isVisibleMobileNavMenu && (
           <Button
-            size="small"
             noPadding
             transparent
             onClick={hideMobileNavMenu}
@@ -118,7 +117,6 @@ export const Navbar = memo(function Navbar() {
 
         {!isVisibleMobileNavMenu && (
           <Button
-            size="small"
             noPadding
             transparent
             onClick={showMobileNavMenu}

@@ -1,5 +1,6 @@
 import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { useShallow } from 'zustand/react/shallow'
+import { SearchAndFilterFormContainer } from '~/components/SearchAndFilterFormContainer'
 import { useTableFilterApplyingToggler } from '~/components/tables/hooks/useTableFilterApplyingToggler'
 import { useIsVisible } from '~/hooks/ui/useIsVisible'
 import type { useSearchParams } from '~/hooks/useSearchParams'
@@ -16,7 +17,6 @@ import { useTableFilter } from '../../components/tables/hooks/useTableFilter'
 import { ENTITY_TYPE_LOCATION, type Location } from '../../models/entities/Location'
 import { useLocationsStore } from '../../stores/entity-stores/Locations.store'
 import { usePlanetarySystemsStore } from '../../stores/entity-stores/PlanetarySystems.store'
-import styles from './LocationTable.module.css'
 import { getLocationsTableFilterInfoFields } from './filterInfoFields/getLocationsTableFilterInfoFields'
 import { getLocationsTableColumns } from './getLocationsTableColumns'
 import { DeleteLocationConfirmation } from './modals/DeleteLocationConfirmation'
@@ -185,11 +185,14 @@ export const LocationsTable = memo(function LocationTable({
   return (
     <SearchFormAndTableContainer>
 
-      <div className={styles.SearchAndFilterFormContainer}>
+      <SearchAndFilterFormContainer>
 
         {SearchForm}
 
-        <Button onClick={showFilterDialog} title="show filter form">
+        <Button
+          title="show filter form"
+          onClick={showFilterDialog}
+        >
           <i className="icon icon-tune"></i>
           <span>filter</span>
         </Button>
@@ -201,7 +204,7 @@ export const LocationsTable = memo(function LocationTable({
             onHide={hideFilerDialog}
           />
         )}
-      </div>
+      </SearchAndFilterFormContainer>
 
       <Table
         tableTitle="locations"

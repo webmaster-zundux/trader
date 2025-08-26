@@ -1,6 +1,7 @@
 import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { Button } from '~/components/Button'
+import { SearchAndFilterFormContainer } from '~/components/SearchAndFilterFormContainer'
 import { useTableFilter } from '~/components/tables/hooks/useTableFilter'
 import { useTableFilterApplyingToggler } from '~/components/tables/hooks/useTableFilterApplyingToggler'
 import { useIsVisible } from '~/hooks/ui/useIsVisible'
@@ -220,11 +221,14 @@ export const MovingEntitiesTable = memo(function MovingEntityTable({
   return (
     <SearchFormAndTableContainer>
 
-      <div className={styles.SearchAndFilterFormContainer}>
+      <SearchAndFilterFormContainer>
 
         {SearchForm}
 
-        <Button onClick={showFilterDialog} title="show filter form">
+        <Button
+          title="show filter form"
+          onClick={showFilterDialog}
+        >
           <i className="icon icon-tune"></i>
           <span>filter</span>
         </Button>
@@ -236,7 +240,7 @@ export const MovingEntitiesTable = memo(function MovingEntityTable({
             onHide={hideFilerDialog}
           />
         )}
-      </div>
+      </SearchAndFilterFormContainer>
 
       <div className={styles.Container}>
         <Table

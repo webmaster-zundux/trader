@@ -85,7 +85,6 @@ export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch()
         <Button
           title="switch to dark theme"
           onClick={activateDarkTheme}
-          size="small"
           transparent
           noPadding
           noBorder
@@ -98,7 +97,6 @@ export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch()
         <Button
           title="switch to light theme"
           onClick={activateLightTheme}
-          size="small"
           transparent
           noPadding
           noBorder
@@ -111,7 +109,6 @@ export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch()
         <Button
           title="switch to system color scheme"
           onClick={activateSystemTheme}
-          size="small"
           transparent
           noPadding
           noBorder

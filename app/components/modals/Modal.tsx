@@ -112,7 +112,6 @@ function ModalByReactPortal({
               {(!noCloseButton && isShowCloseButton) && (
                 <div className={styles.CloseButtonContainer}>
                   <Button
-                    size="small"
                     transparent
                     noBorder
                     noPadding

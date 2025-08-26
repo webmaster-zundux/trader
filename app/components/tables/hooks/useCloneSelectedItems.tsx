@@ -92,7 +92,6 @@ export function useCloneSelectedItems<
       <>
         {(!!(selectedItemsUuids?.length)) && (
           <Button
-            size="small"
             noPadding
             transparent
             title={buttonTitle}

@@ -201,7 +201,6 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
       <div className={styles.Container}>
         <div className={styles.ActionButtons}>
           <Button
-            size="small"
             noPadding
             transparent
             onClick={showClearStorageConfirmation}
@@ -211,7 +210,6 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
           </Button>
 
           <Button
-            size="small"
             noPadding
             transparent
             onClick={showImportStorageDataModal}
@@ -221,7 +219,6 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
           </Button>
 
           <Button
-            size="small"
             noPadding
             transparent
             onClick={handleExportButtonClick}
@@ -231,7 +228,6 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
           </Button>
 
           <Button
-            size="small"
             noPadding
             transparent
             onClick={showLoadDemoDataConfirmation}

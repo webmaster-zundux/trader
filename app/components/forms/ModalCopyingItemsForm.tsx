@@ -157,7 +157,7 @@ export function ModalCopyingItemsForm<
 
           <div className={styles.ActionButtonsGroup}>
             {showResetButton && (
-              <Button size="small">
+              <Button>
                 {resetButtonLabel || 'reset form'}
               </Button>
             )}

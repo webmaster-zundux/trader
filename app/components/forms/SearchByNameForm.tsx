@@ -67,7 +67,10 @@ export const SearchByNameForm = memo(function SearchByNameForm({
           onChange={handleChangeSearchTerm}
         />
 
-        <Button type="reset" title="clear search field value">
+        <Button
+          type="reset"
+          title="clear search field value"
+        >
           <i className="icon icon-clear"></i>
         </Button>
       </div>

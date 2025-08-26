@@ -44,7 +44,6 @@ export const MapStaticOverlayActionButtons = memo(function MapStaticOverlayActio
             <ul className={styles.MapActionButtons}>
               <li className={styles.MapActionButton}>
                 <Button
-                  size="small"
                   noPadding
                   noBorder
                   transparent
@@ -60,7 +59,6 @@ export const MapStaticOverlayActionButtons = memo(function MapStaticOverlayActio
 
               <li className={styles.MapActionButton}>
                 <Button
-                  size="small"
                   noPadding
                   noBorder
                   transparent

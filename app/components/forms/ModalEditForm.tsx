@@ -83,7 +83,6 @@ export const ModalEditForm = memo(function ModalEditForm<
 
         {isShowDeleteButton && (
           <Button
-            size="small"
             noPadding
             transparent
             onClick={handleDelete}

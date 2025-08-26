@@ -169,6 +169,5 @@ button:focus-visible {
   line-height: 1em !important;
   min-height: 1em;
   min-width: 1em;
-  right: -0.02em;
   position: relative;
 }
