@@ -43,12 +43,50 @@ export default defineConfig(({ mode }) => {
         fontName: svgIconFontName,
         baseSelector: '.icon',
         classPrefix: 'icon-',
-        
-        // centerHorizontally: true,
-        // descent: 0,
-        // fixedWidth: true,
-        // normalize: true,
-        // round: 1e3,
+        svgo: {
+          multipass: true,
+          plugins: [ // snippet in ./scripts/svgo/svgoPlaygroundCollectTurnedOnPluginsNames.snippet.js
+            'preset-default',
+
+            'cleanupAttrs',
+            'cleanupEnableBackground',
+            'cleanupIds',
+            'cleanupNumericValues',
+            'collapseGroups',
+            'convertColors',
+            'convertEllipseToCircle',
+            'convertPathData',
+            'convertShapeToPath',
+            'convertTransform',
+            'inlineStyles',
+            'mergePaths',
+            'mergeStyles',
+            'minifyStyles',
+            'moveElemsAttrsToGroup',
+            'moveGroupAttrsToElems',
+            'removeComments',
+            'removeDesc',
+            'removeDimensions',
+            'removeDoctype',
+            'removeEditorsNSData',
+            'removeEmptyAttrs',
+            'removeEmptyContainers',
+            'removeEmptyText',
+            'removeHiddenElems',
+            'removeMetadata',
+            'removeNonInheritableGroupAttrs',
+            'removeTitle',
+            'removeUnknownsAndDefaults',
+            'removeUnusedNS',
+            'removeUselessDefs',
+            'removeUselessStrokeAndFill',
+            'removeViewBox',
+            'removeXMLProcInst',
+            'reusePaths',
+            'sortAttrs',
+            'sortDefsChildren'
+          ],
+        }
       })
     ],
     define: {
@@ -59,11 +97,11 @@ export default defineConfig(({ mode }) => {
       ...[
         (useBasicSslCerts && customHostName)
           ? {
-            https: {
-              key: readFileSync(`./.ssl/${customHostName}-key.pem`),
-              cert: readFileSync(`./.ssl/${customHostName}.pem`),
-            },
-          }
+              https: {
+                key: readFileSync(`./.ssl/${customHostName}-key.pem`),
+                cert: readFileSync(`./.ssl/${customHostName}.pem`),
+              },
+            }
           : undefined,
       ]
     }
