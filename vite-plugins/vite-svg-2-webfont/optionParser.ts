@@ -1,8 +1,9 @@
-import { resolve } from 'node:path'
+import type { CSSTemplateContext, GeneratedFontTypes, WebfontsGeneratorOptions } from '@vusion/webfonts-generator'
 import { globSync } from 'glob'
-import { hasFileExtension } from './utils'
+import { resolve } from 'node:path'
+import type { Config as SvgoConfig } from 'svgo'
 import { InvalidWriteFilesTypeError, NoIconsAvailableError } from './errors'
-import type { WebfontsGeneratorOptions, GeneratedFontTypes, CSSTemplateContext } from '@vusion/webfonts-generator'
+import { hasFileExtension } from './utils'
 
 const FILE_TYPE_OPTIONS = ['html', 'css', 'fonts'] as const
 
@@ -153,6 +154,10 @@ export interface IconPluginOptions<T extends GeneratedFontTypes = GeneratedFontT
    * @default false
    */
   allowWriteFilesInBuild?: boolean
+  /**
+   * SVGO config {@link SvgoConfig `svgo.Config`}
+   */
+  svgo?: Omit<SvgoConfig, 'path'>
 }
 
 export function parseIconTypesOption<T extends GeneratedFontTypes = GeneratedFontTypes>({ types }: Pick<IconPluginOptions<T>, 'types'>): T[] {
@@ -211,17 +216,20 @@ export function parseGenerateFilesOption(options: Pick<IconPluginOptions, 'gener
 }
 
 type RequiredKeys = 'fontHeight' | 'codepoints' | 'templateOptions' | 'html' | 'css' | 'ligature' | 'formatOptions' | 'writeFiles' | 'cssDest' | 'htmlDest'
-interface ParsedOptions<T extends GeneratedFontTypes = GeneratedFontTypes>
+interface ParsedWebfontsGeneratorOptions<T extends GeneratedFontTypes = GeneratedFontTypes>
   extends Omit<WebfontsGeneratorOptions<T>, RequiredKeys>,
   Pick<Required<WebfontsGeneratorOptions<GeneratedFontTypes>>, RequiredKeys> { }
 
-export function parseOptions<T extends GeneratedFontTypes = GeneratedFontTypes>(options: IconPluginOptions<T>): ParsedOptions<T> {
+export function parseWebfontGeneratorOptions<T extends GeneratedFontTypes = GeneratedFontTypes>(
+  options: IconPluginOptions<T>
+): ParsedWebfontsGeneratorOptions<T> {
   const formats = parseIconTypesOption<T>(options)
   const files = parseFiles(options)
   const generateFilesOptions = parseGenerateFilesOption(options)
 
   options.dest ||= resolve(options.context, '..', 'artifacts')
   options.fontName ||= 'iconfont'
+
   return {
     files,
     types: formats,

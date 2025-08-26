@@ -5,6 +5,7 @@
         "ms-vscode.js-debug",
         "firsttris.vscode-jest-runner",
         "stylelint.vscode-stylelint",
-        "editorconfig.editorconfig"
+        "editorconfig.editorconfig",
+        "yoavbls.pretty-ts-errors"
     ]
 }

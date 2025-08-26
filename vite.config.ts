@@ -41,11 +41,14 @@ export default defineConfig(({ mode }) => {
         fontHeight: 100,
         types: svgIconFontTypes,
         fontName: svgIconFontName,
-        centerHorizontally: true,
-        descent: 0,
-        fixedWidth: true,
-        normalize: true,
-        round: 1e3,
+        baseSelector: '.icon',
+        classPrefix: 'icon-',
+        
+        // centerHorizontally: true,
+        // descent: 0,
+        // fixedWidth: true,
+        // normalize: true,
+        // round: 1e3,
       })
     ],
     define: {

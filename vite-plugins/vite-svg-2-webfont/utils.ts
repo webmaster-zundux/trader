@@ -1,10 +1,10 @@
-import { createHash } from 'node:crypto'
-import { tmpdir as osTmpdir } from 'node:os'
-import { constants, rm as fsRm, mkdtempSync } from 'node:fs'
-import { resolve, dirname, join as pathJoin } from 'node:path'
-import { watch, access, mkdir, writeFile } from 'node:fs/promises'
-import type { FileChangeInfo } from 'node:fs/promises'
 import type { GeneratedFontTypes } from '@vusion/webfonts-generator'
+import { createHash } from 'node:crypto'
+import { constants, rm as fsRm, mkdtempSync } from 'node:fs'
+import type { FileChangeInfo } from 'node:fs/promises'
+import { access, mkdir, watch, writeFile } from 'node:fs/promises'
+import { tmpdir as osTmpdir } from 'node:os'
+import { dirname, join as pathJoin, resolve } from 'node:path'
 
 let watcher: ReturnType<typeof watch> | undefined
 
