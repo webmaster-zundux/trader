@@ -43,7 +43,7 @@ export default defineConfig(({ mode }) => {
         fontName: svgIconFontName,
         baseSelector: '.icon',
         classPrefix: 'icon-',
-        svgo: {
+        svgo: { // todo replace by using `svgo.config.mjs`
           multipass: true,
           plugins: [ // snippet in ./scripts/svgo/svgoPlaygroundCollectTurnedOnPluginsNames.snippet.js
             'preset-default',

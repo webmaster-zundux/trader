@@ -39,6 +39,7 @@ export const FormFieldWithLabel = memo(function FormFieldWithLabel<T>({
     <FormFieldWrapper
       name={field.name}
       label={field.label ?? field.name}
+      type={((field.type === 'file') && (field.accept === 'image/*') && !!(fieldValue as string ?? field.defaultValue)) ? 'hidden' : field.type}
       hideFieldLabel={hideFieldLabel}
       required={field.required}
     >

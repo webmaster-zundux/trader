@@ -29,6 +29,7 @@ export const FormFieldList = memo(function FormFieldList<T>({
               label,
               labelForFieldName,
               fields: subFields,
+              type,
             } = field
 
             return (
@@ -36,6 +37,7 @@ export const FormFieldList = memo(function FormFieldList<T>({
                 key={fieldIndex}
                 name={labelForFieldName}
                 label={label}
+                type={type}
               >
                 <div className={styles.Row}>
                   {subFields.map((subField) => {
