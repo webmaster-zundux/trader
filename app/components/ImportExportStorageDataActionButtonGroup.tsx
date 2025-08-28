@@ -279,10 +279,10 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
 
       {isVisibleSuccessImportStorageDataNotification && (
         <ModalNotification
-          title="storage data was successfully imported from file"
+          title="storage data was successfully"
         >
           <div style={{ textAlign: 'center', maxHeight: '90%', overflow: 'auto' }}>
-            Page will reload automatically in
+            Page will automatically reload in
             {' '}
             {Math.ceil(PAGE_RELOAD_TIMEOUT_AFTER_SUCCESS_CLEARING_LOCAL_STORAGE_IN_MS / 1000)}
             {' '}
