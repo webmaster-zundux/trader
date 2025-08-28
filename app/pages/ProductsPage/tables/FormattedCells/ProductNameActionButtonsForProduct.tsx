@@ -1,4 +1,5 @@
 import { Button } from '~/components/Button'
+import { Icon } from '~/components/Icon'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
 import type { Product } from '~/models/entities/Product'
 import { getUrlToMarketPageWithParams } from '~/router/urlSearchParams/getUrlToMarketPageWithParams'
@@ -19,15 +20,15 @@ export function ProductNameActionButtonsForProduct({
     <>
       {urlToMarketPage
         ? (
-          <InternalStaticLink to={urlToMarketPage} title="search by product name in market">
-            <i className="icon icon-query_stats"></i>
-          </InternalStaticLink>
-        )
+            <InternalStaticLink to={urlToMarketPage} title="search by product name in market">
+              <Icon name="query_stats" />
+            </InternalStaticLink>
+          )
         : (
-          <Button disabled noBorder noPadding transparent title="no data for search">
-            <i className="icon icon-search_off"></i>
-          </Button>
-        )}
+            <Button disabled noBorder noPadding transparent title="no data for search">
+              <Icon name="search_off" />
+            </Button>
+          )}
     </>
   )
 }

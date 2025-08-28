@@ -7,6 +7,7 @@ import { cn } from '~/utils/ui/ClassNames'
 import { Button } from '../Button'
 import { useDialogOrder } from '../modals/hooks/useDialogOrder'
 import styles from './Dialog.module.css'
+import { Icon } from '../Icon'
 
 interface DialogProps extends PropsWithChildren {
   title: (() => React.ReactNode) | React.ReactNode
@@ -96,7 +97,7 @@ export const Dialog = memo(function Dialog({
               onClick={handleHide}
               title="close"
             >
-              <i className="icon icon-close"></i>
+              <Icon name="close" />
             </Button>
           </div>
         )}

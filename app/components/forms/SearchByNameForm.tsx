@@ -3,6 +3,7 @@ import { memo, useCallback, useRef } from 'react'
 import { Button } from '../Button'
 import styles from './SearchByNameForm.module.css'
 import { InputField } from './fields/InputField'
+import { Icon } from '../Icon'
 
 interface SearchByNameFormProps {
   searchFieldValue: string
@@ -71,7 +72,7 @@ export const SearchByNameForm = memo(function SearchByNameForm({
           type="reset"
           title="clear search field value"
         >
-          <i className="icon icon-clear"></i>
+          <Icon name="clear" />
         </Button>
       </div>
 

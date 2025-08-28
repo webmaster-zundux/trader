@@ -1,4 +1,5 @@
 import { Button } from '~/components/Button'
+import { Icon } from '~/components/Icon'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
 import type { Order } from '~/models/Order'
 import { getUrlToMarketPageWithParams } from '~/router/urlSearchParams/getUrlToMarketPageWithParams'
@@ -22,27 +23,27 @@ export function ProductActionButtonsForOrder({ item }: { item: Order }) {
     <>
       {urlToProductsPage
         ? (
-          <InternalStaticLink to={urlToProductsPage} title="show product info">
-            <i className="icon icon-info"></i>
-          </InternalStaticLink>
-        )
+            <InternalStaticLink to={urlToProductsPage} title="show product info">
+              <Icon name="info" />
+            </InternalStaticLink>
+          )
         : (
-          <Button disabled noBorder noPadding transparent title="no data for search in products">
-            <i className="icon icon-search_off"></i>
-          </Button>
-        )}
+            <Button disabled noBorder noPadding transparent title="no data for search in products">
+              <Icon name="search_off" />
+            </Button>
+          )}
 
       {urlToMarketPage
         ? (
-          <InternalStaticLink to={urlToMarketPage} title="search by product name in market">
-            <i className="icon icon-query_stats"></i>
-          </InternalStaticLink>
-        )
+            <InternalStaticLink to={urlToMarketPage} title="search by product name in market">
+              <Icon name="query_stats" />
+            </InternalStaticLink>
+          )
         : (
-          <Button disabled noBorder noPadding transparent title="no data for search in market">
-            <i className="icon icon-search_off"></i>
-          </Button>
-        )}
+            <Button disabled noBorder noPadding transparent title="no data for search in market">
+              <Icon name="search_off" />
+            </Button>
+          )}
     </>
   )
 }

@@ -4,6 +4,7 @@ import { useColorTheme } from '~/stores/simple-stores/ColorTheme.store'
 import { getPreferredColorScheme } from '../utils/ui/getPreferredColorScheme.client'
 import { Button } from './Button'
 import { COLOR_THEME_DARK, COLOR_THEME_LIGHT, COLOR_THEME_SYSTEM, DEFAULT_PREFERED_COLOR_THEME, HTML_BODY_CSS_CLASS_FOR_DARK_THEME, HTML_BODY_CSS_CLASS_FOR_LIGHT_THEME, LOCALSTORAGE_PREFERED_COLOR_THEME_KEY, type PreferedColorTheme } from './PreferedColorThemeSwitch.const'
+import { Icon } from './Icon'
 
 export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch() {
   const [systemCurrentColorTheme, setSystemCurrentColorTheme] = useState<PreferedColorTheme>(DEFAULT_PREFERED_COLOR_THEME)
@@ -89,7 +90,7 @@ export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch()
           noPadding
           noBorder
         >
-          <i className="icon icon-routine"></i>
+          <Icon name="routine" />
         </Button>
       )}
 
@@ -101,7 +102,7 @@ export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch()
           noPadding
           noBorder
         >
-          <i className="icon icon-dark_mode"></i>
+          <Icon name="dark_mode" />
         </Button>
       )}
 
@@ -113,7 +114,7 @@ export const PreferedColorThemeSwitch = memo(function PreferedColorThemeSwitch()
           noPadding
           noBorder
         >
-          <i className="icon icon-light_mode"></i>
+          <Icon name="light_mode" />
         </Button>
       )}
     </>

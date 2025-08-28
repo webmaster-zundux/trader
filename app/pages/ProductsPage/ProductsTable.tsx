@@ -27,6 +27,7 @@ import { DeleteProductConfirmation } from './modals/DeleteProductConfirmation'
 import { EditProductModal } from './modals/EditProductModal'
 import { useProductsTableFilter } from './useProductsTableFilter'
 import { useProductsTableSearch } from './useProductsTableSearch'
+import { Icon } from '~/components/Icon'
 
 const sortableGroupColumnNames: (ReturnType<typeof getProductsTableColumns>)[number]['name'][] = [
   'name',
@@ -209,7 +210,7 @@ export const ProductsTable = memo(function ProductsTable({
           onClick={showFilterDialog}
           title="show filter form"
         >
-          <i className="icon icon-tune"></i>
+          <Icon name="tune" />
           <span>filter</span>
         </Button>
 

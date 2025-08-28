@@ -1,17 +1,18 @@
 import { reactRouter } from '@react-router/dev/vite'
+import type { GeneratedFontTypes } from '@vusion/webfonts-generator'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
 import { defineConfig, loadEnv } from 'vite'
 import svgr from 'vite-plugin-svgr'
-// import viteSvgToWebFont from 'vite-svg-2-webfont'
-import viteSvgToWebFontPatchedVersion5 from './vite-plugins/vite-svg-2-webfont' // todo - replace by npm package 'vite-svg-2-webfont' when patch will be released (details in ./vite-plugins/vite-svg-2-webfont/README.md)
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { appDirectory, basename } from './react-router.config'
-import type { GeneratedFontTypes } from '@vusion/webfonts-generator'
+import viteSvgToWebFontPatchedVersion5 from './vite-plugins/vite-svg-2-webfont'
 
 const svgIconFontName = 'iconfont'
+const svgIconBaseSelector = `.Icon`
+const svgIconClassPrefix = 'Icon-'
 const svgIconFontTypes: GeneratedFontTypes[] = ['woff', 'woff2']
-const svgIconsFolderPath = resolve(__dirname, appDirectory, 'svg-icons-for-font')
+const svgIconsFolderPath = resolve(__dirname, appDirectory, 'svg-icons-for-font', 'in-use')
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
@@ -35,20 +36,23 @@ export default defineConfig(({ mode }) => {
       tsconfigPaths(),
       svgr(),
       reactRouter(),
+
+      // todo - replace by npm package 'vite-svg-2-webfont' with patches for vite.base, and svgo support will be released (details in ./vite-plugins/vite-svg-2-webfont/README.md)
       viteSvgToWebFontPatchedVersion5({
         allowWriteFilesInBuild: true,
         context: svgIconsFolderPath,
         fontHeight: 100,
         types: svgIconFontTypes,
         fontName: svgIconFontName,
-        baseSelector: '.icon',
-        classPrefix: 'icon-',
+        baseSelector: svgIconBaseSelector,
+        classPrefix: svgIconClassPrefix,
 
-        centerHorizontally: true,
-        fixedWidth: true,
-        normalize: true,
-        // descent: 0,
-        // round: 1e3,
+        // does not works
+        // centerHorizontally: true,
+        // fixedWidth: true,
+        // normalize: true,
+        // // descent: 0,
+        // // round: 1e3,
 
         svgo: { // todo replace by using `svgo.config.mjs`
           multipass: true,
@@ -104,11 +108,11 @@ export default defineConfig(({ mode }) => {
       ...[
         (useBasicSslCerts && customHostName)
           ? {
-            https: {
-              key: readFileSync(`./.ssl/${customHostName}-key.pem`),
-              cert: readFileSync(`./.ssl/${customHostName}.pem`),
-            },
-          }
+              https: {
+                key: readFileSync(`./.ssl/${customHostName}-key.pem`),
+                cert: readFileSync(`./.ssl/${customHostName}.pem`),
+              },
+            }
           : undefined,
       ]
     }

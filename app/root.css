@@ -154,22 +154,3 @@ button:focus-visible {
   border-color: var(--button-focus-visible-border-color);
   outline-color: var(--button-focus-visible-outline-color);
 }
-
-/* stylelint-disable-next-line selector-class-pattern */
-.icon {
-  min-height: fit-content;
-  position: relative;
-  display: inline-block;
-  font-size: 1em;
-  line-height: normal !important;
-}
-
-/* stylelint-disable-next-line selector-class-pattern */
-.icon::before {
-  line-height: 1em !important;
-  min-height: 1em;
-  min-width: 1em;
-  height: 1em;
-  width: 1em;
-  position: relative;
-}

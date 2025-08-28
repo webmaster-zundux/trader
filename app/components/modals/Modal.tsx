@@ -10,6 +10,7 @@ import { createModalDialogElementId } from '../../utils/ui/createModalDialogElem
 import { Button } from '../Button'
 import styles from './Modal.module.css'
 import { useDialogOrder } from './hooks/useDialogOrder'
+import { Icon } from '../Icon'
 
 interface ModalProps extends PropsWithChildren {
   title: React.ReactNode
@@ -119,7 +120,7 @@ function ModalByReactPortal({
                     onClick={handleHide}
                     title="close"
                   >
-                    <i className="icon icon-close"></i>
+                    <Icon name="close" />
                   </Button>
                 </div>
               )}

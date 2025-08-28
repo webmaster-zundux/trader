@@ -3,6 +3,7 @@ import { InternalStaticLink } from '~/components/InternalStaticLink'
 import type { MovingEntityClass } from '~/models/entities/MovingEntityClass'
 import { getUrlToMovingEntitiesPageWithParams } from '~/router/urlSearchParams/getUrlToMovingEntitiesPageWithParams'
 import type { Column } from '../../components/Table'
+import { Icon } from '~/components/Icon'
 
 export function getMovingEntityClassesTableColumns(): Column<MovingEntityClass>[] {
   return [
@@ -25,15 +26,15 @@ export function getMovingEntityClassesTableColumns(): Column<MovingEntityClass>[
           <>
             {urlToMovingEntitiesPage
               ? (
-                <InternalStaticLink to={urlToMovingEntitiesPage} title="search by moving entity class in moving entities">
-                  <i className="icon icon-search_category"></i>
-                </InternalStaticLink>
-              )
+                  <InternalStaticLink to={urlToMovingEntitiesPage} title="search by moving entity class in moving entities">
+                    <Icon name="search_category" />
+                  </InternalStaticLink>
+                )
               : (
-                <Button disabled noBorder noPadding transparent title="no data for search">
-                  <i className="icon icon-search_off"></i>
-                </Button>
-              )}
+                  <Button disabled noBorder noPadding transparent title="no data for search">
+                    <Icon name="search_off" />
+                  </Button>
+                )}
           </>
         )
       },

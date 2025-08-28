@@ -1,4 +1,5 @@
 import { Button } from '~/components/Button'
+import { Icon } from '~/components/Icon'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
 import { isUuid } from '~/models/Entity'
 import { getUrlToLocationsPageWithParams } from '~/router/urlSearchParams/getUrlToLocationsPageWithParams'
@@ -34,39 +35,39 @@ export function PlanetarySystemActionButtonsForLocation({
     <>
       {urlToMapPage
         ? (
-          <InternalStaticLink to={urlToMapPage} title="show planetary system on map">
-            <i className="icon icon-location_on"></i>
-          </InternalStaticLink>
-        )
+            <InternalStaticLink to={urlToMapPage} title="show planetary system on map">
+              <Icon name="location_on" />
+            </InternalStaticLink>
+          )
         : (
-          <Button disabled noBorder noPadding transparent title="no planetary systems data">
-            <i className="icon icon-location_off"></i>
-          </Button>
-        )}
+            <Button disabled noBorder noPadding transparent title="no planetary systems data">
+              <Icon name="location_off" />
+            </Button>
+          )}
 
       {urlToLocationsPage
         ? (
-          <InternalStaticLink to={urlToLocationsPage} title="search locations in the planetary system">
-            <i className="icon icon-location_searching"></i>
-          </InternalStaticLink>
-        )
+            <InternalStaticLink to={urlToLocationsPage} title="search locations in the planetary system">
+              <Icon name="location_searching" />
+            </InternalStaticLink>
+          )
         : (
-          <Button disabled noBorder noPadding transparent title="no planetary system data">
-            <i className="icon icon-location_disabled"></i>
-          </Button>
-        )}
+            <Button disabled noBorder noPadding transparent title="no planetary system data">
+              <Icon name="location_disabled" />
+            </Button>
+          )}
 
       {urlToMarketPage
         ? (
-          <InternalStaticLink to={urlToMarketPage} title="search by planetary system name in market">
-            <i className="icon icon-query_stats"></i>
-          </InternalStaticLink>
-        )
+            <InternalStaticLink to={urlToMarketPage} title="search by planetary system name in market">
+              <Icon name="query_stats" />
+            </InternalStaticLink>
+          )
         : (
-          <Button disabled noBorder noPadding transparent title="no data for search in market">
-            <i className="icon icon-search_off"></i>
-          </Button>
-        )}
+            <Button disabled noBorder noPadding transparent title="no data for search in market">
+              <Icon name="search_off" />
+            </Button>
+          )}
     </>
   )
 }

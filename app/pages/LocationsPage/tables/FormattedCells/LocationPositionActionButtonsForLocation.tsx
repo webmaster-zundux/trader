@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { Button } from '~/components/Button'
+import { Icon } from '~/components/Icon'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
 import { isUuid } from '~/models/Entity'
 import { parsePositionFromString } from '~/models/Position'
@@ -42,15 +43,15 @@ export function LocationPositionActionButtonsForLocation({
     <>
       {urlToMapPage
         ? (
-          <InternalStaticLink to={urlToMapPage} title="show location on map">
-            <i className="icon icon-location_on"></i>
-          </InternalStaticLink>
-        )
+            <InternalStaticLink to={urlToMapPage} title="show location on map">
+              <Icon name="location_on" />
+            </InternalStaticLink>
+          )
         : (
-          <Button disabled noBorder noPadding transparent title="no position data">
-            <i className="icon icon-location_off"></i>
-          </Button>
-        )}
+            <Button disabled noBorder noPadding transparent title="no position data">
+              <Icon name="location_off" />
+            </Button>
+          )}
 
     </>
   )

@@ -1,5 +1,7 @@
 > [!IMPORTANT]  
-> Patched version of `vite-svg-2-webfont@v5.0.0` by usage `base` from `vite.config.ts`
+> Patched version of `vite-svg-2-webfont@v5.0.0` 
+> Patch 1 - usage `base` from `vite.config.ts`
+> Patch 2 - usage `svgo` npm package for optimizing content of svg files
 
 # vite-svg-2-webfont
 

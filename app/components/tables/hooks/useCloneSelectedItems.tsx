@@ -5,6 +5,7 @@ import { Button } from '../../Button'
 import { ModalCopyingItemsForm } from '../../forms/ModalCopyingItemsForm'
 import { ModalNotification } from '../../modals/notifications/ModalNotification'
 import styles from './useCloneSelectedItems.module.css'
+import { Icon } from '~/components/Icon'
 
 interface UseCloneSelectedItemsProps<
   T extends Entity = Entity,
@@ -97,7 +98,7 @@ export function useCloneSelectedItems<
             title={buttonTitle}
             onClick={handleShowCopyingDialog}
           >
-            <i className="icon icon-content_copy"></i>
+            <Icon name="content_copy" />
           </Button>
         )}
       </>

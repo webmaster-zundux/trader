@@ -3,7 +3,7 @@
   max-height: 100%;
   height: 100%; 
   font-size-adjust: from-font;
-  font-size: 1.3em;
+  font-size: 1.1em;
 }
 
 @media (width < 480px) {
@@ -12,14 +12,15 @@
   }
 }
 
-.PriceLinePlotBody g.XAxis,
-.PriceLinePlotBody g.YAxis {
-  font-size: 0.7em;
+.PriceLinePlotBody g.XAxis .Tick text,
+.PriceLinePlotBody g.YAxis .Tick text {
+  font-size: 1.3em;
 }
 
 .PriceLinePlotBody .XAxisTitle,
 .PriceLinePlotBody .YAxisTitle {
   text-transform: capitalize;
+  font-size: 1.4em;
 }
 
 .LineWithMissingData {

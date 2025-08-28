@@ -14,6 +14,7 @@ import { BuyOrdersTable } from './tables/BuyOrdersTable'
 import { SellOrdersTable } from './tables/SellOrdersTable'
 import { getOrdersTableUrlSearchParams, useOrdersTableFilter } from './useOrdersTableFilter'
 import { useOrdersTableSearch } from './useOrdersTableSearch'
+import { Icon } from '~/components/Icon'
 
 function useLocationsPageTitle(urlSearchParams: URLSearchParams): string {
   const searchingLocationFullName = useMemo(() => {
@@ -80,7 +81,7 @@ export const MarketPage = memo(function MarketPage() {
             title="show filter form"
             onClick={showMarketFilterDialog}
           >
-            <i className="icon icon-tune"></i>
+            <Icon name="tune" />
             <span>filter</span>
           </Button>
 

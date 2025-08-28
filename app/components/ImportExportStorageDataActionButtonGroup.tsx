@@ -14,6 +14,7 @@ import { ClearStorageConfirmation } from './modals/confirmations/ClearStorageCon
 import { EmptyDataStorageAndSuggestionToLoadDemoDataConfirmation } from './modals/confirmations/EmptyDataStorageAndSuggestionToLoadDemoDataConfirmation'
 import { LoadDemoDataConfirmation } from './modals/confirmations/LoadDemoDataConfirmation'
 import { ModalNotification } from './modals/notifications/ModalNotification'
+import { Icon } from './Icon'
 
 const PAGE_RELOAD_TIMEOUT_AFTER_SUCCESS_CLEARING_LOCAL_STORAGE_IN_MS = 5 * 1000
 const STORAGE_EXPORT_NOTIFICATION_TIMEOUT = 5 * 1000
@@ -206,7 +207,7 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
             onClick={showClearStorageConfirmation}
             title="clear storage"
           >
-            <i className="icon icon-ink_eraser"></i>
+            <Icon name="ink_eraser" />
           </Button>
 
           <Button
@@ -215,7 +216,7 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
             onClick={showImportStorageDataModal}
             title="import"
           >
-            <i className="icon icon-upload_file"></i>
+            <Icon name="upload_file" />
           </Button>
 
           <Button
@@ -224,7 +225,7 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
             onClick={handleExportButtonClick}
             title="export"
           >
-            <i className="icon icon-file_download"></i>
+            <Icon name="file_download" />
           </Button>
 
           <Button
@@ -233,7 +234,7 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
             onClick={showLoadDemoDataConfirmation}
             title="load demo data"
           >
-            <i className="icon icon-description"></i>
+            <Icon name="description" />
             <span>
               load demo data
             </span>

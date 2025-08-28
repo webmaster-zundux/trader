@@ -9,6 +9,7 @@ import type { FormField } from './FormFieldWithLabel.const'
 import styles from './ModalEditForm.module.css'
 import { useResetFormFieldsToDefaultValues } from './hooks/useResetFormFieldsToDefaultValues'
 import { useSubmitForm } from './hooks/useSubmitForm'
+import { Icon } from '../Icon'
 
 interface ModalEditFormProps<
   T extends Entity = Entity,
@@ -88,7 +89,7 @@ export const ModalEditForm = memo(function ModalEditForm<
             onClick={handleDelete}
             title={deleteItemButtonLabel}
           >
-            <i className="icon icon-delete_forever"></i>
+            <Icon name="delete_forever" />
           </Button>
         )}
       </div>

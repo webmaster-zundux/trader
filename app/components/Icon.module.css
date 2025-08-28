@@ -1,0 +1,16 @@
+.Icon {
+  min-height: fit-content;
+  position: relative;
+  font-size: 1em;
+  line-height: normal !important;
+  display: inline-block;
+}
+
+.Icon::before {
+  line-height: 1em !important;
+  min-height: 1em;
+  min-width: 1em;
+  height: 1em;
+  width: 1em;
+  position: relative;
+}

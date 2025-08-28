@@ -14,6 +14,7 @@ import { ORDER_PRICE_HISTORY_RECORDS_MAX_LIMIT, usePriceHistoriesStore } from '.
 import { PriceLinePlot } from '../plots/PriceLinePlot'
 import { DeletePriceHistoryConfirmation } from './DeletePriceHistoryConfirmation'
 import styles from './OrderPriceHistoryPlotModal.module.css'
+import { Icon } from '~/components/Icon'
 
 interface OrderPricePlotModalTitleProps {
   formTitle: string
@@ -38,7 +39,7 @@ const OrderPricePlotModalTitle = memo(function OrderPricePlotModalTitle({
           onClick={handleShowDeletePriceAtMarksConfirmation}
           title={deleteItemButtonLabel}
         >
-          <i className="icon icon-delete_forever"></i>
+          <Icon name="delete_forever" />
         </Button>
       )}
     </div>

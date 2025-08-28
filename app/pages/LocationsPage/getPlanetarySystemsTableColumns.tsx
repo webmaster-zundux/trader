@@ -9,6 +9,7 @@ import { getUrlToMarketPageWithParams } from '~/router/urlSearchParams/getUrlToM
 import { getUrlToMovingEntitiesPageWithParams } from '~/router/urlSearchParams/getUrlToMovingEntitiesPageWithParams'
 import { MAP_MODE_UNIVERSE } from '../MapPage/Map.const'
 import { FormattedPositionForPlanetarySystem } from './tables/FormattedCells/FormattedPositionForPlanetarySystem'
+import { Icon } from '~/components/Icon'
 
 export function getPlanetarySystemsTableColumns(): Column<PlanetarySystem>[] {
   return [
@@ -39,31 +40,31 @@ export function getPlanetarySystemsTableColumns(): Column<PlanetarySystem>[] {
           <>
             {urlToMovingEntitiesPage ? (
               <InternalStaticLink to={urlToMovingEntitiesPage} title="search moving objects in the planetary system">
-                <i className="icon icon-rocket_launch"></i>
+                <Icon name="rocket_launch" />
               </InternalStaticLink>
             ) : (
               <Button disabled noBorder noPadding transparent title="no data for search">
-                <i className="icon icon-search_off"></i>
+                <Icon name="search_off" />
               </Button>
             )}
 
             {urlToLocationsPage ? (
               <InternalStaticLink to={urlToLocationsPage} title="search locations in the planetary system">
-                <i className="icon icon-location_searching"></i>
+                <Icon name="location_searching" />
               </InternalStaticLink>
             ) : (
               <Button disabled noBorder noPadding transparent title="no data for search">
-                <i className="icon icon-search_off"></i>
+                <Icon name="search_off" />
               </Button>
             )}
 
             {urlToMarketPage ? (
               <InternalStaticLink to={urlToMarketPage} title="search orders in market">
-                <i className="icon icon-query_stats"></i>
+                <Icon name="query_stats" />
               </InternalStaticLink>
             ) : (
               <Button disabled noBorder noPadding transparent title="no data for search">
-                <i className="icon icon-search_off"></i>
+                <Icon name="search_off" />
               </Button>
             )}
           </>
@@ -91,21 +92,21 @@ export function getPlanetarySystemsTableColumns(): Column<PlanetarySystem>[] {
           <>
             {urlToMapPageWithPlanetarySystemMode ? (
               <InternalStaticLink to={urlToMapPageWithPlanetarySystemMode} title="show on map what the planetary system contains">
-                <i className="icon icon-planet_orbit"></i>
+                <Icon name="planet_orbit" />
               </InternalStaticLink>
             ) : (
               <Button disabled noBorder noPadding transparent title="no data for search">
-                <i className="icon icon-not_listed_location"></i>
+                <Icon name="not_listed_location" />
               </Button>
             )}
 
             {urlToMapPageWithUniverseMode ? (
               <InternalStaticLink to={urlToMapPageWithUniverseMode} title="show planetary system on map">
-                <i className="icon icon-location_on"></i>
+                <Icon name="location_on" />
               </InternalStaticLink>
             ) : (
               <Button disabled noBorder noPadding transparent title="no data for search">
-                <i className="icon icon-not_listed_location"></i>
+                <Icon name="not_listed_location" />
               </Button>
             )}
           </>

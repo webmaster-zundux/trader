@@ -9,6 +9,7 @@ import { InternalNavLink } from './InternalNavLink'
 import { MAIN_NAV_BAR_LINKS } from './Navbar.const'
 import styles from './Navbar.module.css'
 import { PreferedColorThemeSwitch } from './PreferedColorThemeSwitch'
+import { Icon } from './Icon'
 
 export type PageLink = {
   slug: string
@@ -111,7 +112,7 @@ export const Navbar = memo(function Navbar() {
             onClick={hideMobileNavMenu}
             title="hide menu"
           >
-            <i className="icon icon-close"></i>
+            <Icon name="close" />
           </Button>
         )}
 
@@ -122,7 +123,7 @@ export const Navbar = memo(function Navbar() {
             onClick={showMobileNavMenu}
             title="show menu"
           >
-            <i className="icon icon-menu"></i>
+            <Icon name="menu" />
           </Button>
         )}
       </div>

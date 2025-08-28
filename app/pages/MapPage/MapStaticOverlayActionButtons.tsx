@@ -8,6 +8,7 @@ import styles from './MapStaticOverlayActionButtons.module.css'
 import { MapOrderPricesFilterDialog } from './modal/MapOrderPricesFilterDialog'
 import { MapSellOrderPricesTable } from './tables/MapSellOrderPricesTable'
 import { useMapOrderPricesTableFilter } from './useMapOrderPricesTableFilter'
+import { Icon } from '~/components/Icon'
 
 interface MapStaticOverlayActionButtonsProps {
   mapMode: MapMode
@@ -50,7 +51,7 @@ export const MapStaticOverlayActionButtons = memo(function MapStaticOverlayActio
                   title="show a product prices"
                   onClick={toggleVisibilityOfMapOrderPricesFilterDialog}
                 >
-                  <i className="icon icon-package_2"></i>
+                  <Icon name="package_2" />
                   {/* <span>
                     show product prices
                   </span> */}
@@ -65,7 +66,7 @@ export const MapStaticOverlayActionButtons = memo(function MapStaticOverlayActio
                   title="route planning"
                   onClick={toggleVisibilityOfRoutePlanningDialog}
                 >
-                  <i className="icon icon-route"></i>
+                  <Icon name="route" />
                   {/* <span>
                     plan route
                   </span> */}

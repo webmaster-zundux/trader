@@ -29,6 +29,7 @@ import { MovingEntityFilterDialog } from './modals/MovingEntityFilterDialog'
 import styles from './MovingEntitiesTable.module.css'
 import { useMovingEntitiesTableFilter } from './useMovingEntitiesTableFilter'
 import { useMovingEntitiesTableSearch } from './useMovingEntitiesTableSearch'
+import { Icon } from '~/components/Icon'
 
 const sortableGroupColumnNames: (ReturnType<typeof getMovingEntitiesTableColumns>)[number]['name'][] = [
   'name',
@@ -228,7 +229,7 @@ export const MovingEntitiesTable = memo(function MovingEntityTable({
           title="show filter form"
           onClick={showFilterDialog}
         >
-          <i className="icon icon-tune"></i>
+          <Icon name="tune" />
           <span>filter</span>
         </Button>
 

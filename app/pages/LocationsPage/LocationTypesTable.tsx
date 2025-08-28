@@ -20,6 +20,7 @@ import { DeleteLocationTypeConfirmation } from './modals/DeleteLocationTypeConfi
 import { EditLocationTypeModal } from './modals/EditLocationTypeModal'
 import { useLocationTypesTableSearch } from './useLocationTypesTableSearch'
 import { SearchAndFilterFormContainer } from '~/components/SearchAndFilterFormContainer'
+import { Icon } from '~/components/Icon'
 
 const sortableGroupColumnNames: (typeof locationTypesTableColumns)[number]['name'][] = [
   'name',
@@ -45,11 +46,11 @@ const locationTypesTableColumns: Column<LocationType>[] = [
         <>
           {urlToProductsPage ? (
             <InternalStaticLink to={urlToProductsPage} title="search by location type in locations">
-              <i className="icon icon-search_category"></i>
+              <Icon name="search_category" />
             </InternalStaticLink>
           ) : (
             <Button disabled noBorder noPadding transparent title="no data for search">
-              <i className="icon icon-search_off"></i>
+              <Icon name="search_off" />
             </Button>
           )}
         </>

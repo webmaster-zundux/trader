@@ -11,6 +11,7 @@ import { TableFilterInfo, type FilterInfoField, type FilterValue } from './Table
 import { COLUMN_SORT_ASC, COLUMN_SORT_DESC, COLUMN_SORT_NONE, getNextColumnSortDirection, type ColumnSortingDirection } from './tables/utils/columnSorting'
 import { isCheckboxColumn } from './tables/utils/isCheckboxColumn'
 import { isLinkToEditItemColumn } from './tables/utils/isLinkToEditItemColumn'
+import { Icon } from './Icon'
 
 export const NoDataCell = function NoDataCell({
   children
@@ -700,7 +701,7 @@ export const Table = memo(function Table<
                     onClick={onShowCreateItemModal}
                     title={showCreateItemModalButtonLabel}
                   >
-                    <i className="icon icon-add"></i>
+                    <Icon name="add" />
                   </Button>
                 )}
 
@@ -717,7 +718,7 @@ export const Table = memo(function Table<
                     onClick={onResetSelectedItems}
                     title="clear selection"
                   >
-                    <i className="icon icon-remove_selection"></i>
+                    <Icon name="remove_selection" />
                   </Button>
                 )}
 
@@ -729,7 +730,7 @@ export const Table = memo(function Table<
                     onClick={onDeleteSelectedItems}
                     title="delete selected"
                   >
-                    <i className="icon icon-delete_forever"></i>
+                    <Icon name="delete_forever" />
                   </Button>
                 )}
 
@@ -768,7 +769,7 @@ export const Table = memo(function Table<
                       onClick={onDisableFilter}
                       title="disable filter"
                     >
-                      <i className="icon icon-filter_alt_off"></i>
+                      <Icon name="filter_alt_off" />
                     </Button>
                   )
                 : (
@@ -778,7 +779,7 @@ export const Table = memo(function Table<
                       onClick={onEnableFilter}
                       title="apply filter"
                     >
-                      <i className="icon icon-filter_alt"></i>
+                      <Icon name="filter_alt" />
                     </Button>
                   )
             )

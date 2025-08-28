@@ -1,6 +1,7 @@
 import * as d3 from 'd3'
 import { memo, useCallback, useEffect, useMemo, useRef, type Dispatch, type MouseEvent, type RefObject, type SetStateAction } from 'react'
 import styles from './PriceLinePlotBody.module.css'
+import { cn } from '~/utils/ui/ClassNames'
 
 function getAdjustmentValueOfMarginLeftAndBottom(
   svgElement: SVGSVGElement,
@@ -146,6 +147,9 @@ export const PriceLinePlotBody = memo(function PriceLinePlotBody({
       )
       .call(g => g.select('.domain').remove())
       .call(g => g.selectAll('.cloned').remove())
+      .call(g => g.selectAll('.tick')
+        .classed(styles.Tick, true)
+      )
       .call(g => g.selectAll('.tick text')
         .append('title')
         .text(d => `${d}`)
@@ -185,6 +189,13 @@ export const PriceLinePlotBody = memo(function PriceLinePlotBody({
       )
       .call(g => g.select('.domain').remove())
       .call(g => g.selectAll('.cloned').remove())
+      .call(g => g.selectAll('.tick')
+        .classed(styles.Tick, true)
+      )
+      .call(g => g.selectAll('.tick text')
+        .attr('dy', '0')
+        .attr('dominant-baseline', 'middle')
+      )
       .call(g => g.selectAll('.tick text')
         .append('title')
         .text(d => `${d}`)

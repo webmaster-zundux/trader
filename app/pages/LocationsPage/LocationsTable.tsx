@@ -25,6 +25,7 @@ import { LocationFilterDialog } from './modals/LocationFilterDialog'
 import { getLocationFilterFields } from './modals/getLocationsFilterFields'
 import { useLocationsTableFilter } from './useLocationsTableFilter'
 import { useLocationsTableSearch } from './useLocationsTableSearch'
+import { Icon } from '~/components/Icon'
 
 const sortableGroupColumnNames: (ReturnType<typeof getLocationsTableColumns>)[number]['name'][] = [
   'name',
@@ -192,7 +193,7 @@ export const LocationsTable = memo(function LocationTable({
           title="show filter form"
           onClick={showFilterDialog}
         >
-          <i className="icon icon-tune"></i>
+          <Icon name="tune" />
           <span>filter</span>
         </Button>
 

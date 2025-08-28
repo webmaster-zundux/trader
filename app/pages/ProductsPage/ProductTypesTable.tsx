@@ -18,6 +18,7 @@ import { DeleteProductTypeConfirmation } from './modals/DeleteProductTypeConfirm
 import { EditProductTypeModal } from './modals/EditProductTypeModal'
 import { useProductTypesTableSearch } from './useProductTypesTableSearch'
 import { SearchAndFilterFormContainer } from '~/components/SearchAndFilterFormContainer'
+import { Icon } from '~/components/Icon'
 
 const sortableGroupColumnNames: (typeof productTypesTableColumns)[number]['name'][] = [
   'name',
@@ -43,15 +44,15 @@ const productTypesTableColumns: Column<ProductType>[] = [
         <>
           {urlToProductsPage
             ? (
-              <InternalStaticLink to={urlToProductsPage} title="search by product type in products">
-                <i className="icon icon-search_category"></i>
-              </InternalStaticLink>
-            )
+                <InternalStaticLink to={urlToProductsPage} title="search by product type in products">
+                  <Icon name="search_category" />
+                </InternalStaticLink>
+              )
             : (
-              <Button disabled noBorder noPadding transparent title="no data for search">
-                <i className="icon icon-search_off"></i>
-              </Button>
-            )}
+                <Button disabled noBorder noPadding transparent title="no data for search">
+                  <Icon name="search_off" />
+                </Button>
+              )}
         </>
       )
     },

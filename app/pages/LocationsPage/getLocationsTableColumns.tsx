@@ -11,6 +11,7 @@ import { LocationTypeActionButtonsForLocation } from './tables/FormattedCells/Lo
 import { PlanetarySystemActionButtonsForLocation } from './tables/FormattedCells/PlanetarySystemActionButtonsForLocation'
 import { sortItemsByLocationTypeName } from './tables/sortBy/sortItemsByLocationTypeName'
 import { sortItemsByPlanetarySystemName } from './tables/sortBy/sortItemsByPlanetarySystemName'
+import { Icon } from '~/components/Icon'
 
 export function getLocationsTableColumns(): Column<Location>[] {
   return [
@@ -33,10 +34,10 @@ export function getLocationsTableColumns(): Column<Location>[] {
             {(typeof value === 'string')
               ? value
               : (
-                <NoDataCell>
-                  (no&nbsp;id)
-                </NoDataCell>
-              )}
+                  <NoDataCell>
+                    (no&nbsp;id)
+                  </NoDataCell>
+                )}
           </>
         )
       },
@@ -49,15 +50,15 @@ export function getLocationsTableColumns(): Column<Location>[] {
           <>
             {urlToMarketPage
               ? (
-                <InternalStaticLink to={urlToMarketPage} title="search by location id in market">
-                  <i className="icon icon-query_stats"></i>
-                </InternalStaticLink>
-              )
+                  <InternalStaticLink to={urlToMarketPage} title="search by location id in market">
+                    <Icon name="query_stats" />
+                  </InternalStaticLink>
+                )
               : (
-                <Button disabled noBorder noPadding transparent title="no data for search in market">
-                  <i className="icon icon-search_off"></i>
-                </Button>
-              )}
+                  <Button disabled noBorder noPadding transparent title="no data for search in market">
+                    <Icon name="search_off" />
+                  </Button>
+                )}
           </>
         )
       },
@@ -76,15 +77,15 @@ export function getLocationsTableColumns(): Column<Location>[] {
           <>
             {urlToMarketPage
               ? (
-                <InternalStaticLink to={urlToMarketPage} title="search by location name in market">
-                  <i className="icon icon-query_stats"></i>
-                </InternalStaticLink>
-              )
+                  <InternalStaticLink to={urlToMarketPage} title="search by location name in market">
+                    <Icon name="query_stats" />
+                  </InternalStaticLink>
+                )
               : (
-                <Button disabled noBorder noPadding transparent title="no data for search in market">
-                  <i className="icon icon-search_off"></i>
-                </Button>
-              )}
+                  <Button disabled noBorder noPadding transparent title="no data for search in market">
+                    <Icon name="search_off" />
+                  </Button>
+                )}
           </>
         )
       },

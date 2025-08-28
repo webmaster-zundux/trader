@@ -18,6 +18,7 @@ import { DeleteProductRarityConfirmation } from './modals/DeleteProductRarityCon
 import { EditProductRarityModal } from './modals/EditProductRarityModal'
 import { useProductRaritiesTableSearch } from './useProductRaritiesTableSearch'
 import { SearchAndFilterFormContainer } from '~/components/SearchAndFilterFormContainer'
+import { Icon } from '~/components/Icon'
 
 const sortableGroupColumnNames: (typeof productRaritiesTableColumns)[number]['name'][] = [
   'name', 'value'
@@ -42,15 +43,15 @@ const productRaritiesTableColumns: Column<ProductRarity>[] = [
         <>
           {urlToProductsPage
             ? (
-              <InternalStaticLink to={urlToProductsPage} title="search by product rarity in products">
-                <i className="icon icon-search_category"></i>
-              </InternalStaticLink>
-            )
+                <InternalStaticLink to={urlToProductsPage} title="search by product rarity in products">
+                  <Icon name="search_category" />
+                </InternalStaticLink>
+              )
             : (
-              <Button disabled noBorder noPadding transparent title="no data for search">
-                <i className="icon icon-search_off"></i>
-              </Button>
-            )}
+                <Button disabled noBorder noPadding transparent title="no data for search">
+                  <Icon name="search_off" />
+                </Button>
+              )}
         </>
       )
     },

@@ -1,4 +1,5 @@
 import { Button } from '~/components/Button'
+import { Icon } from '~/components/Icon'
 import { InternalStaticLink } from '~/components/InternalStaticLink'
 import { isUuid } from '~/models/Entity'
 import type { MovingEntity } from '~/models/entities/MovingEntity'
@@ -26,11 +27,11 @@ export function MovingEntityClassActionButtonsForMovingEntity({
     <>
       {urlToMovingEntitiesPage ? (
         <InternalStaticLink to={urlToMovingEntitiesPage} title="show moving object class info">
-          <i className="icon icon-info"></i>
+          <Icon name="info" />
         </InternalStaticLink>
       ) : (
         <Button disabled noBorder noPadding transparent title="no moving object class data">
-          <i className="icon icon-search_off"></i>
+          <Icon name="search_off" />
         </Button>
       )}
     </>
