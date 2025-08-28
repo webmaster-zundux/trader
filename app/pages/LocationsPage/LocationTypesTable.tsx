@@ -19,6 +19,7 @@ import { ENTITY_TYPE_LOCATION_TYPE } from '../../models/entities/LocationType'
 import { DeleteLocationTypeConfirmation } from './modals/DeleteLocationTypeConfirmation'
 import { EditLocationTypeModal } from './modals/EditLocationTypeModal'
 import { useLocationTypesTableSearch } from './useLocationTypesTableSearch'
+import { SearchAndFilterFormContainer } from '~/components/SearchAndFilterFormContainer'
 
 const sortableGroupColumnNames: (typeof locationTypesTableColumns)[number]['name'][] = [
   'name',
@@ -143,7 +144,9 @@ export const LocationTypesTable = memo(function LocationTypeTable({
   return (
     <SearchFormAndTableContainer>
 
-      {SearchForm}
+      <SearchAndFilterFormContainer>
+        {SearchForm}
+      </SearchAndFilterFormContainer>
 
       <Table
         tableTitle="location types"

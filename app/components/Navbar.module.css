@@ -84,7 +84,7 @@
   }
 }
 
-@media (width <= 480px) {
+@media (width < 768px) {
   .MobileNavMenu {
     position: absolute;
     top: 2.6em;

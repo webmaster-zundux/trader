@@ -28,7 +28,7 @@ export const PriceLinePlot = memo(function PriceLinePlot({
   width = 500,
   height = 250,
   marginTop = 18,
-  marginRight = 0,
+  marginRight = 9,
   marginBottom = 20,
   marginLeft = 60,
   plotDomainPadding = 10,
@@ -187,7 +187,7 @@ export const PriceLinePlot = memo(function PriceLinePlot({
           elementWithTargetPointRef={plotContainerRef}
           targetPoint={domRectTargetPosition}
         >
-          <div className={styles.PriceLineTooltipContentGrid}>
+          <div className={styles.PriceLineTooltipContent}>
             <span>Price:</span>
             <span>{tooltipPriceValue}</span>
             <span>Quantity:</span>

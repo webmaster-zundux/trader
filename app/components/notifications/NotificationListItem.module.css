@@ -26,7 +26,7 @@
   display: flex;
   position: relative;
   padding: 0.7em 1em;
-  color: var(---text-color);
+  color: var(--text-color);
   background-color: var(--background-color);
   border: 0.1em solid var(--dialog-border-color);
   box-shadow: var(--floating-element-box-shadow);
@@ -36,6 +36,12 @@
   animation: AnimationSmoothAppear 250ms ease forwards;
   bottom: 0;
   opacity: 1;
+}
+
+@media (width < 768px) {
+  .Notification {
+    width: 100%;
+  }
 }
 
 .Notification.InDisapperState {

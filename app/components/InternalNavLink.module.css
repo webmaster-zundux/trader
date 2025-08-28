@@ -5,7 +5,7 @@
 .InternalNavLink i {
   display: flex;
   color: var(--text-color);
- 
+  font-size: 1.5em;
 }
 
 .InternalNavLink:hover i,

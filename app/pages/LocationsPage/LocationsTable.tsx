@@ -186,7 +186,6 @@ export const LocationsTable = memo(function LocationTable({
     <SearchFormAndTableContainer>
 
       <SearchAndFilterFormContainer>
-
         {SearchForm}
 
         <Button

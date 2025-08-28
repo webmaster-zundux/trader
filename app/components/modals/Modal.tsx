@@ -69,7 +69,8 @@ function ModalByReactPortal({
             <div
               className={cn([
                 styles.ModalContainer,
-                (!size || (size === 'tiny')) && styles.SizeTiny,
+                !size && styles.SizeNormal,
+                (size === 'tiny') && styles.SizeTiny,
                 (size === 'small') && styles.SizeSmall,
                 (size === 'medium') && styles.SizeMedium,
                 (size === 'large') && styles.SizeLarge,

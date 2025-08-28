@@ -74,7 +74,6 @@ export const MarketPage = memo(function MarketPage() {
       <Main>
 
         <SearchAndFilterFormContainer>
-
           {SearchForm}
 
           <Button

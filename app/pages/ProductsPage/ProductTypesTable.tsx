@@ -17,6 +17,7 @@ import { useProductTypesStore } from '../../stores/entity-stores/ProductTypes.st
 import { DeleteProductTypeConfirmation } from './modals/DeleteProductTypeConfirmation'
 import { EditProductTypeModal } from './modals/EditProductTypeModal'
 import { useProductTypesTableSearch } from './useProductTypesTableSearch'
+import { SearchAndFilterFormContainer } from '~/components/SearchAndFilterFormContainer'
 
 const sortableGroupColumnNames: (typeof productTypesTableColumns)[number]['name'][] = [
   'name',
@@ -160,7 +161,9 @@ export const ProductTypesTable = memo(function ProductTypesTable({
   return (
     <SearchFormAndTableContainer>
 
-      {SearchForm}
+      <SearchAndFilterFormContainer>
+        {SearchForm}
+      </SearchAndFilterFormContainer>
 
       <Table
         tableTitle="product types"

@@ -14,6 +14,7 @@ import { getMovingEntityClassesTableColumns } from './getMovingEntityClassesTabl
 import { DeleteMovingEntityClassConfirmation } from './modals/DeleteMovingEntityClassConfirmation'
 import { EditMovingEntityClassModal } from './modals/EditMovingEntityClassModal'
 import { useMovingEntityClassesTableSearch } from './useMovingEntityClassesTableSearch'
+import { SearchAndFilterFormContainer } from '~/components/SearchAndFilterFormContainer'
 
 const sortableGroupColumnNames: (ReturnType<typeof getMovingEntityClassesTableColumns>)[number]['name'][] = [
   'name',
@@ -132,7 +133,9 @@ export const MovingEntityClassesTable = memo(function MovingEntityTable({
   return (
     <SearchFormAndTableContainer>
 
-      {SearchForm}
+      <SearchAndFilterFormContainer>
+        {SearchForm}
+      </SearchAndFilterFormContainer>
 
       <Table
         tableTitle="moving object classes"

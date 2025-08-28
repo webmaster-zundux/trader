@@ -20,6 +20,7 @@ import { useGetMapSearchResults } from './hooks/useGetMapSearchResults'
 import { useMapFilter } from './useMapFilter'
 import { useMapPageTitle } from './useMapPageTitle'
 import { useMapSearch } from './useMapSearch'
+import { SearchAndFilterFormContainer } from '~/components/SearchAndFilterFormContainer'
 
 export const MapPage = memo(function MapPage() {
   const { urlSearchParams, setUrlSearchParams } = useSearchParams()
@@ -113,7 +114,9 @@ export const MapPage = memo(function MapPage() {
         <div className={styles.SearchResults}>
           <SearchFormAndTableContainer>
 
-            {SearchForm}
+            <SearchAndFilterFormContainer>
+              {SearchForm}
+            </SearchAndFilterFormContainer>
 
             <SearchResultsTable
               tableTitle="search results"

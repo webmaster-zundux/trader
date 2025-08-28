@@ -40,7 +40,7 @@
 }
 
 
-@media screen and (width <= 480px) {
+@media (width <= 480px) {
     .ActionButtons {
         flex-direction: column;
     }

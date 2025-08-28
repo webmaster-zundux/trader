@@ -50,7 +50,7 @@
   }
 }
  
-@media screen and (width <=480px) {
+@media (width <=480px) {
   .SearchResults {
     border-right: none;
     border-bottom: 0.1em solid var(--panel-border-color);

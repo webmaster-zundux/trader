@@ -5,6 +5,7 @@
 .InternalStaticLink i {
   display: flex;
   color: var(--text-color);
+  font-size: 1.5em;
 }
 
 .InternalStaticLink:hover i,

@@ -48,6 +48,10 @@
   width: 40%;
 }
 
+.SizeNormal {
+  width: 50%;
+}
+
 .SizeMedium {
   width: 60%;
 }
@@ -62,7 +66,11 @@
   }
 
   .SizeSmall {
-    width: 60%;
+    width: 55%;
+  }
+
+  .SizeNormal {
+    width: 65%;
   }
 
   .SizeMedium {
@@ -80,7 +88,11 @@
   }
 
   .SizeSmall {
-    width: 60%;
+    width: 55%;
+  }
+
+  .SizeNormal {
+    width: 65%;
   }
 
   .SizeMedium {
@@ -101,12 +113,16 @@
     width: 80%;
   }
 
-  .SizeMedium {
+  .SizeNormal {
     width: 85%;
   }
 
-  .SizeLarge {
+  .SizeMedium {
     width: 90%;
+  }
+
+  .SizeLarge {
+    width: 95%;
   }
 }
 
@@ -116,6 +132,10 @@
   }
 
   .SizeSmall {
+    width: 95%;
+  }
+
+  .SizeNormal {
     width: 95%;
   }
 

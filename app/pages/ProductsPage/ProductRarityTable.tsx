@@ -17,6 +17,7 @@ import { useProductRaritiesStore } from '../../stores/entity-stores/ProductRarit
 import { DeleteProductRarityConfirmation } from './modals/DeleteProductRarityConfirmation'
 import { EditProductRarityModal } from './modals/EditProductRarityModal'
 import { useProductRaritiesTableSearch } from './useProductRaritiesTableSearch'
+import { SearchAndFilterFormContainer } from '~/components/SearchAndFilterFormContainer'
 
 const sortableGroupColumnNames: (typeof productRaritiesTableColumns)[number]['name'][] = [
   'name', 'value'
@@ -165,7 +166,9 @@ export const ProductRarityTable = memo(function ProductRarityTable({
   return (
     <SearchFormAndTableContainer>
 
-      {SearchForm}
+      <SearchAndFilterFormContainer>
+        {SearchForm}
+      </SearchAndFilterFormContainer>
 
       <Table
         tableTitle="product rarities"

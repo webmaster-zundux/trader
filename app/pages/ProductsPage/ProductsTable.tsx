@@ -203,7 +203,6 @@ export const ProductsTable = memo(function ProductsTable({
     <SearchFormAndTableContainer>
 
       <SearchAndFilterFormContainer>
-
         {SearchForm}
 
         <Button

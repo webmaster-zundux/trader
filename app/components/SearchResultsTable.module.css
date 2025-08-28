@@ -71,7 +71,7 @@
   align-items: center;
 }
 
-@media screen and (width <=480px) {
+@media (width <=480px) {
   .TableHeaderContainer button {
     width: 100%;
   }

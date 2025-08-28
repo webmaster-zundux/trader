@@ -57,7 +57,7 @@
   display: table;
   table-layout: auto;
   width: 100%;
-  max-width: 30em;
+  // max-width: 30em;
 }
 
 .FieldsContainer div:has(>label) {
@@ -100,7 +100,7 @@
 }
 
 
-@media screen and (width <=480px) {
+@media (width <=480px) {
   .ActionButtons {
     flex-direction: column;
   }

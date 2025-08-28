@@ -27,6 +27,7 @@
 i.LabelIcon {
   display: flex;
   color: var(--text-color);
+  font-size: 1.5em;
 }
 
 i.LabelIcon.Small {
@@ -62,7 +63,6 @@ i.LabelIcon.Small {
 }
 
 .LevelIndicationIconWrapper {
-  font-size: 2em;
   margin: 0 -0.5em;
   display: flex;
   align-items: center;

@@ -1,6 +1,6 @@
 import * as d3 from 'd3'
 import { memo, useCallback, useEffect, useMemo, useRef, type Dispatch, type MouseEvent, type RefObject, type SetStateAction } from 'react'
-import styles from './PriceLinePlot.module.css'
+import styles from './PriceLinePlotBody.module.css'
 
 function getAdjustmentValueOfMarginLeftAndBottom(
   svgElement: SVGSVGElement,
@@ -267,9 +267,9 @@ export const PriceLinePlotBody = memo(function PriceLinePlotBody({
   return (
     <svg
       ref={svgRef}
+      className={styles.PriceLinePlotBody}
       width="100%"
       viewBox={`0 0 ${width} ${height}`}
-      style={{ maxWidth: '100%', height: 'intrinsic' }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       role="application"

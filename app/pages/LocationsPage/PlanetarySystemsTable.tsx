@@ -16,6 +16,7 @@ import { getPlanetarySystemsTableColumns } from './getPlanetarySystemsTableColum
 import { DeletePlanetarySystemConfirmation } from './modals/DeletePlanetarySystemConfirmation'
 import { EditPlanetarySystemModal } from './modals/EditPlanetarySystemModal'
 import { usePlanetarySystemsTableSearch } from './usePlanetarySystemsTableSearch'
+import { SearchAndFilterFormContainer } from '~/components/SearchAndFilterFormContainer'
 
 const sortableGroupColumnNames: (ReturnType<typeof getPlanetarySystemsTableColumns>)[number]['name'][] = [
   'name',
@@ -112,7 +113,9 @@ export const PlanetarySystemsTable = memo(function PlanetarySystemTable({
   return (
     <SearchFormAndTableContainer>
 
-      {SearchForm}
+      <SearchAndFilterFormContainer>
+        {SearchForm}
+      </SearchAndFilterFormContainer>
 
       <Table
         tableTitle="planetary systems"

@@ -222,7 +222,6 @@ export const MovingEntitiesTable = memo(function MovingEntityTable({
     <SearchFormAndTableContainer>
 
       <SearchAndFilterFormContainer>
-
         {SearchForm}
 
         <Button
