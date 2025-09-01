@@ -169,8 +169,8 @@ export const EditMovingEntityModal = memo(function EditMovingEntityModal({
     })
   }, [movingEntityClassesAsSelectOptions, locationsAsSelectOptions, isLoading])
 
-  const movingEntityFormFieldsWithOptionalDefaultValues: FormField<MovingEntity>[]
-    = useFilterValuesAsDefaultValuesInFormFields<MovingEntityFilter, MovingEntity>(movingEntityFormFields, filterValue)
+  const movingEntityFormFieldsWithOptionalDefaultValues: FormField<MovingEntity>[] =
+    useFilterValuesAsDefaultValuesInFormFields<MovingEntityFilter, MovingEntity>(movingEntityFormFields, filterValue)
 
   return (
     <ModalEditForm

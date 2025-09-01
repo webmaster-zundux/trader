@@ -23,7 +23,7 @@ export function getNextColumnSortDirection(sortDirection?: ColumnSortingDirectio
   return columnSortDirectionLoop[sortDirection]
 }
 
-export type ColumnSortingDirection
-  = | typeof COLUMN_SORT_NONE
-    | typeof COLUMN_SORT_ASC
-    | typeof COLUMN_SORT_DESC
+export type ColumnSortingDirection =
+  | typeof COLUMN_SORT_NONE
+  | typeof COLUMN_SORT_ASC
+  | typeof COLUMN_SORT_DESC

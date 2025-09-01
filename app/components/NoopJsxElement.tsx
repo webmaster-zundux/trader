@@ -2,5 +2,5 @@ export function NoopJsxElement() {
   return (
     <>
     </>
-  );
+  )
 }

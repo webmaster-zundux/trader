@@ -178,8 +178,8 @@ export const EditLocationModal = memo(function EditLocationModal({
     return getEditLocationFormFields(planetarySystemsAsSelectOptions, locationTypesAsSelectOptions)
   }, [planetarySystemsAsSelectOptions, locationTypesAsSelectOptions, isLoading])
 
-  const locationFormFieldsWithOptionalDefaultValues: FormField<Location>[]
-    = useFilterValuesAsDefaultValuesInFormFields<LocationFilter, Location>(locationFormFields, filterValue)
+  const locationFormFieldsWithOptionalDefaultValues: FormField<Location>[] =
+    useFilterValuesAsDefaultValuesInFormFields<LocationFilter, Location>(locationFormFields, filterValue)
 
   return (
     <ModalEditForm

@@ -81,8 +81,8 @@ export const EditPlanetarySystemModal = memo(function EditPlanetarySystemModal({
     itemData: WithoutUUID<PlanetarySystem> | PlanetarySystem
   ) => {
     if (!hasUuid(itemData)) {
-      const dataAttributes
-        = getAttributesByWhiteList<WithoutUUID<PlanetarySystem>>(itemData, PLANETARY_SYSTEM_ATTRIBUTES_WITHOUT_UUID)
+      const dataAttributes =
+        getAttributesByWhiteList<WithoutUUID<PlanetarySystem>>(itemData, PLANETARY_SYSTEM_ATTRIBUTES_WITHOUT_UUID)
 
       dataAttributes.entityType = ENTITY_TYPE_PLANETARY_SYSTEM
       dataAttributes.name = dataAttributes.name.toLocaleLowerCase()
@@ -144,8 +144,8 @@ export const EditPlanetarySystemModal = memo(function EditPlanetarySystemModal({
       return undefined
     }
 
-    const existingItemWithTheSamePosition
-      = getPlanetarySystemByPositionExceptItSelfSelector(itemData)
+    const existingItemWithTheSamePosition =
+      getPlanetarySystemByPositionExceptItSelfSelector(itemData)
 
     if (existingItemWithTheSamePosition) {
       return function ErrorMessage() {

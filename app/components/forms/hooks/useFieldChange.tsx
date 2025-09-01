@@ -13,8 +13,8 @@ export const getFormFieldElement = <
     return undefined
   }
 
-  const fieldElement
-    = formElement.querySelector<T>(`${fieldType}[name="${fieldName}"]`)
+  const fieldElement =
+    formElement.querySelector<T>(`${fieldType}[name="${fieldName}"]`)
 
   if (!fieldElement) {
     return undefined

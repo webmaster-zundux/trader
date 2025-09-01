@@ -81,8 +81,8 @@ export const EditProductRarityModal = ({
     itemData: WithoutUUID<ProductRarity> | ProductRarity
   ) => {
     if (!hasUuid(itemData)) {
-      const dataAttributes
-        = getAttributesByWhiteList<WithoutUUID<ProductRarity>>(itemData, PRODUCT_RARITY_ATTRIBUTES_WITHOUT_UUID)
+      const dataAttributes =
+        getAttributesByWhiteList<WithoutUUID<ProductRarity>>(itemData, PRODUCT_RARITY_ATTRIBUTES_WITHOUT_UUID)
 
       dataAttributes.entityType = ENTITY_TYPE_PRODUCT_RARITY
 

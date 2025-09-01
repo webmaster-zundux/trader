@@ -1,7 +1,7 @@
 import type { LocationType } from '~/models/entities/LocationType'
 import type { Location } from '../../models/entities/Location'
 import type { PlanetarySystem } from '../../models/entities/PlanetarySystem'
-import { PAGE_SLUG_LOCATIONS } from "~/routes"
+import { PAGE_SLUG_LOCATIONS } from '~/routes'
 import { URL_SEARCH_PARAM_KEY_LOCATION_ID, URL_SEARCH_PARAM_KEY_LOCATION_NAME, URL_SEARCH_PARAM_KEY_LOCATION_TYPE_NAME, URL_SEARCH_PARAM_KEY_PLANETARY_SYSTEM_NAME } from './UrlSearchParamsKeys.const'
 
 export function getUrlToLocationsPageWithParams({

@@ -179,8 +179,8 @@ export const EditBuyOrderModal = memo(function EditBuyOrderModal({
     return getEditBuyOrderFormFields(productsAsSelectOptions, locationsAsSelectOptions)
   }, [productsAsSelectOptions, locationsAsSelectOptions, isLoadingSimpleCacheStorages])
 
-  const buyOrderFormFieldsWithOptionalDefaultValues: FormField<BuyOrder>[]
-    = useFilterValuesAsDefaultValuesInFormFields<BuyOrderFilter, BuyOrder>(buyOrderFormFields, filterValue)
+  const buyOrderFormFieldsWithOptionalDefaultValues: FormField<BuyOrder>[] =
+    useFilterValuesAsDefaultValuesInFormFields<BuyOrderFilter, BuyOrder>(buyOrderFormFields, filterValue)
 
   return (
     <ModalEditForm
