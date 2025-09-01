@@ -40,16 +40,18 @@ interface IconProps {
     | 'search_off'
     | 'tune'
     | 'upload_file'
+  title?: string
 }
 export const Icon = memo(function Icon({
   className,
   name,
+  title,
 }: IconProps) {
   const iconElementClassName = useMemo(() => {
     return cn([svgIconBaseClass, `${svgIconClassPrefix}${name}`, styles.Icon, className])
   }, [className, name])
 
   return (
-    <i className={iconElementClassName}></i>
+    <i className={iconElementClassName} title={title}></i>
   )
 })

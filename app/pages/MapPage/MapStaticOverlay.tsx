@@ -155,10 +155,18 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
           <div className={styles.SelectedItemLabelsContainer}>
             <div className={styles.IconAndLabelContainerWrapper}>
               {selectedMovingEntityPosition && (
-                <Icon name="location_on" className={cn([styles.LabelIcon, styles.Small])} />
+                <Icon
+                  name="location_on"
+                  className={cn([styles.LabelIcon, styles.Small])}
+                  title="moving object"
+                />
               )}
               {!selectedMovingEntityPosition && (
-                <Icon name="not_listed_location" className={cn([styles.LabelIcon, styles.Small])} />
+                <Icon
+                  name="not_listed_location"
+                  className={cn([styles.LabelIcon, styles.Small])}
+                  title="moving object at unknown position"
+                />
               )}
 
               <div className={styles.LabelContainer}>
@@ -177,10 +185,18 @@ export const MapStaticOverlay = memo(function MapStaticOverlay({
           <div className={styles.SelectedItemLabelsContainer}>
             <div className={styles.IconAndLabelContainerWrapper}>
               {selectedLocationPosition && (
-                <Icon name="location_on" className={cn([styles.LabelIcon, styles.Small])} />
+                <Icon
+                  name="location_on"
+                  className={cn([styles.LabelIcon, styles.Small])}
+                  title="location"
+                />
               )}
               {!selectedLocationPosition && (
-                <Icon name="not_listed_location" className={cn([styles.LabelIcon, styles.Small])} />
+                <Icon
+                  name="not_listed_location"
+                  className={cn([styles.LabelIcon, styles.Small])}
+                  title="location at unknown position"
+                />
               )}
 
               <div className={styles.LabelContainer}>

@@ -118,7 +118,7 @@ function ModalByReactPortal({
                     noBorder
                     noPadding
                     onClick={handleHide}
-                    title="close"
+                    title="close modal dialog"
                   >
                     <Icon name="close" />
                   </Button>

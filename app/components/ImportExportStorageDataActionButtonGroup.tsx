@@ -214,7 +214,7 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
             noPadding
             transparent
             onClick={showImportStorageDataModal}
-            title="import"
+            title="import storage data"
           >
             <Icon name="upload_file" />
           </Button>
@@ -223,7 +223,7 @@ export const ImportExportStorageState = memo(function ImportExportStorageState()
             noPadding
             transparent
             onClick={handleExportButtonClick}
-            title="export"
+            title="export storage data"
           >
             <Icon name="file_download" />
           </Button>

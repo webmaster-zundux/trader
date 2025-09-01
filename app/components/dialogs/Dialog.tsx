@@ -95,7 +95,7 @@ export const Dialog = memo(function Dialog({
               noBorder
               noPadding
               onClick={handleHide}
-              title="close"
+              title="close dialog"
             >
               <Icon name="close" />
             </Button>

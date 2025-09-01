@@ -728,7 +728,7 @@ export const Table = memo(function Table<
                     noPadding
                     transparent
                     onClick={onDeleteSelectedItems}
-                    title="delete selected"
+                    title="delete selected items"
                   >
                     <Icon name="delete_forever" />
                   </Button>

@@ -1,11 +1,13 @@
 import { useCallback, useState } from 'react'
+import { Icon } from '~/components/Icon'
+import { FEATURE_ACTIVE_MARKET_COPY_SELECTED_ORDERS } from '~/feature.list'
 import { useIsVisible } from '~/hooks/ui/useIsVisible'
 import type { Entity } from '../../../models/Entity'
 import { Button } from '../../Button'
 import { ModalCopyingItemsForm } from '../../forms/ModalCopyingItemsForm'
 import { ModalNotification } from '../../modals/notifications/ModalNotification'
+import { NoopJsxElement } from '../../NoopJsxElement'
 import styles from './useCloneSelectedItems.module.css'
-import { Icon } from '~/components/Icon'
 
 interface UseCloneSelectedItemsProps<
   T extends Entity = Entity,
@@ -180,10 +182,19 @@ export function useCloneSelectedItems<
     )
   }, [isVisibleItemsWereAddedNotification, handleHideWereAddedNotification, addedItems])
 
+  if (FEATURE_ACTIVE_MARKET_COPY_SELECTED_ORDERS) {
+    return {
+      CopySelectedItemsButton,
+      CopyingDialog,
+      NothingToCopyNotification,
+      ItemsWereCopiedNotification,
+    }
+  }
+
   return {
-    CopySelectedItemsButton,
-    CopyingDialog,
-    NothingToCopyNotification,
-    ItemsWereCopiedNotification,
+    CopySelectedItemsButton: NoopJsxElement,
+    CopyingDialog: NoopJsxElement,
+    NothingToCopyNotification: NoopJsxElement,
+    ItemsWereCopiedNotification: NoopJsxElement,
   }
 }
