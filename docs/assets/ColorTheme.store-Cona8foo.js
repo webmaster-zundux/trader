@@ -1,0 +1,1 @@
+import{c as E,a as e}from"./ClassNames-CdIKlwZs.js";const s="light",O="dark",a=void 0,T=s,t="ColorThemeDark",C="ColorThemeLight",c="prefered-color-theme",r=E(e({colorTheme:T},o=>({setColorTheme:_=>{o(()=>({colorTheme:_}))}})));export{O as C,T as D,t as H,c as L,s as a,a as b,C as c,r as u};
